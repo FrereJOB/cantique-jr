@@ -17,9 +17,10 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Fix Gradlew
+      - name: Repair Gradle Wrapper
         run: |
-          curl -L https://raw.githubusercontent.com/gradle/gradle/master/gradlew -o gradlew
+          mkdir -p gradle/wrapper
+          curl -L https://repo.maven.apache.org/maven2/org/gradle/wrapper/gradle-wrapper/8.0/gradle-wrapper-8.0.jar -o gradle/wrapper/gradle-wrapper.jar
           chmod +x gradlew
 
       - name: Build APK
