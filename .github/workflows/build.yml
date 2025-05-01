@@ -1,12 +1,14 @@
 name: Build APK
-on: [push]
+on: [push, workflow_dispatch]  # Ajout de workflow_dispatch pour déclenchement manuel
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: android-actions/setup-android@v3
-      - run: ./gradlew assembleDebug
+      - run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug
       - uses: actions/upload-artifact@v3
         with:
           name: app-debug.apk
