@@ -22,7 +22,7 @@ jobs:
 
       - name: Configure Gradle
         run: |
-          # Crée un fichier gradle.properties avec les bonnes configurations
+          # Crée un fichier gradle.properties avec les bonnes configurations.
           echo "android.useAndroidX=true" > gradle.properties
           echo "org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8" >> gradle.properties
 
