@@ -1,19 +1,19 @@
-name: Build APK  
-on: [push, workflow_dispatch]  
-jobs:  
-  build:  
-    runs-on: ubuntu-latest  
-    steps:  
-      - uses: actions/checkout@v4  
-      - uses: actions/setup-java@v3  
-        with:  
-          distribution: 'temurin'  
-          java-version: '17'  
-      - uses: android-actions/setup-android@v2  # <-- Correction ici
+name: Build APK
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - uses: malinskiy/action-android/install-sdk@v2
       - run: |
-    chmod 755 gradlew  # Donne tous les droits (lecture/écriture/exécution)
-    ./gradlew assembleDebug  
-      - uses: actions/upload-artifact@v4  
-        with:  
-          name: app-debug.apk  
+          chmod +x gradlew
+          ./gradlew assembleDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: app-debug.apk
           path: app/build/outputs/apk/debug/app-debug.apk
