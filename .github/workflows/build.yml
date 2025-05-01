@@ -13,27 +13,20 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Android SDK
-        run: |
-          mkdir -p ~/.android
-          touch ~/.android/repositories.cfg
-          yes | sdkmanager --licenses > /dev/null
-          sdkmanager "platforms;android-33" "build-tools;33.0.0"
+      - name: Setup Android Tools
+        uses: android-actions/setup-android@v3
+        with:
+          licenses: 'android-sdk-license'
+          api-level: 33
+          build-tools: 33.0.0
+          ndk: none
+          cmake: none
 
-      - name: Configure Gradle
+      - name: Build with Gradle
         run: |
-          # Crée un fichier gradle.properties avec les bonnes configurations.
-          echo "android.useAndroidX=true" > gradle.properties
-          echo "org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8" >> gradle.properties
-
-      - name: Build with Gradle Wrapper
-        run: |
-          # Utilise le wrapper local avec les repositories corrigés
-          chmod +x gradlew
-          ./gradlew assembleDebug --stacktrace \
-            -Dorg.gradle.daemon=false \
-            -Pandroid.useAndroidX=true \
-            --init-script gradle-init.gradle
+          # Force clean environment
+          ./gradlew clean
+          ./gradlew assembleDebug --stacktrace --no-daemon
 
       - uses: actions/upload-artifact@v4
         with:
