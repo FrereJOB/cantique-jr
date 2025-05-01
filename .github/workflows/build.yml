@@ -7,22 +7,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          licenses: 'android-sdk-license'
+
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
-
-      - name: Accept Android Licenses
-        run: |
-          mkdir -p ~/.android
-          touch ~/.android/repositories.cfg
-          yes | sdkmanager --licenses > /dev/null
-          echo "Licenses accepted"
-
-      - name: Install Android SDK
-        run: |
-          sdkmanager "platforms;android-33" "build-tools;33.0.0"
-          sdkmanager --update
 
       - name: Build APK
         run: |
