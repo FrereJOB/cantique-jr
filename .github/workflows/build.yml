@@ -13,20 +13,17 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Android Tools
+      - name: Setup Android SDK
         uses: android-actions/setup-android@v3
         with:
-          licenses: 'android-sdk-license'
-          api-level: 33
-          build-tools: 33.0.0
-          ndk: none
-          cmake: none
+          licenses: accept
+
+      - name: Fix Gradlew Permissions  # SEULE MODIFICATION
+        run: chmod +x gradlew
 
       - name: Build with Gradle
         run: |
-          # Force clean environment
-          ./gradlew clean
-          ./gradlew assembleDebug --stacktrace --no-daemon
+          ./gradlew assembleDebug --stacktrace
 
       - uses: actions/upload-artifact@v4
         with:
