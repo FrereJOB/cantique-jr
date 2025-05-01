@@ -7,39 +7,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Android Environment
-        uses: android-actions/setup-android@v3
+      - name: Setup Android with Docker
+        uses: docker://ghcr.io/marketplace/actions/android-emulator-runner:latest
         with:
-          licenses: 'android-sdk-license'
+          api-level: 33
+          target: google_apis
+          arch: x86_64
+          profile: nexus6
+          script: |
+            # Installation directe de Gradle via SDKMAN
+            curl -s "https://get.sdkman.io" | bash
+            source "$HOME/.sdkman/bin/sdkman-init.sh"
+            sdk install gradle 8.0
+            
+            # Build avec Gradle installé globalement
+            gradle assembleDebug --stacktrace --info
+            
+            # Copie de l'APK
+            mkdir -p artifacts
+            cp app/build/outputs/apk/debug/app-debug.apk artifacts/
 
-      - uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: Install Complete Gradle Wrapper
-        run: |
-          # Supprime les fichiers corrompus
-          rm -f gradlew gradlew.bat
-          rm -rf gradle/wrapper
-          
-          # Télécharge les fichiers officiels
-          curl -L https://raw.githubusercontent.com/gradle/gradle/master/gradlew -o gradlew
-          curl -L https://raw.githubusercontent.com/gradle/gradle/master/gradlew.bat -o gradlew.bat
-          mkdir -p gradle/wrapper
-          curl -L https://repo.maven.apache.org/maven2/org/gradle/wrapper/gradle-wrapper/8.0/gradle-wrapper-8.0.jar -o gradle/wrapper/gradle-wrapper.jar
-          
-          # Configure les permissions
-          chmod +x gradlew
-          
-          # Crée le fichier de configuration
-          echo -e "distributionBase=GRADLE_USER_HOME\ndistributionPath=wrapper/dists\ndistributionUrl=https\\://services.gradle.org/distributions/gradle-8.0-bin.zip\nzipStoreBase=GRADLE_USER_HOME\nzipStorePath=wrapper/dists" > gradle/wrapper/gradle-wrapper.properties
-
-      - name: Build with Gradle
-        run: |
-          ./gradlew assembleDebug --stacktrace --info
-
-      - uses: actions/upload-artifact@v4
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
         with:
           name: app-debug.apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: artifacts/app-debug.apk
