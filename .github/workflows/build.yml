@@ -17,10 +17,17 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Fix Gradle Wrapper
+        run: |
+          # Régénère complètement les fichiers Gradle
+          rm -f gradlew gradlew.bat
+          rm -rf gradle/wrapper
+          ./gradlew wrapper --gradle-version 8.0 --distribution-type bin
+          chmod +x gradlew
+
       - name: Build APK
         run: |
-          chmod +x gradlew
-          ./gradlew assembleDebug --stacktrace
+          ./gradlew assembleDebug --stacktrace --info
 
       - uses: actions/upload-artifact@v4
         with:
