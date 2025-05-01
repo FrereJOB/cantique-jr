@@ -1,18 +1,27 @@
 name: Build APK
 on: [push, workflow_dispatch]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
-      - uses: malinskiy/action-android/install-sdk@v2
+
+      # Installation Android SDK sans action tierce
+      - run: |
+          yes | sdkmanager --licenses
+          sdkmanager "platforms;android-33" "build-tools;33.0.0"
+          export ANDROID_HOME=$ANDROID_SDK_ROOT
+
       - run: |
           chmod +x gradlew
           ./gradlew assembleDebug
+
       - uses: actions/upload-artifact@v4
         with:
           name: app-debug.apk
