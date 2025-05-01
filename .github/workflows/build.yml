@@ -12,14 +12,24 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - run: |
-          yes | sdkmanager --licenses
+      - name: Accept Android Licenses
+        run: |
+          mkdir -p ~/.android
+          touch ~/.android/repositories.cfg
+          yes | sdkmanager --licenses > /dev/null
+          echo "Licenses accepted"
+
+      - name: Install Android SDK
+        run: |
           sdkmanager "platforms;android-33" "build-tools;33.0.0"
+          sdkmanager --update
+
+      - name: Build APK
+        run: |
           chmod +x gradlew
+          ./gradlew assembleDebug --stacktrace
 
-      - run: ./gradlew assembleDebug
-
-      - uses: actions/upload-artifact@v4  # Version v4 au lieu de v3
+      - uses: actions/upload-artifact@v4
         with:
           name: app-debug.apk
           path: app/build/outputs/apk/debug/app-debug.apk
