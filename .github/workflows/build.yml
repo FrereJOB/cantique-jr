@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Android SDK
+      - name: Setup Android Environment
         uses: android-actions/setup-android@v3
         with:
           licenses: 'android-sdk-license'
@@ -17,15 +17,27 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Repair Gradle Wrapper
+      - name: Install Complete Gradle Wrapper
         run: |
+          # Supprime les fichiers corrompus
+          rm -f gradlew gradlew.bat
+          rm -rf gradle/wrapper
+          
+          # Télécharge les fichiers officiels
+          curl -L https://raw.githubusercontent.com/gradle/gradle/master/gradlew -o gradlew
+          curl -L https://raw.githubusercontent.com/gradle/gradle/master/gradlew.bat -o gradlew.bat
           mkdir -p gradle/wrapper
           curl -L https://repo.maven.apache.org/maven2/org/gradle/wrapper/gradle-wrapper/8.0/gradle-wrapper-8.0.jar -o gradle/wrapper/gradle-wrapper.jar
+          
+          # Configure les permissions
           chmod +x gradlew
+          
+          # Crée le fichier de configuration
+          echo -e "distributionBase=GRADLE_USER_HOME\ndistributionPath=wrapper/dists\ndistributionUrl=https\\://services.gradle.org/distributions/gradle-8.0-bin.zip\nzipStoreBase=GRADLE_USER_HOME\nzipStorePath=wrapper/dists" > gradle/wrapper/gradle-wrapper.properties
 
-      - name: Build APK
+      - name: Build with Gradle
         run: |
-          ./gradlew assembleDebug --stacktrace
+          ./gradlew assembleDebug --stacktrace --info
 
       - uses: actions/upload-artifact@v4
         with:
