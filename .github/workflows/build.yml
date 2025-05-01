@@ -17,17 +17,18 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Fix Gradle Wrapper
+      - name: Install Gradle Wrapper
         run: |
-          # Régénère complètement les fichiers Gradle
-          rm -f gradlew gradlew.bat
-          rm -rf gradle/wrapper
-          ./gradlew wrapper --gradle-version 8.0 --distribution-type bin
+          # Télécharge directement le wrapper sans utiliser ./gradlew
+          wget https://raw.githubusercontent.com/gradle/gradle/master/gradlew
           chmod +x gradlew
+          mkdir -p gradle/wrapper
+          wget https://raw.githubusercontent.com/gradle/gradle/master/gradle/wrapper/gradle-wrapper.jar -O gradle/wrapper/gradle-wrapper.jar
+          wget https://raw.githubusercontent.com/gradle/gradle/master/gradle/wrapper/gradle-wrapper.properties -O gradle/wrapper/gradle-wrapper.properties
 
       - name: Build APK
         run: |
-          ./gradlew assembleDebug --stacktrace --info
+          ./gradlew assembleDebug --stacktrace
 
       - uses: actions/upload-artifact@v4
         with:
