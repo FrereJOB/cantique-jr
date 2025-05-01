@@ -13,17 +13,24 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Android SDK
+      - name: Install Android SDK
         uses: android-actions/setup-android@v3
         with:
           licenses: accept
+          api-level: 33
+          build-tools: 33.0.0
 
-      - name: Fix Gradlew Permissions  # SEULE MODIFICATION
-        run: chmod +x gradlew
+      - name: Install Gradle Directly
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gradle
+          gradle --version
 
       - name: Build with Gradle
         run: |
-          ./gradlew assembleDebug --stacktrace
+          gradle assembleDebug --stacktrace \
+            --init-script gradle-init.gradle \
+            -Dorg.gradle.daemon=false
 
       - uses: actions/upload-artifact@v4
         with:
