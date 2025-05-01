@@ -10,9 +10,9 @@ jobs:
           distribution: 'temurin'  
           java-version: '17'  
       - uses: android-actions/setup-android@v2  # <-- Correction ici
-      - run: |  
-          chmod +x gradlew  
-          ./gradlew assembleDebug  
+      - run: |
+    chmod 755 gradlew  # Donne tous les droits (lecture/écriture/exécution)
+    ./gradlew assembleDebug  
       - uses: actions/upload-artifact@v4  
         with:  
           name: app-debug.apk  
