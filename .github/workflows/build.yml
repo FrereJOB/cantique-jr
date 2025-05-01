@@ -17,14 +17,10 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Install Gradle Wrapper
+      - name: Fix Gradlew
         run: |
-          # Télécharge directement le wrapper sans utiliser ./gradlew
-          wget https://raw.githubusercontent.com/gradle/gradle/master/gradlew
+          curl -L https://raw.githubusercontent.com/gradle/gradle/master/gradlew -o gradlew
           chmod +x gradlew
-          mkdir -p gradle/wrapper
-          wget https://raw.githubusercontent.com/gradle/gradle/master/gradle/wrapper/gradle-wrapper.jar -O gradle/wrapper/gradle-wrapper.jar
-          wget https://raw.githubusercontent.com/gradle/gradle/master/gradle/wrapper/gradle-wrapper.properties -O gradle/wrapper/gradle-wrapper.properties
 
       - name: Build APK
         run: |
