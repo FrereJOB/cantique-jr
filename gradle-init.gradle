@@ -1,13 +1,12 @@
-// gradle-init.gradle
 allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
     buildscript {
         repositories {
             google()
             mavenCentral()
         }
-    }
-    repositories {
-        google()
-        mavenCentral()
     }
 }
