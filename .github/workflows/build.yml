@@ -6,27 +6,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup environment
+      
+      - name: Setup JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          
+      - name: Setup Android
         uses: android-actions/setup-android@v3
         with:
           licenses: accept
           api-level: 33
           build-tools: 33.0.0
-
-      - name: Auto-fix Gradle files
+          
+      - name: Build
         run: |
-          # Tout est géré automatiquement ici
-          curl -L https://github.com/gradle/gradle/raw/master/gradlew -o gradlew
-          chmod +x gradlew
-          mkdir -p gradle/wrapper
-          curl -L https://repo.maven.apache.org/maven2/org/gradle/wrapper/gradle-wrapper/8.0/gradle-wrapper-8.0.jar -o gradle/wrapper/gradle-wrapper.jar
-          echo -e "distributionBase=GRADLE_USER_HOME\ndistributionPath=wrapper/dists\ndistributionUrl=https\\://services.gradle.org/distributions/gradle-8.0-bin.zip\nzipStoreBase=GRADLE_USER_HOME\nzipStorePath=wrapper/dists" > gradle/wrapper/gradle-wrapper.properties
-
-      - name: Build APK
-        run: ./gradlew assembleDebug
-
+          ./gradlew assembleDebug \
+            -Dorg.gradle.java.home=$JAVA_HOME_17_X64 \
+            -Pandroid.experimental.settings.executionProfile=ci
+            
       - uses: actions/upload-artifact@v4
         with:
-          name: app-debug.apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: app-debug
+          path: app/build/outputs/apk/debug/*.apk
