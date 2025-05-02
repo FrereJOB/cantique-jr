@@ -7,29 +7,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
+      - name: Self-healing Gradlew
+        run: |
+          chmod +x gradlew || true
+          ./gradlew --version || curl -s https://raw.githubusercontent.com/gradle/gradle/master/gradlew -o gradlew
+          chmod +x gradlew
           
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+      - uses: android-actions/setup-android@v3
         with:
           licenses: accept
-          api-level: 33
-          build-tools: '33.0.0'
           
-      - name: Make Gradlew Executable  # LA SOLUTION EST ICI
-        run: chmod +x gradlew
-          
-      - name: Build APK
-        run: |
-          ./gradlew assembleDebug \
-            -Dorg.gradle.java.home=$JAVA_HOME_17_X64 \
-            -Pandroid.experimental.settings.executionProfile=ci
-            
-      - uses: actions/upload-artifact@v4
-        with:
-          name: app-debug
-          path: app/build/outputs/apk/debug/*.apk
+      - name: Build
+        run: ./gradlew assembleDebug
