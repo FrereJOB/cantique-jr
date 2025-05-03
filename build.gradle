@@ -1,8 +1,16 @@
-plugins {
-    id 'com.android.application' version '8.0.0'
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.0.0'
+    }
 }
-android {
-    namespace 'com.votre.package' // Obligatoire depuis AGP 8.0
-    compileSdk 33
-    buildToolsVersion "33.0.0"
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
 }
