@@ -1,4 +1,4 @@
-package com.jesusrevient.cantique
+package com.example.cantiqueapp
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
