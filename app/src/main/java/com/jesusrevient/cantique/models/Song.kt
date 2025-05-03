@@ -1,11 +1,10 @@
-package com.jesusrevient.cantique.models
-
 data class Song(
-    val id: String = "",
-    val number: Int = 0,
-    val title: String = "",
-    val lyrics: String = "",
-    val category: String = "",
+    val numero: Int = 0,
+    val titre: String = "",
+    val categorie: String = "",
+    val hauteur: String = "",
+    val paroles: String = "",
     val audioUrl: String = "",
-    val sheetUrl: String = ""
+    val partitionPdfUrl: String = "",
+    val dateAjout: com.google.firebase.Timestamp? = null
 )
