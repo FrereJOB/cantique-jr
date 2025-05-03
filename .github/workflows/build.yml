@@ -13,9 +13,11 @@ jobs:
           ./gradlew --version || curl -s https://raw.githubusercontent.com/gradle/gradle/master/gradlew -o gradlew
           chmod +x gradlew
 
-      - uses: android-actions/setup-android@v3
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
         with:
-          licenses: accept
+          cmdline-tools-version: 'latest'
+          accept-android-sdk-licenses: true
 
       - name: Build
         run: ./gradlew assembleDebug
