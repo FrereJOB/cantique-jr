@@ -1,13 +1,11 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.google.gms.google-services' // Firebase
+    id 'com.google.gms.google-services'
 }
 
 android {
-    namespace 'com.jesusrevient.cantique'
     compileSdk 33
-
     defaultConfig {
         applicationId "com.jesusrevient.cantique"
         minSdk 21
@@ -15,25 +13,18 @@ android {
         versionCode 1
         versionName "1.0"
     }
-
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-
-    buildFeatures {
-        viewBinding true
     }
 }
 
 dependencies {
-    // Android Core
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
 
-    // Firebase
     implementation platform('com.google.firebase:firebase-bom:32.1.1')
     implementation 'com.google.firebase:firebase-firestore-ktx'
 }
