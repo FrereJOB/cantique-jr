@@ -6,16 +6,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Self-healing Gradlew
         run: |
           chmod +x gradlew || true
           ./gradlew --version || curl -s https://raw.githubusercontent.com/gradle/gradle/master/gradlew -o gradlew
           chmod +x gradlew
-          
+
       - uses: android-actions/setup-android@v3
         with:
           licenses: accept
-          
+
       - name: Build
         run: ./gradlew assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-debug.apk
+          path: app/build/outputs/apk/debug/app-debug.apk
