@@ -2,7 +2,7 @@ data class Song(
     val numero: Int = 0,
     val titre: String = "",
     val categorie: String = "",
-    val hauteur: String = "",
+    val auteur: String = "",
     val paroles: String = "",
     val audioUrl: String = "",
     val partitionPdfUrl: String = "",
