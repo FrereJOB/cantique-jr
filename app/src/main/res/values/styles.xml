@@ -42,7 +42,7 @@
     <style name="RoundedButton">
         <item name="android:backgroundTint">#0D47A1</item>
         <item name="android:textColor">#FFFFFF</item>
-        <item name="android:cornerRadius">8dp</item>
+     
         <item name="android:padding">10dp</item>
     </style>
 
