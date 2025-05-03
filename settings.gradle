@@ -4,6 +4,11 @@ pluginManagement {
         google()
         mavenCentral()
     }
+    plugins {
+        id "com.android.application" version "8.2.0"
+        id "org.jetbrains.kotlin.android" version "1.9.22"
+        id "com.google.gms.google-services" version "4.4.0"
+    }
 }
 
 dependencyResolutionManagement {
@@ -14,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "MonProjet"
+rootProject.name = "cantique-jr"
 include(":app")
