@@ -5,6 +5,7 @@ plugins {
 }
 
 android {
+    namespace 'com.jesusrevient.cantique' // <<--- Ajoute cette ligne
     compileSdk 33
     defaultConfig {
         applicationId "com.jesusrevient.cantique"
