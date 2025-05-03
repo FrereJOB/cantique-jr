@@ -8,17 +8,21 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        val db = Firebase.firestore
-        val songsList = findViewById<ListView>(R.id.songs_list)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-        db.collection("songs").get()
-            .addOnSuccessListener { documents ->
-                val songs = documents.map { it["title"].toString() }
-                songsList.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, songs)
-            }
-    }
+        val db = Firebase.firestore
+        val songsList = findViewById<ListView>(R.id.songs_list)
+
+        db.collection("cantique").get()
+            .addOnSuccessListener { documents ->
+                val songs = documents.mapNotNull { it.toObject(Song::class.java).titre }
+                songsList.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, songs)
+            }
+            .addOnFailureListener { e ->
+                e.printStackTrace()
+            }
+    }
 }
