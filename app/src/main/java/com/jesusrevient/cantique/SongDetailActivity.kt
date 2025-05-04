@@ -1,4 +1,4 @@
-package com.jesusrevient.cantique
+package com.example.cantiqueapp
 
 import android.content.Intent
 import android.net.Uri
@@ -9,42 +9,46 @@ import androidx.appcompat.app.AppCompatActivity
 
 class SongDetailActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_song_detail)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_song_detail)
 
-        val titleTextView = findViewById<TextView>(R.id.titleTextView)
-        val authorTextView = findViewById<TextView>(R.id.authorTextView)
-        val categoryTextView = findViewById<TextView>(R.id.categoryTextView)
-        val lyricsTextView = findViewById<TextView>(R.id.lyricsTextView)
-        val playButton = findViewById<Button>(R.id.playButton)
-        val sheetButton = findViewById<Button>(R.id.sheetButton)
+        // Récupération des extras
+        val titre = intent.getStringExtra("titre")
+        val auteur = intent.getStringExtra("auteur")
+        val paroles = intent.getStringExtra("paroles")
+        val categorie = intent.getStringExtra("categorie")
+        val audioUrl = intent.getStringExtra("audioUrl")   // futur usage
+        val sheetUrl = intent.getStringExtra("sheetUrl")   // futur usage
 
-        // Récupération des données passées via l'intent
-        val title = intent.getStringExtra("title")
-        val author = intent.getStringExtra("author")
-        val category = intent.getStringExtra("category")
-        val lyrics = intent.getStringExtra("lyrics")
-        val audioUrl = intent.getStringExtra("audioUrl")
-        val sheetUrl = intent.getStringExtra("sheetUrl")
+        // Liaison avec les vues du layout
+        val titleTextView = findViewById<TextView>(R.id.titleTextView)
+        val authorTextView = findViewById<TextView>(R.id.authorTextView)
+        val categoryTextView = findViewById<TextView>(R.id.categoryTextView)
+        val lyricsTextView = findViewById<TextView>(R.id.lyricsTextView)
 
-        // Affichage dans la vue
-        titleTextView.text = title
-        authorTextView.text = "Auteur : $author"
-        categoryTextView.text = "Catégorie : $category"
-        lyricsTextView.text = lyrics
+        val playButton = findViewById<Button>(R.id.playButton)
+        val sheetButton = findViewById<Button>(R.id.sheetButton)
 
-        // Bouton pour jouer l’audio
-        playButton.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.setDataAndType(Uri.parse(audioUrl), "audio/*")
-            startActivity(intent)
-        }
+        // Mise à jour des vues avec les données
+        titleTextView.text = titre ?: "Titre inconnu"
+        authorTextView.text = "Auteur : ${auteur ?: "inconnu"}"
+        categoryTextView.text = "Catégorie : ${categorie ?: "inconnue"}"
+        lyricsTextView.text = paroles ?: "Paroles non disponibles"
 
-        // Bouton pour voir la partition
-        sheetButton.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(sheetUrl))
-            startActivity(intent)
-        }
-    }
+        // Action des boutons (à activer quand les URLs sont disponibles)
+        playButton.setOnClickListener {
+            audioUrl?.let {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it))
+                startActivity(intent)
+            }
+        }
+
+        sheetButton.setOnClickListener {
+            sheetUrl?.let {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it))
+                startActivity(intent)
+            }
+        }
+    }
 }
