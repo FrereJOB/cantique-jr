@@ -11,45 +11,25 @@
 
         <TextView
             android:id="@+id/titleTextView"
+            style="@style/TextTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Titre"
-            android:textSize="24sp"
-            android:textStyle="bold"
             android:layout_marginBottom="8dp" />
 
         <TextView
             android:id="@+id/authorTextView"
+            style="@style/TextSubtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Auteur"
-            android:layout_marginBottom="4dp" />
-
-        <TextView
-            android:id="@+id/categoryTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Catégorie"
-            android:layout_marginBottom="12dp" />
+            android:text="Auteur inconnu"
+            android:layout_marginBottom="8dp" />
 
         <TextView
             android:id="@+id/lyricsTextView"
+            style="@style/TextLyrics"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Paroles"
-            android:layout_marginBottom="16dp" />
-
-        <Button
-            android:id="@+id/playButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Écouter l’audio" />
-
-        <Button
-            android:id="@+id/sheetButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Voir la partition"
-            android:layout_marginTop="8dp" />
+            android:text="Paroles du chant" />
     </LinearLayout>
 </ScrollView>
