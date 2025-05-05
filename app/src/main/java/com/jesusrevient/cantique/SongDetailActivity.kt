@@ -1,4 +1,5 @@
-package com.example.cantiqueapp
+package com.jesusrevient.cantique
+
 
 import com.jesusrevient.cantique.models.Song
 
