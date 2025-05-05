@@ -1,5 +1,7 @@
 package com.example.cantiqueapp
 
+import com.jesusrevient.cantique.models.Song
+
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
