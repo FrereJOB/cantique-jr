@@ -1,5 +1,7 @@
 package com.example.cantiqueapp
 
+import com.jesusrevient.cantique.models.Song
+
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
