@@ -1,4 +1,21 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="16dp">
-<TextView android:id="@+id/main_title" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Liste des Cantiques" android:textSize="20sp" android:textStyle="bold" android:gravity="center" android:layout_marginBottom="8dp"/>
-<ListView android:id="@+id/songs_list" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/main_title"
+        style="@style/TextTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Liste des Cantiques"
+        android:gravity="center"
+        android:layout_marginBottom="8dp" />
+
+    <ListView
+        android:id="@+id/songs_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 </LinearLayout>
