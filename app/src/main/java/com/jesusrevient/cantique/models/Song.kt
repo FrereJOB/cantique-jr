@@ -1,10 +1,12 @@
 data class Song(
-    val numero: Int = 0,
-    val titre: String = "",
-    val categorie: String = "",
-    val auteur: String = "",
-    val paroles: String = "",
-    val audioUrl: String = "",
-    val partitionPdfUrl: String = "",
-    val dateAjout: com.google.firebase.Timestamp? = null
-)
+    var numero: Int = 0,
+    var titre: String = "",
+    var categorie: String = "",
+    var auteur: String = "",
+    var paroles: String = "",
+    var audioUrl: String = "",
+    var partitionPdfUrl: String = "",
+    var dateAjout: com.google.firebase.Timestamp? = null
+) {
+    constructor() : this(0, "", "", "", "", "", "", null)
+}
