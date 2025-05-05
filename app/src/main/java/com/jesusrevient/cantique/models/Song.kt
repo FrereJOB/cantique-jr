@@ -1,4 +1,5 @@
-com.jesusrevient.cantique.models
+package com.jesusrevient.cantique.models
+
 
 data class Song(
     var numero: Int = 0,
