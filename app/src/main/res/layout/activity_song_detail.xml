@@ -25,11 +25,36 @@
             android:text="Auteur inconnu"
             android:layout_marginBottom="8dp" />
 
+        <!-- Ajout de la catégorie -->
+        <TextView
+            android:id="@+id/categoryTextView"
+            style="@style/TextSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Catégorie"
+            android:layout_marginBottom="8dp" />
+
         <TextView
             android:id="@+id/lyricsTextView"
             style="@style/TextLyrics"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Paroles du chant" />
+            android:text="Paroles du chant"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Ajout des boutons -->
+        <Button
+            android:id="@+id/playButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Écouter le chant"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/sheetButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Voir la partition" />
+
     </LinearLayout>
 </ScrollView>
