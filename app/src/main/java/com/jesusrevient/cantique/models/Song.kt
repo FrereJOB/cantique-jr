@@ -1,3 +1,5 @@
+com.jesusrevient.cantique.models
+
 data class Song(
     var numero: Int = 0,
     var titre: String = "",
