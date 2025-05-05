@@ -1,57 +1,64 @@
 package com.jesusrevient.cantique
 
-
-import com.jesusrevient.cantique.models.Song
-
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class SongDetailActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_song_detail)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-        // Récupération des extras
-        val titre = intent.getStringExtra("titre")
-        val auteur = intent.getStringExtra("auteur")
-        val paroles = intent.getStringExtra("paroles")
-        val categorie = intent.getStringExtra("categorie")
-        val audioUrl = intent.getStringExtra("audioUrl")   // futur usage
-        val sheetUrl = intent.getStringExtra("sheetUrl")   // futur usage
+        // Étape 1 : Test d'inflation du layout avec logs
+        try {
+            Log.d("SongDetailActivity", "Avant setContentView")
+            setContentView(R.layout.activity_song_detail)
+            Log.d("SongDetailActivity", "Après setContentView")
+        } catch (e: Exception) {
+            Log.e("SongDetailActivity", "Erreur lors de setContentView", e)
+            finish()
+            return
+        }
 
-        // Liaison avec les vues du layout
-        val titleTextView = findViewById<TextView>(R.id.titleTextView)
-        val authorTextView = findViewById<TextView>(R.id.authorTextView)
-        val categoryTextView = findViewById<TextView>(R.id.categoryTextView)
-        val lyricsTextView = findViewById<TextView>(R.id.lyricsTextView)
+        // Étape 2 : Lecture des extras avec log
+        val titre = intent.getStringExtra("titre")
+        val auteur = intent.getStringExtra("auteur")
+        val paroles = intent.getStringExtra("paroles")
+        val categorie = intent.getStringExtra("categorie")
+        val audioUrl = intent.getStringExtra("audioUrl")
+        val sheetUrl = intent.getStringExtra("sheetUrl")
 
-        val playButton = findViewById<Button>(R.id.playButton)
-        val sheetButton = findViewById<Button>(R.id.sheetButton)
+        Log.d("SongDetailActivity", "Extras reçus : titre=$titre, auteur=$auteur, catégorie=$categorie")
 
-        // Mise à jour des vues avec les données
-        titleTextView.text = titre ?: "Titre inconnu"
-        authorTextView.text = "Auteur : ${auteur ?: "inconnu"}"
-        categoryTextView.text = "Catégorie : ${categorie ?: "inconnue"}"
-        lyricsTextView.text = paroles ?: "Paroles non disponibles"
+        // Étape 3 : Liaison des vues
+        val titleTextView = findViewById<TextView>(R.id.titleTextView)
+        val authorTextView = findViewById<TextView>(R.id.authorTextView)
+        val categoryTextView = findViewById<TextView>(R.id.categoryTextView)
+        val lyricsTextView = findViewById<TextView>(R.id.lyricsTextView)
+        val playButton = findViewById<Button>(R.id.playButton)
+        val sheetButton = findViewById<Button>(R.id.sheetButton)
 
-        // Action des boutons (à activer quand les URLs sont disponibles)
-        playButton.setOnClickListener {
-            audioUrl?.let {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it))
-                startActivity(intent)
-            }
-        }
+        // Étape 4 : Remplissage des vues
+        titleTextView.text = titre ?: "Titre inconnu"
+        authorTextView.text = "Auteur : ${auteur ?: "inconnu"}"
+        categoryTextView.text = "Catégorie : ${categorie ?: "inconnue"}"
+        lyricsTextView.text = paroles ?: "Paroles non disponibles"
 
-        sheetButton.setOnClickListener {
-            sheetUrl?.let {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it))
-                startActivity(intent)
-            }
-        }
-    }
+        // Étape 5 : Actions des boutons
+        playButton.setOnClickListener {
+            audioUrl?.let {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it)))
+            }
+        }
+
+        sheetButton.setOnClickListener {
+            sheetUrl?.let {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it)))
+            }
+        }
+    }
 }
