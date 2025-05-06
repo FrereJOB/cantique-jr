@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -35,6 +37,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         navView.setNavigationItemSelectedListener(this)
+
+        // Boutons du drawer personnalisés
+        val openDrawerButton: ImageButton = findViewById(R.id.open_drawer)
+        val closeDrawerButton: ImageButton = findViewById(R.id.close_drawer)
+
+        openDrawerButton.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+            openDrawerButton.visibility = View.GONE
+            closeDrawerButton.visibility = View.VISIBLE
+        }
+
+        closeDrawerButton.setOnClickListener {
+            drawerLayout.closeDrawer(GravityCompat.START)
+            openDrawerButton.visibility = View.VISIBLE
+            closeDrawerButton.visibility = View.GONE
+        }
 
         recyclerView = findViewById(R.id.songs_list)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -79,7 +97,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(Intent(this, AProposAppActivity::class.java))
             }
             R.id.nav_admin -> {
-                // Redirection vers LoginAdminActivity
                 startActivity(Intent(this, LoginAdminActivity::class.java))
             }
             R.id.nav_share -> {
