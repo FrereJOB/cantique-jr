@@ -24,5 +24,37 @@
             android:focusable="true"
             android:focusableInTouchMode="true" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            android:background="#BDBDBD" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nous suivre :"
+            android:textStyle="bold"
+            android:textColor="#4E342E"
+            android:layout_marginTop="16dp" />
+
+        <LinearLayout
+            android:id="@+id/socialLinks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp">
+
+            <!-- Chaque lien social -->
+            <include layout="@layout/item_social_link" android:id="@+id/link_site"/>
+            <include layout="@layout/item_social_link" android:id="@+id/link_facebook_page"/>
+            <include layout="@layout/item_social_link" android:id="@+id/link_facebook_group"/>
+            <include layout="@layout/item_social_link" android:id="@+id/link_whatsapp"/>
+            <include layout="@layout/item_social_link" android:id="@+id/link_telegram_channel"/>
+            <include layout="@layout/item_social_link" android:id="@+id/link_telegram_group"/>
+            <include layout="@layout/item_social_link" android:id="@+id/link_twitter"/>
+            <include layout="@layout/item_social_link" android:id="@+id/link_gps"/>
+            <include layout="@layout/item_social_link" android:id="@+id/link_android"/>
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>
