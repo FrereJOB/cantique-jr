@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if ((item.itemId == android.R.id.home)) {
+        if (item.itemId == android.R.id.home) {
             drawerLayout.openDrawer(GravityCompat.START)
             return true
         }
@@ -79,7 +79,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(Intent(this, AProposAppActivity::class.java))
             }
             R.id.nav_admin -> {
-                startActivity(Intent(this, AdminActivity::class.java))
+                // Redirection vers LoginAdminActivity
+                startActivity(Intent(this, LoginAdminActivity::class.java))
             }
             R.id.nav_share -> {
                 val shareIntent = Intent().apply {
