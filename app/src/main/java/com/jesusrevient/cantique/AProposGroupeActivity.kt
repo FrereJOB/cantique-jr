@@ -18,11 +18,12 @@ class AProposGroupeActivity : AppCompatActivity() {
         supportActionBar?.title = "À propos du groupe"
 
         val htmlContent = """
+            <html><body>
             <h2 style="color:#4E342E;">JESUS-REVIENT TV</h2>
-            
+
             <b>Description</b><br/>
             Mouvement international d'évangélisation prêchant la repentance, la sanctification et la doctrine biblique pour préparer les saints à l'Enlèvement.<br/><br/>
-            
+
             <b>Siège :</b><br/>
             Bénin, Dekoungbé, Hédomey (200m après la Pharmacie Hédomey).<br/>
             <b>Tél. :</b> (+229) 97 25 35 39 / 94 33 69 05<br/>
@@ -38,6 +39,7 @@ class AProposGroupeActivity : AppCompatActivity() {
             - <a href="https://twitter.com/jesusrevienttv">Twitter</a><br/>
             - <a href="https://maps.app.goo.gl/SFS46YG9JsMCuCW27">Localisation GPS</a><br/>
             - <a href="https://play.google.com/store/apps/details?id=com.maougnonjesusrevient.jesus_revient_tv">Application Android</a><br/>
+            </body></html>
         """.trimIndent()
 
         binding.textInfoGroupe.text = Html.fromHtml(htmlContent, Html.FROM_HTML_MODE_LEGACY)
