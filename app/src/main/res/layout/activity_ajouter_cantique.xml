@@ -2,52 +2,70 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
-    android:background="#FFEBEE">
+    android:padding="16dp"
+    android:background="#FBEEC1">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <EditText android:id="@+id/editTitre"
-            android:hint="Titre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <EditText android:id="@+id/editAuteur"
-            android:hint="Auteur"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <EditText android:id="@+id/editNumero"
-            android:hint="Numéro"
-            android:inputType="number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <EditText android:id="@+id/editCategorie"
-            android:hint="Catégorie"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <EditText android:id="@+id/editDateAjout"
-            android:hint="Date d'ajout"
-            android:focusable="false"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <EditText android:id="@+id/editParoles"
-            android:hint="Paroles"
-            android:minLines="5"
-            android:gravity="top"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <Button android:id="@+id/btnEnregistrer"
-            android:text="Enregistrer"
+        <EditText
+            android:id="@+id/editTitre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"/>
+            android:hint="Titre"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editAuteur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Auteur"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editCategorie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Catégorie"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editNumero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Numéro"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/editParoles"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:hint="Paroles"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:scrollbars="vertical" />
+
+        <Button
+            android:id="@+id/buttonChooseAudio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choisir un fichier audio" />
+
+        <Button
+            android:id="@+id/buttonChoosePdf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choisir une partition PDF" />
+
+        <Button
+            android:id="@+id/buttonAjouter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ajouter le cantique"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#A67C52"
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 </ScrollView>
