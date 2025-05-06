@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -6,15 +7,32 @@
 
     <TextView
         android:id="@+id/song_title"
-        style="@style/TextTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Titre du cantique" />
+        android:text="Titre"
+        android:textStyle="bold"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/song_author"
-        style="@style/TextSubtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Auteur" />
+        android:text="Auteur"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/song_pdf_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Partition PDF"
+        android:textColor="@android:color/holo_blue_dark"
+        android:clickable="true" />
+
+    <TextView
+        android:id="@+id/song_audio_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Écouter Audio"
+        android:textColor="@android:color/holo_blue_dark"
+        android:clickable="true" />
 </LinearLayout>
