@@ -38,20 +38,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         navView.setNavigationItemSelectedListener(this)
 
-        // Boutons du drawer personnalisés
         val openDrawerButton: ImageButton = findViewById(R.id.open_drawer)
         val closeDrawerButton: ImageButton = findViewById(R.id.close_drawer)
 
         openDrawerButton.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
-            openDrawerButton.visibility = View.GONE
             closeDrawerButton.visibility = View.VISIBLE
+            openDrawerButton.visibility = View.GONE
         }
 
         closeDrawerButton.setOnClickListener {
             drawerLayout.closeDrawer(GravityCompat.START)
-            openDrawerButton.visibility = View.VISIBLE
             closeDrawerButton.visibility = View.GONE
+            openDrawerButton.visibility = View.VISIBLE
         }
 
         recyclerView = findViewById(R.id.songs_list)
