@@ -1,57 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/adminDashboardLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/brown_spiritual"
     android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".AdminDashboardActivity">
+    android:background="#EFEBE9"
+    android:padding="24dp"
+    android:gravity="center_horizontal">
 
     <TextView
-        android:id="@+id/adminTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tableau de bord Admin"
         android:textSize="24sp"
-        android:textColor="#FFFFFF"
         android:textStyle="bold"
-        android:layout_gravity="center"
-        android:layout_marginBottom="16dp" />
+        android:textColor="#6D4C41"
+        android:layout_marginBottom="32dp" />
 
     <Button
         android:id="@+id/btnAjouterCantique"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Ajouter un cantique"
-        android:backgroundTint="@color/gold"
-        android:textColor="@android:color/black"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginBottom="16dp" />
 
     <Button
         android:id="@+id/btnModifierCantique"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Modifier un cantique"
-        android:backgroundTint="@color/gold"
-        android:textColor="@android:color/black"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginBottom="16dp" />
 
     <Button
         android:id="@+id/btnSupprimerCantique"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Supprimer un cantique"
-        android:backgroundTint="@color/gold"
-        android:textColor="@android:color/black"
-        android:layout_marginBottom="12dp" />
-
-    <Button
-        android:id="@+id/btnRetour"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Retour"
-        android:backgroundTint="@android:color/darker_gray"
-        android:textColor="@android:color/white" />
+        android:layout_marginBottom="16dp" />
 </LinearLayout>
