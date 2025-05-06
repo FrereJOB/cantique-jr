@@ -1,7 +1,6 @@
 package com.jesusrevient.cantique
 
 import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,9 +31,10 @@ class SongAdapter(private val songs: List<Song>) :
         holder.pdfLinkText.text = "Voir partition PDF"
         holder.audioLinkText.text = "Écouter Audio"
 
-        // Titre cliquable pour voir les détails
+        val context = holder.itemView.context
+
+        // Titre cliquable → écran de détails
         holder.titleText.setOnClickListener {
-            val context = holder.itemView.context
             val intent = Intent(context, SongDetailActivity::class.java).apply {
                 putExtra("titre", song.titre)
                 putExtra("auteur", song.auteur)
@@ -46,16 +46,20 @@ class SongAdapter(private val songs: List<Song>) :
             context.startActivity(intent)
         }
 
-        // Lien vers la partition PDF
+        // Ouvre la partition PDF dans PdfViewerActivity
         holder.pdfLinkText.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(song.partitionPdfUrl))
-            it.context.startActivity(intent)
+            val intent = Intent(context, PdfViewerActivity::class.java).apply {
+                putExtra("pdfUrl", song.partitionPdfUrl)
+            }
+            context.startActivity(intent)
         }
 
         // Lien vers le fichier audio
         holder.audioLinkText.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(song.audioUrl))
-            it.context.startActivity(intent)
+            val intent = Intent(Intent.ACTION_VIEW).apply {
+                setDataAndType(Uri.parse(song.audioUrl), "audio/*")
+            }
+            context.startActivity(intent)
         }
     }
 
