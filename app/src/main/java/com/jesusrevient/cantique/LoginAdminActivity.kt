@@ -6,34 +6,26 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
 
 class LoginAdminActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
+    private val adminPassword = "motdepasseadmin" // À personnaliser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_admin)
 
-        auth = FirebaseAuth.getInstance()
-
-        val emailEditText = findViewById<EditText>(R.id.editEmail)
-        val passwordEditText = findViewById<EditText>(R.id.editPassword)
-        val loginButton = findViewById<Button>(R.id.btnLogin)
+        val passwordInput = findViewById<EditText>(R.id.passwordInput)
+        val loginButton = findViewById<Button>(R.id.loginButton)
 
         loginButton.setOnClickListener {
-            val email = emailEditText.text.toString()
-            val password = passwordEditText.text.toString()
-
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnSuccessListener {
-                    startActivity(Intent(this, AdminDashboardActivity::class.java))
-                    finish()
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, "Échec de connexion", Toast.LENGTH_SHORT).show()
-                }
+            val enteredPassword = passwordInput.text.toString()
+            if (enteredPassword == adminPassword) {
+                startActivity(Intent(this, AdminDashboardActivity::class.java))
+                finish()
+            } else {
+                Toast.makeText(this, "Mot de passe incorrect", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
