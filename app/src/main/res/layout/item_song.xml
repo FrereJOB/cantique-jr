@@ -3,30 +3,34 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="12dp">
+    android:padding="12dp"
+    android:background="#FFFFFF">
 
     <TextView
         android:id="@+id/song_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Titre"
+        android:text="1. Titre du cantique"
         android:textStyle="bold"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textColor="#000000" />
 
     <TextView
         android:id="@+id/song_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Auteur"
-        android:textSize="14sp" />
+        android:text="Auteur : inconnu"
+        android:textSize="14sp"
+        android:textColor="#333333" />
 
     <TextView
         android:id="@+id/song_pdf_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Partition PDF"
+        android:text="Voir partition PDF"
         android:textColor="@android:color/holo_blue_dark"
-        android:clickable="true" />
+        android:clickable="true"
+        android:paddingTop="4dp" />
 
     <TextView
         android:id="@+id/song_audio_link"
@@ -34,5 +38,7 @@
         android:layout_height="wrap_content"
         android:text="Écouter Audio"
         android:textColor="@android:color/holo_blue_dark"
-        android:clickable="true" />
+        android:clickable="true"
+        android:paddingTop="2dp" />
+
 </LinearLayout>
