@@ -4,28 +4,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="24dp"
-    android:background="#FFF3E0">
+    android:padding="32dp"
+    android:background="@color/light_brown">
 
     <EditText
-        android:id="@+id/editEmail"
+        android:id="@+id/passwordInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email admin"
-        android:inputType="textEmailAddress"
-        android:layout_marginBottom="16dp" />
-
-    <EditText
-        android:id="@+id/editPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Mot de passe"
+        android:hint="Mot de passe admin"
         android:inputType="textPassword"
-        android:layout_marginBottom="24dp" />
+        android:backgroundTint="@color/colorPrimary" />
 
     <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Se connecter" />
+        android:text="Se connecter"
+        android:layout_marginTop="16dp" />
 </LinearLayout>
