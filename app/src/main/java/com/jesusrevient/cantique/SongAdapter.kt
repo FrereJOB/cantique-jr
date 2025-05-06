@@ -27,18 +27,18 @@ class SongAdapter(private val songs: List<Song>) :
 
     override fun onBindViewHolder(holder: SongViewHolder, position: Int) {
         val song = songs[position]
-        holder.titleText.text = song.titre
+        holder.titleText.text = "${song.numero}. ${song.titre}"
         holder.authorText.text = "Auteur : ${song.auteur}"
-        holder.pdfLinkText.text = "Partition PDF"
+        holder.pdfLinkText.text = "Voir partition PDF"
         holder.audioLinkText.text = "Écouter Audio"
 
-        // Ouvrir le lien PDF
+        // Lien vers la partition PDF
         holder.pdfLinkText.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(song.partitionUrl))
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(song.partitionPdfUrl))
             it.context.startActivity(intent)
         }
 
-        // Ouvrir le lien Audio
+        // Lien vers le fichier audio
         holder.audioLinkText.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(song.audioUrl))
             it.context.startActivity(intent)
