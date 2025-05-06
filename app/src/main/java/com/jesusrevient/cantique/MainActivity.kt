@@ -38,23 +38,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         navView.setNavigationItemSelectedListener(this)
 
-        // Ligne temporaire pour forcer la génération du R
-        println(R.id.open_drawer)
+        val openDrawerButton: ImageButton = findViewById(R.id.open_drawer)
+        val closeDrawerButton: ImageButton = findViewById(R.id.close_drawer)
 
-        // Boutons personnalisés pour ouvrir/fermer le drawer
-        val openDrawerButton = findViewById<ImageButton?>(R.id.open_drawer)
-        val closeDrawerButton = findViewById<ImageButton?>(R.id.close_drawer)
-
-        openDrawerButton?.setOnClickListener {
+        openDrawerButton.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
-            closeDrawerButton?.visibility = View.VISIBLE
+            closeDrawerButton.visibility = View.VISIBLE
             openDrawerButton.visibility = View.GONE
         }
 
-        closeDrawerButton?.setOnClickListener {
+        closeDrawerButton.setOnClickListener {
             drawerLayout.closeDrawer(GravityCompat.START)
             closeDrawerButton.visibility = View.GONE
-            openDrawerButton?.visibility = View.VISIBLE
+            openDrawerButton.visibility = View.VISIBLE
         }
 
         recyclerView = findViewById(R.id.songs_list)
