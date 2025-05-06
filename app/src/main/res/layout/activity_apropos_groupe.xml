@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rootLayout"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF8E1"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:background="#FFF8E1">
 
-    <TextView
-        android:id="@+id/textInfoGroupe"
+    <LinearLayout
+        android:id="@+id/rootLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#4E342E"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-</LinearLayout>
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/textInfoGroupe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#4E342E"
+            android:textSize="16sp"
+            android:lineSpacingExtra="6dp"
+            android:linksClickable="true"
+            android:autoLink="web"
+            android:textStyle="normal" />
+
+    </LinearLayout>
+</ScrollView>
