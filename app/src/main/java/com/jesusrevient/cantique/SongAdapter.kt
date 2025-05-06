@@ -43,6 +43,20 @@ class SongAdapter(private val songs: List<Song>) :
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(song.audioUrl))
             it.context.startActivity(intent)
         }
+
+        // Clic sur l'élément pour afficher les détails
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, SongDetailActivity::class.java).apply {
+                putExtra("titre", song.titre)
+                putExtra("auteur", song.auteur)
+                putExtra("paroles", song.paroles)
+                putExtra("categorie", song.categorie)
+                putExtra("audioUrl", song.audioUrl)
+                putExtra("partitionPdfUrl", song.partitionPdfUrl)
+            }
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int = songs.size
