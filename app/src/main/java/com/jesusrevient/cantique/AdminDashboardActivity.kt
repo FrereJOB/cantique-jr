@@ -2,31 +2,29 @@ package com.jesusrevient.cantique
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.jesusrevient.cantique.databinding.ActivityAdminDashboardBinding
 
 class AdminDashboardActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityAdminDashboardBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAdminDashboardBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_admin_dashboard)
 
-        supportActionBar?.title = "Tableau de bord administrateur"
+        val btnAjouter = findViewById<Button>(R.id.btnAjouterCantique)
+        val btnModifier = findViewById<Button>(R.id.btnModifierCantique)
+        val btnSupprimer = findViewById<Button>(R.id.btnSupprimerCantique)
 
-        binding.btnAjouter.setOnClickListener {
-            // Lancer une activité pour ajouter un cantique
+        btnAjouter.setOnClickListener {
             startActivity(Intent(this, AjouterCantiqueActivity::class.java))
         }
 
-        binding.btnModifier.setOnClickListener {
-            // Afficher la liste pour choisir un chant à modifier
+        btnModifier.setOnClickListener {
+            startActivity(Intent(this, ModifierCantiqueActivity::class.java))
         }
 
-        binding.btnSupprimer.setOnClickListener {
-            // Afficher la liste pour choisir un chant à supprimer
+        btnSupprimer.setOnClickListener {
+            startActivity(Intent(this, SupprimerCantiqueActivity::class.java))
         }
     }
 }
