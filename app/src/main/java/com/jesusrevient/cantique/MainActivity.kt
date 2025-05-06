@@ -1,45 +1,45 @@
 package com.jesusrevient.cantique
 
-
-import android.content.Intent
+import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.FirebaseFirestore
 import com.jesusrevient.cantique.models.Song
 
-import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: SongAdapter
+    private lateinit var songList: MutableList<Song>
+    private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val db = Firebase.firestore
-        val songsList = findViewById<ListView>(R.id.songs_list)
+        recyclerView = findViewById(R.id.songs_list)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        songList = mutableListOf()
+        adapter = SongAdapter(songList)
+        recyclerView.adapter = adapter
 
-        db.collection("cantique").get()
+        fetchSongs()
+    }
+
+    private fun fetchSongs() {
+        db.collection("cantique")
+            .get()
             .addOnSuccessListener { documents ->
-                val songs = documents.map { it.toObject(Song::class.java) }
-
-                val titles = songs.map { it.titre }
-                songsList.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, titles)
-
-                songsList.setOnItemClickListener { _, _, position, _ ->
-                    val selectedSong = songs[position]
-                    val intent = Intent(this, SongDetailActivity::class.java).apply {
-                        putExtra("titre", selectedSong.titre)
-                        putExtra("auteur", selectedSong.auteur)
-                        putExtra("paroles", selectedSong.paroles)
-                        putExtra("categorie", selectedSong.categorie)
-                    }
-                    startActivity(intent)
+                for (document in documents) {
+                    val song = document.toObject(Song::class.java)
+                    songList.add(song)
                 }
+                adapter.notifyDataSetChanged()
             }
-            .addOnFailureListener { e ->
-                e.printStackTrace()
+            .addOnFailureListener { exception ->
+                Log.e("MainActivity", "Erreur lors du chargement des cantiques", exception)
             }
     }
 }
