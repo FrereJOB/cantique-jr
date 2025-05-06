@@ -38,10 +38,22 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
 
-    // Firebase Firestore
+    // Firebase BoM
     implementation platform('com.google.firebase:firebase-bom:32.1.1')
+
+    // Firebase Firestore
     implementation 'com.google.firebase:firebase-firestore-ktx'
 
-    // Android PDF Viewer (version alternative)
+    // Firebase Storage
+    implementation 'com.google.firebase:firebase-storage-ktx'
+
+    // Firebase Auth (pour gestion des administrateurs)
+    implementation 'com.google.firebase:firebase-auth-ktx'
+
+    // Android PDF Viewer
     implementation 'com.github.mhiew:android-pdf-viewer:3.2.0-beta.1'
+
+    // (Facultatif) Glide pour affichage images si besoin
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
 }
