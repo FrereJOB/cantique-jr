@@ -32,20 +32,8 @@ class SongAdapter(private val songs: List<Song>) :
         holder.pdfLinkText.text = "Voir partition PDF"
         holder.audioLinkText.text = "Écouter Audio"
 
-        // Lien vers la partition PDF
-        holder.pdfLinkText.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(song.partitionPdfUrl))
-            it.context.startActivity(intent)
-        }
-
-        // Lien vers le fichier audio
-        holder.audioLinkText.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(song.audioUrl))
-            it.context.startActivity(intent)
-        }
-
-        // Clic sur l'élément pour afficher les détails
-        holder.itemView.setOnClickListener {
+        // Titre cliquable pour voir les détails
+        holder.titleText.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, SongDetailActivity::class.java).apply {
                 putExtra("titre", song.titre)
@@ -56,6 +44,18 @@ class SongAdapter(private val songs: List<Song>) :
                 putExtra("partitionPdfUrl", song.partitionPdfUrl)
             }
             context.startActivity(intent)
+        }
+
+        // Lien vers la partition PDF
+        holder.pdfLinkText.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(song.partitionPdfUrl))
+            it.context.startActivity(intent)
+        }
+
+        // Lien vers le fichier audio
+        holder.audioLinkText.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(song.audioUrl))
+            it.context.startActivity(intent)
         }
     }
 
