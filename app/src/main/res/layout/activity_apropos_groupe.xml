@@ -20,7 +20,9 @@
             android:lineSpacingExtra="6dp"
             android:linksClickable="true"
             android:autoLink="web"
-            android:textStyle="normal" />
+            android:textStyle="normal"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
 
     </LinearLayout>
 </ScrollView>
