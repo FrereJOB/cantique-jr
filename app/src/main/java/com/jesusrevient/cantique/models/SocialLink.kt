@@ -1,4 +1,4 @@
-package com.jesusrevient.cantique.models
+package com.jesusrevient.cantique.models.SocialLink
 
 data class SocialLink(
     val title: String,
