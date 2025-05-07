@@ -1,4 +1,4 @@
-package com.jesusrevient.cantique.models.SocialLink
+package com.jesusrevient.cantique.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -10,48 +10,38 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.jesusrevient.cantique.R
-import com.jesusrevient.cantique.model.SocialLink
+import com.jesusrevient.cantique.models.SocialLink
 
 class SocialLinksAdapter(
     private val context: Context,
-    private val links: List<SocialLink>
-) : RecyclerView.Adapter<SocialLinksAdapter.LinkViewHolder>() {
+    private val socialLinks: List<SocialLink>
+) : RecyclerView.Adapter<SocialLinksAdapter.SocialLinkViewHolder>() {
 
-    class LinkViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val icon: ImageView = view.findViewById(R.id.icon_social)
-        val text: TextView = view.findViewById(R.id.social_link_text)
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LinkViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SocialLinkViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_social_link, parent, false)
-        return LinkViewHolder(view)
+        return SocialLinkViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: LinkViewHolder, position: Int) {
-        val link = links[position]
-
-        holder.text.text = link.url
-
-        // Définir l'icône en fonction du type
-        val iconRes = when (link.type.lowercase()) {
-            "facebook" -> R.drawable.facebook
-            "telegram" -> R.drawable.telegram
-            "whatsapp" -> R.drawable.whatsapp
-            "site" -> R.drawable.site
-            "gps" -> R.drawable.gps
-            "twitter" -> R.drawable.twitter
-            "app" -> R.drawable.app
-            else -> R.drawable.site
-        }
-        holder.icon.setImageResource(iconRes)
-
-        // Clic pour ouvrir le lien dans un navigateur
-        holder.itemView.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link.url))
-            context.startActivity(intent)
-        }
+    override fun onBindViewHolder(holder: SocialLinkViewHolder, position: Int) {
+        val socialLink = socialLinks[position]
+        holder.bind(socialLink)
     }
 
-    override fun getItemCount(): Int = links.size
+    override fun getItemCount(): Int = socialLinks.size
+
+    inner class SocialLinkViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val icon: ImageView = itemView.findViewById(R.id.icon_social)
+        private val label: TextView = itemView.findViewById(R.id.social_link_text)
+
+        fun bind(link: SocialLink) {
+            icon.setImageResource(link.iconRes)
+            label.text = link.label
+
+            itemView.setOnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link.url))
+                context.startActivity(intent)
+            }
+        }
+    }
 }
