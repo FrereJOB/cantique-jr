@@ -22,8 +22,7 @@
             android:layout_height="24dp"
             android:layout_marginEnd="12dp"
             android:contentDescription="Icône"
-            android:tint="@android:color/holo_blue_dark"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@drawable/facebook" />
 
         <TextView
             android:id="@+id/textSocial"
