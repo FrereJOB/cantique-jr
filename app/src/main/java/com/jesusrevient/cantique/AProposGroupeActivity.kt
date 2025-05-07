@@ -61,8 +61,9 @@ class AProposGroupeActivity : AppCompatActivity() {
 
         links.forEachIndexed { index, (layoutId, iconRes, url) ->
             val layout = findViewById<LinearLayout>(layoutId)
-            val icon = layout.findViewById<ImageView>(R.id.iconSocial)
-            val text = layout.findViewById<TextView>(R.id.textSocial)
+            val icon: ImageView = view.findViewById(R.id.icon_social)
+            val text: TextView = view.findViewById(R.id.social_link_text)
+
 
             icon.setImageResource(iconRes)
             text.text = labels[index]
