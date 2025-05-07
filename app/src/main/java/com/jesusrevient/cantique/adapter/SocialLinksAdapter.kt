@@ -1,4 +1,4 @@
-package com.jesusrevient.cantique.adapter
+package com.jesusrevient.cantique.models.SocialLink
 
 import android.content.Context
 import android.content.Intent
