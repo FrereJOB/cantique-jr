@@ -3,86 +3,57 @@ package com.jesusrevient.cantique
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.Html
-import android.text.method.LinkMovementMethod
-import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.jesusrevient.cantique.databinding.ActivityAproposGroupeBinding
 
-class AProposGroupeActivity : AppCompatActivity() {
+class AproposGroupeActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityAproposGroupeBinding
+    data class SocialLink(
+        val iconResId: Int,
+        val label: String,
+        val url: String
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAproposGroupeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_apropos_groupe)
 
-        supportActionBar?.title = "À propos du groupe"
+        val textInfo = findViewById<TextView>(R.id.text_info_groupe)
+        textInfo.text = getString(R.string.apropos_groupe_texte)
 
-        val htmlContent = """
-            <html><body>
-            <h2 style="color:#4E342E;">JESUS-REVIENT TV</h2>
-            <b>Description</b><br/>
-            Mouvement international d'évangélisation prêchant la repentance, la sanctification et la doctrine biblique pour préparer les saints à l'Enlèvement.<br/><br/>
-            <b>Siège :</b><br/>
-            Bénin, Dekoungbé, Hédomey (200m après la Pharmacie Hédomey).<br/>
-            <b>Tél. :</b> (+229) 97 25 35 39 / 94 33 69 05<br/>
-            <b>Chaîne TV :</b> JESUS-REVIENT.TV (Satellite Amos 17, décodeur Strong)<br/><br/>
-            </body></html>
-        """.trimIndent()
+        val container = findViewById<LinearLayout>(android.R.id.content)
+            .findViewById<LinearLayout>(R.id.content) // ou directement LinearLayout après ScrollView
 
-        binding.textInfoGroupe.text = Html.fromHtml(htmlContent, Html.FROM_HTML_MODE_LEGACY)
-        binding.textInfoGroupe.movementMethod = LinkMovementMethod.getInstance()
-
-        setupSocialLinks()
-    }
-
-    private fun setupSocialLinks() {
-        val links = listOf(
-            Triple(R.id.link_site, R.drawable.site, "https://jesusrevient.tv"),
-            Triple(R.id.link_facebook_page, R.drawable.facebook, "https://facebook.com/groupejesusrevient"),
-            Triple(R.id.link_facebook_group, R.drawable.facebook, "https://facebook.com/groups/jesusrevient.tv"),
-            Triple(R.id.link_whatsapp, R.drawable.whatsapp, "https://www.whatsapp.com/channel/0029VaDKtleHgZWfIv4SNW3z"),
-            Triple(R.id.link_telegram_channel, R.drawable.telegram, "https://t.me/jesusrevient"),
-            Triple(R.id.link_telegram_group, R.drawable.telegram, "https://t.me/jesusrevient_tv"),
-            Triple(R.id.link_twitter, R.drawable.twitter, "https://twitter.com/jesusrevienttv"),
-            Triple(R.id.link_gps, R.drawable.gps, "https://maps.app.goo.gl/SFS46YG9JsMCuCW27"),
-            Triple(R.id.link_android, R.drawable.site, "https://play.google.com/store/apps/details?id=com.maougnonjesusrevient.jesus_revient_tv"),
+        val socialLinks = listOf(
+            SocialLink(R.drawable.site, "Site Web", "https://example.com"),
+            SocialLink(R.drawable.facebook, "Page Facebook", "https://facebook.com/"),
+            SocialLink(R.drawable.whatsapp, "Groupe WhatsApp", "https://chat.whatsapp.com/..."),
+            SocialLink(R.drawable.telegram, "Groupe Telegram", "https://t.me/..."),
+            SocialLink(R.drawable.instagram, "Instagram", "https://instagram.com/..."),
+            SocialLink(R.drawable.youtube, "Chaîne YouTube", "https://youtube.com/..."),
+            SocialLink(R.drawable.tiktok, "TikTok", "https://tiktok.com/..."),
+            SocialLink(R.drawable.email, "Email", "mailto:contact@example.com")
         )
 
-        val labels = listOf(
-            getString(R.string.site_web),
-            getString(R.string.facebook_page),
-            getString(R.string.facebook_group),
-            getString(R.string.whatsapp_channel),
-            getString(R.string.telegram_channel),
-            getString(R.string.telegram_group),
-            getString(R.string.twitter),
-            getString(R.string.gps_location),
-            getString(R.string.android_app)
-        )
+        // Les includes commencent à l’index 1 (le premier est text_info_groupe)
+        for (i in socialLinks.indices) {
+            val itemView = container.getChildAt(i + 1) // +1 pour sauter le TextView
+            if (itemView is View) {
+                val icon = itemView.findViewById<ImageView>(R.id.link_icon)
+                val text = itemView.findViewById<TextView>(R.id.link_text)
 
-        links.forEachIndexed { index, (layoutId, iconRes, url) ->
-            val layout = findViewById<LinearLayout>(layoutId)
-            if (layout != null) {
-                val icon: ImageView? = layout.findViewById(R.id.icon_social)
-                val text: TextView? = layout.findViewById(R.id.social_link_text)
+                val link = socialLinks[i]
+                icon.setImageResource(link.iconResId)
+                text.text = link.label
 
-                icon?.setImageResource(iconRes)
-                text?.text = labels[index]
-                layout.setOnClickListener { openUrl(url) }
-            } else {
-                Log.e("AProposGroupeActivity", "Layout avec ID $layoutId introuvable.")
+                itemView.setOnClickListener {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link.url))
+                    startActivity(intent)
+                }
             }
         }
-    }
-
-    private fun openUrl(url: String) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        startActivity(intent)
     }
 }
