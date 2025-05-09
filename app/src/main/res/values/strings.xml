@@ -1,9 +1,19 @@
 <resources>
     <string name="app_name">Cantique Jésus-Revient</string>
+
+    <!-- Titres généraux -->
     <string name="song_list_title">Liste des Cantiques</string>
     <string name="search_hint">Rechercher un chant...</string>
+
+    <!-- Menu latéral -->
     <string name="open_drawer">Ouvrir le menu</string>
     <string name="close_drawer">Fermer le menu</string>
+    <string name="nav_about_group">À propos du groupe</string>
+    <string name="nav_about_app">À propos de l’application</string>
+    <string name="nav_admin">Admin</string>
+    <string name="nav_share">Partager l’application</string>
+
+    <!-- Liens sociaux -->
     <string name="site_web">Site web</string>
     <string name="facebook_page">Page Facebook</string>
     <string name="facebook_group">Groupe Facebook</string>
@@ -14,5 +24,6 @@
     <string name="gps_location">Localisation GPS</string>
     <string name="android_app">Application Android</string>
 
-
+    <!-- Divers -->
+    <string name="group_info_text">Bienvenue dans l’univers du groupe Jésus-Revient. Retrouvez ici toutes nos plateformes officielles pour rester connecté.</string>
 </resources>
