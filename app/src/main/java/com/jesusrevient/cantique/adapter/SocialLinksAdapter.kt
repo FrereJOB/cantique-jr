@@ -1,4 +1,4 @@
-package com.jesusrevient.cantique.adaptateurs
+package com.jesusrevient.cantique.adaptater
 
 import android.content.Intent
 import android.net.Uri
