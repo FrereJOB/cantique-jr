@@ -2,59 +2,189 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF8E1">
+    android:padding="16dp">
 
     <LinearLayout
-        android:id="@+id/rootLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp">
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textInfoGroupe"
+            android:id="@+id/text_info_groupe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#4E342E"
-            android:textSize="16sp"
-            android:lineSpacingExtra="6dp"
-            android:linksClickable="true"
-            android:autoLink="web"
-            android:textStyle="normal"
-            android:focusable="true"
-            android:focusableInTouchMode="true" />
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:lineSpacingExtra="4dp"
+            android:paddingBottom="16dp" />
 
-        <View
+        <!-- Liens sociaux avec icônes -->
+        <LinearLayout
+            android:id="@+id/link_site"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="24dp"
-            android:background="#BDBDBD" />
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nous suivre :"
-            android:textStyle="bold"
-            android:textColor="#4E342E"
-            android:layout_marginTop="16dp" />
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true">
+            <ImageView
+                android:id="@+id/icon_site"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/site"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/text_site"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Site web" />
+        </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/socialLinks"
+            android:id="@+id/link_facebook_page"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="8dp">
-
-            <!-- Chaque lien social -->
-            <include layout="@layout/item_social_link" android:id="@+id/link_site"/>
-            <include layout="@layout/item_social_link" android:id="@+id/link_facebook_page"/>
-            <include layout="@layout/item_social_link" android:id="@+id/link_facebook_group"/>
-            <include layout="@layout/item_social_link" android:id="@+id/link_whatsapp"/>
-            <include layout="@layout/item_social_link" android:id="@+id/link_telegram_channel"/>
-            <include layout="@layout/item_social_link" android:id="@+id/link_telegram_group"/>
-            <include layout="@layout/item_social_link" android:id="@+id/link_twitter"/>
-            <include layout="@layout/item_social_link" android:id="@+id/link_gps"/>
-            <include layout="@layout/item_social_link" android:id="@+id/link_android"/>
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true">
+            <ImageView
+                android:id="@+id/icon_facebook_page"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/facebook"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/text_facebook_page"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Page Facebook" />
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/link_facebook_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true">
+            <ImageView
+                android:id="@+id/icon_facebook_group"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/facebook"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/text_facebook_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Groupe Facebook" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/link_whatsapp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true">
+            <ImageView
+                android:id="@+id/icon_whatsapp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/whatsapp"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/text_whatsapp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chaîne WhatsApp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/link_telegram_channel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true">
+            <ImageView
+                android:id="@+id/icon_telegram_channel"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/telegram"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/text_telegram_channel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Canal Telegram" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/link_telegram_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true">
+            <ImageView
+                android:id="@+id/icon_telegram_group"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/telegram"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/text_telegram_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Groupe Telegram" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/link_twitter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true">
+            <ImageView
+                android:id="@+id/icon_twitter"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/twitter"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/text_twitter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Twitter" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/link_gps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true">
+            <ImageView
+                android:id="@+id/icon_gps"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/gps"
+                android:layout_marginEnd="8dp" />
+            <TextView
+                android:id="@+id/text_gps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Localisation GPS" />
+        </LinearLayout>
+
     </LinearLayout>
 </ScrollView>
