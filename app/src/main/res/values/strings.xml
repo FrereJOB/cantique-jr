@@ -4,5 +4,15 @@
     <string name="search_hint">Rechercher un chant...</string>
     <string name="open_drawer">Ouvrir le menu</string>
     <string name="close_drawer">Fermer le menu</string>
+    <string name="site_web">Site web</string>
+    <string name="facebook_page">Page Facebook</string>
+    <string name="facebook_group">Groupe Facebook</string>
+    <string name="whatsapp_channel">Chaîne WhatsApp</string>
+    <string name="telegram_channel">Canal Telegram</string>
+    <string name="telegram_group">Groupe Telegram</string>
+    <string name="twitter">Twitter</string>
+    <string name="gps_location">Localisation GPS</string>
+    <string name="android_app">Application Android</string>
+
 
 </resources>
