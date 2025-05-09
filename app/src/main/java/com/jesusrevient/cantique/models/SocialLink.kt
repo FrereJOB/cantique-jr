@@ -1,7 +1,9 @@
+// app/src/main/java/com/jesusrevient/cantique/models/SocialLink.kt
 package com.jesusrevient.cantique.models
 
 data class SocialLink(
-    val iconRes: Int,
-    val label: String,
-    val url: String
+    val name: String,
+    val url: String,
+    val iconResId: Int
 )
+
