@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.jesusrevient.cantique.R
-import com.jesusrevient.cantique.modeles.SocialLink
+import com.jesusrevient.cantique.models.SocialLink
 
 class SocialLinksAdapter(private val socialLinks: List<SocialLink>) :
     RecyclerView.Adapter<SocialLinksAdapter.SocialLinkViewHolder>() {
