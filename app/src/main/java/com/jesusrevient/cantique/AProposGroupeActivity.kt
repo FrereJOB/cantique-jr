@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jesusrevient.cantique.adaptateurs.SocialLinksAdapter
-import com.jesusrevient.cantique.modeles.SocialLink
+import com.jesusrevient.cantique.models.SocialLink
 
 class AProposGroupeActivity : AppCompatActivity() {
 
