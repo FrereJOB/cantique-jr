@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.Html
 import android.text.method.LinkMovementMethod
+import android.util.Log
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -60,12 +61,16 @@ class AProposGroupeActivity : AppCompatActivity() {
 
         links.forEachIndexed { index, (layoutId, iconRes, url) ->
             val layout = findViewById<LinearLayout>(layoutId)
-            val icon: ImageView = layout.findViewById(R.id.icon_social)
-            val text: TextView = layout.findViewById(R.id.social_link_text)
+            if (layout != null) {
+                val icon: ImageView? = layout.findViewById(R.id.icon_social)
+                val text: TextView? = layout.findViewById(R.id.social_link_text)
 
-            icon.setImageResource(iconRes)
-            text.text = labels[index]
-            layout.setOnClickListener { openUrl(url) }
+                icon?.setImageResource(iconRes)
+                text?.text = labels[index]
+                layout.setOnClickListener { openUrl(url) }
+            } else {
+                Log.e("AProposGroupeActivity", "Layout avec ID $layoutId introuvable.")
+            }
         }
     }
 
