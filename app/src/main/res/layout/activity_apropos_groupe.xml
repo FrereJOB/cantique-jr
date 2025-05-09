@@ -1,37 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/apropos_groupe_layout"
+    android:id="@+id/aboutLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".AProposGroupeActivity">
 
-    <ScrollView
+    <TextView
+        android:id="@+id/descriptionTextView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:text="@string/groupe_description"
+        android:textSize="16sp"
+        android:lineSpacingExtra="4dp"
+        android:paddingBottom="12dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/descriptionTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="🔥 LE GROUPE JESUS-REVIENT EST UN MOUVEMENT INTERNATIONAL DE RÉVEIL D'ÉVANGÉLISATION QUI SONNE LA TROMPETTE DE REPENTANCE, PRÊCHE LA SANCTIFICATION ET LA SAINE DOCTRINE BIBLIQUE DANS SON ENTIERETÉ AFIN DE PRÉPARER LES SAINTS POUR L'ENLÈVEMENT.\n\n🟦 CONTENTS DE VOUS ACCUEILLIR SUR NOTRE PLATE-FORME. NOTRE MISSION EST DE VOUS AIDER À CONNAÎTRE JÉSUS-CHRIST, LE VÉRITABLE DIEU SAUVEUR DE L'HUMANITÉ, À METTRE DE L'ORDRE DANS VOTRE VIE AFIN DE VOUS PRÉPARER POUR SON RETOUR IMMINENT.\n\n🟨 POUR PARTICIPER AUX DIVERSES ACTIVITÉS ET PROGRAMMES DE L'EGLISE JÉSUS-REVIENT, REJOIGNEZ NOS PLATE-FORMES VIA LES CANAUX SUIVANTS :\n\n🟥 INDICATION DU SIÈGE : BÉNIN, DEKOUNGBÉ, HEDOMEY (YINKINDJI, ENVIRON 200M APRÈS LA PHARMACIE HEDOMEY AU BORD DES NOUVEAUX PAVÉS).\n\n🟥 TELEPHONE : (+229) 97 25 35 39 / 94 33 69 05\n\n🟥 CAPTEZ LA CHAINE DE TELEVISION « JESUS-REVIENT.TV » SUR UN DÉCODEUR \"STRONG\" OU TOUT AUTRE DÉCODEUR QUI DIFFUSE LES CHAÎNES GRATUITES ( SATELLITE \"AMOS 17\")"
-                android:textSize="16sp"
-                android:textColor="#000000"
-                android:layout_marginBottom="16dp" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/socialLinksRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp" />
-        </LinearLayout>
-    </ScrollView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/socialLinksRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:scrollbars="vertical" />
 </LinearLayout>
