@@ -2,82 +2,30 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="?android:attr/windowBackground">
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Texte d'information sur le groupe -->
         <TextView
             android:id="@+id/text_info_groupe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?attr/textAppearanceBody1"
             android:lineSpacingExtra="4dp"
-            android:paddingBottom="16dp"
-            android:text="Chargement..." />
+            android:paddingBottom="16dp" />
 
-        <!-- Bloc de lien réutilisable -->
-        <!-- Chaque bloc ci-dessous est un bouton cliquable avec une icône et du texte -->
-        
-        <!-- Site web -->
-        <include layout="@layout/link_item"
-            android:id="@+id/link_site"
-            android:tag="Site web"
-            android:src="@drawable/site"
-            android:contentDescription="Site web" />
-
-        <!-- Page Facebook -->
-        <include layout="@layout/link_item"
-            android:id="@+id/link_facebook_page"
-            android:tag="Page Facebook"
-            android:src="@drawable/facebook"
-            android:contentDescription="Page Facebook" />
-
-        <!-- Groupe Facebook -->
-        <include layout="@layout/link_item"
-            android:id="@+id/link_facebook_group"
-            android:tag="Groupe Facebook"
-            android:src="@drawable/facebook"
-            android:contentDescription="Groupe Facebook" />
-
-        <!-- WhatsApp -->
-        <include layout="@layout/link_item"
-            android:id="@+id/link_whatsapp"
-            android:tag="Chaîne WhatsApp"
-            android:src="@drawable/whatsapp"
-            android:contentDescription="WhatsApp" />
-
-        <!-- Canal Telegram -->
-        <include layout="@layout/link_item"
-            android:id="@+id/link_telegram_channel"
-            android:tag="Canal Telegram"
-            android:src="@drawable/telegram"
-            android:contentDescription="Canal Telegram" />
-
-        <!-- Groupe Telegram -->
-        <include layout="@layout/link_item"
-            android:id="@+id/link_telegram_group"
-            android:tag="Groupe Telegram"
-            android:src="@drawable/telegram"
-            android:contentDescription="Groupe Telegram" />
-
-        <!-- Twitter -->
-        <include layout="@layout/link_item"
-            android:id="@+id/link_twitter"
-            android:tag="Twitter"
-            android:src="@drawable/twitter"
-            android:contentDescription="Twitter" />
-
-        <!-- GPS -->
-        <include layout="@layout/link_item"
-            android:id="@+id/link_gps"
-            android:tag="Localisation GPS"
-            android:src="@drawable/gps"
-            android:contentDescription="GPS" />
+        <!-- Inclusion statique, personnalisation à faire dans le code -->
+        <include layout="@layout/link_item" />
+        <include layout="@layout/link_item" />
+        <include layout="@layout/link_item" />
+        <include layout="@layout/link_item" />
+        <include layout="@layout/link_item" />
+        <include layout="@layout/link_item" />
+        <include layout="@layout/link_item" />
+        <include layout="@layout/link_item" />
 
     </LinearLayout>
 </ScrollView>
