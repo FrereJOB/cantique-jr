@@ -1,6 +1,5 @@
-package com.jesusrevient.cantique.adapter
+package com.jesusrevient.cantique.adaptateurs
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
@@ -12,15 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jesusrevient.cantique.R
 import com.jesusrevient.cantique.modeles.SocialLink
 
-class SocialLinksAdapter(
-    private val context: Context,
-    private val socialLinks: List<SocialLink>
-) : RecyclerView.Adapter<SocialLinksAdapter.SocialLinkViewHolder>() {
-
-    class SocialLinkViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val iconImageView: ImageView = itemView.findViewById(R.id.iconImageView)
-        val linkTextView: TextView = itemView.findViewById(R.id.linkTextView)
-    }
+class SocialLinksAdapter(private val socialLinks: List<SocialLink>) :
+    RecyclerView.Adapter<SocialLinksAdapter.SocialLinkViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SocialLinkViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -30,28 +22,35 @@ class SocialLinksAdapter(
 
     override fun onBindViewHolder(holder: SocialLinkViewHolder, position: Int) {
         val socialLink = socialLinks[position]
-        holder.linkTextView.text = socialLink.nom
-
-        val iconResId = when (socialLink.type.lowercase()) {
-            "facebook", "groupe_facebook" -> R.drawable.facebook
-            "whatsapp" -> R.drawable.whatsapp
-            "chaine_telegram", "groupe_telegram" -> R.drawable.telegram
-            "gps" -> R.drawable.gps
-            "application_android" -> R.drawable.app
-            "site_web" -> R.drawable.site
-            "twitter" -> R.drawable.twitter
-            "youtube" -> R.drawable.youtube
-            "email" -> R.drawable.mail
-            else -> R.drawable.default_icon
-        }
-
-        holder.iconImageView.setImageResource(iconResId)
-
-        holder.itemView.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(socialLink.url))
-            context.startActivity(intent)
-        }
+        holder.bind(socialLink)
     }
 
     override fun getItemCount(): Int = socialLinks.size
+
+    class SocialLinkViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val iconImageView: ImageView = itemView.findViewById(R.id.iconImageView)
+        private val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
+
+        fun bind(socialLink: SocialLink) {
+            val context = itemView.context
+            nameTextView.text = socialLink.name
+            val iconResId = when {
+                socialLink.name.contains("Facebook", ignoreCase = true) -> R.drawable.facebook
+                socialLink.name.contains("Telegram", ignoreCase = true) -> R.drawable.telegram
+                socialLink.name.contains("WhatsApp", ignoreCase = true) -> R.drawable.whatsapp
+                socialLink.name.contains("YouTube", ignoreCase = true) -> R.drawable.youtube
+                socialLink.name.contains("Android", ignoreCase = true) -> R.drawable.app
+                socialLink.name.contains("GPS", ignoreCase = true) -> R.drawable.gps
+                socialLink.name.contains("Twitter", ignoreCase = true) -> R.drawable.twitter
+                socialLink.name.contains("Email", ignoreCase = true) -> R.drawable.mail
+                else -> R.drawable.ic_launcher_foreground
+            }
+            iconImageView.setImageResource(iconResId)
+
+            itemView.setOnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(socialLink.url))
+                context.startActivity(intent)
+            }
+        }
+    }
 }
