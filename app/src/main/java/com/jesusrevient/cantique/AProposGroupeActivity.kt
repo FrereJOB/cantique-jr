@@ -55,8 +55,15 @@ class AProposGroupeActivity : AppCompatActivity() {
         )
 
         val labels = listOf(
-            "Site web", "Page Facebook", "Groupe Facebook", "Chaîne WhatsApp", "Canal Telegram",
-            "Groupe Telegram", "Twitter", "Localisation GPS", "Application Android"
+            getString(R.string.site_web),
+            getString(R.string.facebook_page),
+            getString(R.string.facebook_group),
+            getString(R.string.whatsapp_channel),
+            getString(R.string.telegram_channel),
+            getString(R.string.telegram_group),
+            getString(R.string.twitter),
+            getString(R.string.gps_location),
+            getString(R.string.android_app)
         )
 
         links.forEachIndexed { index, (layoutId, iconRes, url) ->
