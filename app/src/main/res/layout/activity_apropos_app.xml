@@ -21,7 +21,7 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/ic_trompette" <!-- Remplace par ton icône -->
+                android:src="@drawable/site" <!-- Remplace par ton icône -->
                 android:contentDescription="Logo" />
 
             <TextView
