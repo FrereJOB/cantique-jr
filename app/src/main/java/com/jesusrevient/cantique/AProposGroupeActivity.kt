@@ -19,16 +19,16 @@ class AProposGroupeActivity : AppCompatActivity() {
         descriptionTextView.movementMethod = LinkMovementMethod.getInstance()
 
         val socialLinks = listOf(
-            SocialLink("Groupe Facebook", "https://www.facebook.com/EgliseInternationaleJesusRevient/", R.drawable.facebook),
-            SocialLink("Chaine Facebook", "https://wa.me/22994336905", R.drawable.facebook),
-            SocialLink("YouTube", "https://www.youtube.com/@EgliseInternationaleJesusRevient", R.drawable.youtube),
-            SocialLink("WhatsApp", "https://wa.me/22994336905", R.drawable.whatsapp),
-            SocialLink("Chaine Telegram", "https://wa.me/22994336905", R.drawable.telegram),
-            SocialLink("Twitter", "https://wa.me/22994336905", R.drawable.twitter),
-            SocialLink("Groupe Telegram", "https://t.me/eglisejesusrevient", R.drawable.telegram),
-            SocialLink("Email", "mailto:eglisejesusrevient@gmail.com", R.drawable.mail),
-            SocialLink("GPS", "https://maps.app.goo.gl/PvFtPtwzG9CJ9mcX9", R.drawable.gps),
-            SocialLink("Application Android", "https://play.google.com/store/apps/details?id=com.jesusrevient.cantique", R.drawable.app),
+            SocialLink("Groupe Facebook", "https://www.facebook.com/groups/jesusrevient.tv", R.drawable.facebook),
+            SocialLink("Page Facebook", "https://www.facebook.com/groupejesusrevient", R.drawable.facebook),
+            SocialLink("YouTube", "https://www.youtube.com/@jesusrevienttv", R.drawable.youtube),
+            SocialLink("WhatsApp", "https://whatsapp.com/channel/0029VaDKtleHgZWfIv4SNW3z", R.drawable.whatsapp),
+            SocialLink("Canal Telegram", "https://t.me/jesusrevient", R.drawable.telegram),
+            SocialLink("Twitter", "https://twitter.com/jesusrevienttv", R.drawable.twitter),
+            SocialLink("Groupe Telegram", "https://t.me/jesusrevient_tv", R.drawable.telegram),
+            SocialLink("Email", "contact@jesusrevient.tv", R.drawable.mail),
+            SocialLink("GPS", "https://maps.app.goo.gl/SFS46YG9JsMCuCW27", R.drawable.gps),
+            SocialLink("Application Android", "https://play.google.com/store/apps/details?id=com.maougnonjesusrevient.jesus_revient_tv&pli=1", R.drawable.app),
         )
 
         val recyclerView: RecyclerView = findViewById(R.id.socialLinksRecyclerView)
