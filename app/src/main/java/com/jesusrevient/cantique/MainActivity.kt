@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun fetchSongs() {
-        db.collection("cantique")
+        db.collection("cantiques")
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
