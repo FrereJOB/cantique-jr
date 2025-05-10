@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class LoginAdminActivity : AppCompatActivity() {
 
-    private val adminPassword = "motdepasseadmin" // À personnaliser
+    private val adminPassword = "123CantiqueJR@MAGM" // À personnaliser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
