@@ -6,4 +6,11 @@
 <color name="brown_spiritual">#5D4037</color>
 <color name="light_brown">#A1887F</color>
 <!--  Marron clair  -->
+ <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="colorSecondary">#FF5733</color>
+    
+    <!-- Ajout des couleurs manquantes -->
+    <color name="background_light">#F5F5F5</color> <!-- Exemple de couleur -->
+    <color name="text_primary">#212121</color>
 </resources>
