@@ -20,7 +20,7 @@ class AProposGroupeActivity : AppCompatActivity() {
 
         val socialLinks = listOf(
             SocialLink("Groupe Facebook", "https://www.facebook.com/EgliseInternationaleJesusRevient/", R.drawable.facebook),
-            SocialLink("Chaine Facebook", "https://wa.me/22994336905", R.drawable.facebook)
+            SocialLink("Chaine Facebook", "https://wa.me/22994336905", R.drawable.facebook),
             SocialLink("YouTube", "https://www.youtube.com/@EgliseInternationaleJesusRevient", R.drawable.youtube),
             SocialLink("WhatsApp", "https://wa.me/22994336905", R.drawable.whatsapp),
             SocialLink("Chaine Telegram", "https://wa.me/22994336905", R.drawable.telegram),
@@ -28,7 +28,7 @@ class AProposGroupeActivity : AppCompatActivity() {
             SocialLink("Groupe Telegram", "https://t.me/eglisejesusrevient", R.drawable.telegram),
             SocialLink("Email", "mailto:eglisejesusrevient@gmail.com", R.drawable.mail),
             SocialLink("GPS", "https://maps.app.goo.gl/PvFtPtwzG9CJ9mcX9", R.drawable.gps),
-            SocialLink("Application Android", "https://play.google.com/store/apps/details?id=com.jesusrevient.cantique", R.drawable.app)
+            SocialLink("Application Android", "https://play.google.com/store/apps/details?id=com.jesusrevient.cantique", R.drawable.app),
         )
 
         val recyclerView: RecyclerView = findViewById(R.id.socialLinksRecyclerView)
