@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/groupe_description"
-            android:textColor="@color/text_primary" <!-- Texte principal bleu -->
+            android:textColor="@color/text_primary"
             android:textSize="16sp"
             android:lineSpacingExtra="4dp"
             android:paddingBottom="12dp" />
