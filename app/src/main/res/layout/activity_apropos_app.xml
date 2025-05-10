@@ -22,7 +22,9 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/site"
-                android:contentDescription="Logo de l'application Cantique Jésus-Revient" />
+                android:contentDescription="Logo de l'application Cantique Jésus-Revient" 
+                android:background="@drawable/rounded_corner"
+                android:clipToOutline="true"/>
 
             <TextView
                 android:layout_width="wrap_content"
