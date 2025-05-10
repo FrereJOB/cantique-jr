@@ -1,5 +1,6 @@
 package com.jesusrevient.cantique
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
@@ -27,33 +28,39 @@ class SupprimerCantiqueActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val docRef = db.collection("cantique").whereEqualTo("numero", numero)
-            docRef.get().addOnSuccessListener { documents ->
-                if (!documents.isEmpty) {
-                    val docId = documents.first().id
+            db.collection("cantique")
+                .whereEqualTo("numero", numero)
+                .get()
+                .addOnSuccessListener { documents ->
+                    if (!documents.isEmpty) {
+                        val doc = documents.first()
+                        val docId = doc.id
+                        val titre = doc.getString("titre") ?: "ce cantique"
 
-                    AlertDialog.Builder(this)
-                        .setTitle("Confirmation")
-                        .setMessage("Êtes-vous sûr de vouloir supprimer ce cantique ?")
-                        .setPositiveButton("Oui") { _, _ ->
-                            db.collection("cantique").document(docId).delete()
-                                .addOnSuccessListener {
-                                    Toast.makeText(this, "Cantique supprimé avec succès.", Toast.LENGTH_SHORT).show()
-                                    numeroInput.text.clear()
-                                }
-                                .addOnFailureListener {
-                                    Toast.makeText(this, "Échec de la suppression.", Toast.LENGTH_SHORT).show()
-                                }
-                        }
-                        .setNegativeButton("Non", null)
-                        .show()
-
-                } else {
-                    Toast.makeText(this, "Aucun cantique trouvé avec ce numéro.", Toast.LENGTH_SHORT).show()
+                        AlertDialog.Builder(this)
+                            .setTitle("Confirmer la suppression")
+                            .setMessage("Voulez-vous vraiment supprimer \"$titre\" (N° $numero) ?")
+                            .setPositiveButton("Oui") { _, _ ->
+                                db.collection("cantique").document(docId).delete()
+                                    .addOnSuccessListener {
+                                        Toast.makeText(this, "Cantique supprimé avec succès.", Toast.LENGTH_SHORT).show()
+                                        numeroInput.text.clear()
+                                        startActivity(Intent(this, AdminDashboardActivity::class.java))
+                                        finish()
+                                    }
+                                    .addOnFailureListener {
+                                        Toast.makeText(this, "Erreur lors de la suppression.", Toast.LENGTH_SHORT).show()
+                                    }
+                            }
+                            .setNegativeButton("Non", null)
+                            .show()
+                    } else {
+                        Toast.makeText(this, "Aucun cantique trouvé avec ce numéro.", Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }.addOnFailureListener {
-                Toast.makeText(this, "Erreur lors de la recherche.", Toast.LENGTH_SHORT).show()
-            }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Erreur lors de la recherche.", Toast.LENGTH_SHORT).show()
+                }
         }
     }
 }
