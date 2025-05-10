@@ -1,24 +1,9 @@
 <resources>
-    <!-- Couleurs principales -->
-    <color name="colorPrimary">#0D47A1</color> <!-- Bleu roi -->
-    <color name="colorPrimaryDark">#1976D2</color> <!-- Bleu plus clair -->
-    <color name="colorAccent">#FFD700</color> <!-- Jaune doré -->
-    
-    <!-- Couleurs personnalisées -->
-    <color name="gold">#FFD700</color>
-    <color name="blue_deep">#1E3A8A</color> <!-- Bleu profond pour les titres -->
-    <color name="text_primary">#1E3A8A</color>
-    <color name="text_secondary">#4B5563</color> <!-- Gris élégant pour sous-titres -->
-    <color name="background_light">#F9FAFB</color> <!-- Blanc doux -->
-    <color name="background_section">#E6ECF5</color> <!-- Bleu pâle apaisant -->
-    <color name="yellow_soft">#FFF8E1</color> <!-- Jaune pastel doux -->
-    
-    <!-- Tons bruns -->
-    <color name="brown_spiritual">#5D4037</color> <!-- Brun profond -->
-    <color name="light_brown">#A1887F</color> <!-- Marron clair -->
-
-    
-    <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
-    <color name="colorSecondary">#FF5733</color> 
-</resources>
+<color name="colorPrimary">#0D47A1</color>
+<color name="colorPrimaryDark">#1976D2</color>
+<color name="colorAccent">#FFD700</color>
+<color name="gold">#FFD700</color>
+<color name="brown_spiritual">#5D4037</color>
+<color name="light_brown">#A1887F</color>
+<!--  Marron clair  -->
+</resources
