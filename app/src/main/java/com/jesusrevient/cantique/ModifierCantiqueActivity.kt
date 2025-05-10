@@ -1,5 +1,6 @@
 package com.jesusrevient.cantique
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -32,9 +33,11 @@ class ModifierCantiqueActivity : AppCompatActivity() {
         btnEnregistrer = findViewById(R.id.btnEnregistrer)
 
         btnRechercher.setOnClickListener {
-            val numero = numeroInput.text.toString()
+            val numero = numeroInput.text.toString().trim()
             if (numero.isNotEmpty()) {
                 rechercherCantique(numero)
+            } else {
+                Toast.makeText(this, "Veuillez entrer un numéro", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -58,27 +61,45 @@ class ModifierCantiqueActivity : AppCompatActivity() {
                     categorieInput.setText(song.categorie)
                     parolesInput.setText(song.paroles)
                 } else {
-                    Toast.makeText(this, "Aucun cantique trouvé", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Aucun cantique trouvé avec ce numéro", Toast.LENGTH_SHORT).show()
                 }
             }
             .addOnFailureListener {
-                Toast.makeText(this, "Erreur de recherche", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Erreur lors de la recherche", Toast.LENGTH_SHORT).show()
             }
     }
 
     private fun modifierCantique() {
-        val id = songId ?: return
+        val id = songId
+        if (id == null) {
+            Toast.makeText(this, "Veuillez rechercher un cantique d'abord", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val titre = titreInput.text.toString().trim()
+        val auteur = auteurInput.text.toString().trim()
+        val categorie = categorieInput.text.toString().trim()
+        val paroles = parolesInput.text.toString().trim()
+
+        if (titre.isEmpty() || auteur.isEmpty() || categorie.isEmpty() || paroles.isEmpty()) {
+            Toast.makeText(this, "Tous les champs doivent être remplis", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         val updatedSong = mapOf(
-            "titre" to titreInput.text.toString(),
-            "auteur" to auteurInput.text.toString(),
-            "categorie" to categorieInput.text.toString(),
-            "paroles" to parolesInput.text.toString()
+            "titre" to titre,
+            "auteur" to auteur,
+            "categorie" to categorie,
+            "paroles" to paroles
         )
 
         db.collection("cantique").document(id)
             .update(updatedSong)
             .addOnSuccessListener {
                 Toast.makeText(this, "Cantique modifié avec succès", Toast.LENGTH_SHORT).show()
+                // Retour à l'écran d'administration
+                startActivity(Intent(this, AdminDashboardActivity::class.java))
+                finish()
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Échec de la modification", Toast.LENGTH_SHORT).show()
