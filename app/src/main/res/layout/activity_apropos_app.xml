@@ -110,7 +110,7 @@
                 android:typeface="monospace"
                 android:textSize="14sp"
                 android:textColor="?android:textColorPrimary"
-                android:background="#F3F4F6"
+                android:background="#FFD700"
                 android:padding="10dp"
                 android:layout_marginBottom="24dp" />
         </HorizontalScrollView>
