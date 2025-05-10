@@ -19,15 +19,16 @@ class AProposGroupeActivity : AppCompatActivity() {
         descriptionTextView.movementMethod = LinkMovementMethod.getInstance()
 
         val socialLinks = listOf(
-            SocialLink("Téléphone", "tel:+22997253539"),
-            SocialLink("Téléphone", "tel:+22994336905"),
-            SocialLink("Facebook", "https://www.facebook.com/EgliseInternationaleJesusRevient/"),
-            SocialLink("YouTube", "https://www.youtube.com/@EgliseInternationaleJesusRevient"),
-            SocialLink("WhatsApp", "https://wa.me/22994336905"),
-            SocialLink("Telegram", "https://t.me/eglisejesusrevient"),
-            SocialLink("Email", "mailto:eglisejesusrevient@gmail.com"),
-            SocialLink("GPS", "https://maps.app.goo.gl/PvFtPtwzG9CJ9mcX9"),
-            SocialLink("Android", "https://play.google.com/store/apps/details?id=com.jesusrevient.cantique")
+            SocialLink("Groupe Facebook", "https://www.facebook.com/EgliseInternationaleJesusRevient/", R.drawable.facebook),
+            SocialLink("Chaine Facebook", "https://wa.me/22994336905", R.drawable.facebook)
+            SocialLink("YouTube", "https://www.youtube.com/@EgliseInternationaleJesusRevient", R.drawable.youtube),
+            SocialLink("WhatsApp", "https://wa.me/22994336905", R.drawable.whatsapp),
+            SocialLink("Chaine Telegram", "https://wa.me/22994336905", R.drawable.telegram),
+            SocialLink("Twitter", "https://wa.me/22994336905", R.drawable.twitter),
+            SocialLink("Groupe Telegram", "https://t.me/eglisejesusrevient", R.drawable.telegram),
+            SocialLink("Email", "mailto:eglisejesusrevient@gmail.com", R.drawable.mail),
+            SocialLink("GPS", "https://maps.app.goo.gl/PvFtPtwzG9CJ9mcX9", R.drawable.gps),
+            SocialLink("Application Android", "https://play.google.com/store/apps/details?id=com.jesusrevient.cantique", R.drawable.app)
         )
 
         val recyclerView: RecyclerView = findViewById(R.id.socialLinksRecyclerView)
