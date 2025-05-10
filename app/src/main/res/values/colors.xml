@@ -16,4 +16,9 @@
     <!-- Tons bruns -->
     <color name="brown_spiritual">#5D4037</color> <!-- Brun profond -->
     <color name="light_brown">#A1887F</color> <!-- Marron clair -->
+
+    
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="colorSecondary">#FF5733</color> 
 </resources>
