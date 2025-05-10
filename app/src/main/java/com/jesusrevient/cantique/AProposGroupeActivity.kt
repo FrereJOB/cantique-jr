@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.jesusrevient.cantique.databinding.ActivityAproposAppBinding
 
-class AProposAppActivity : AppCompatActivity() {
+class AProposGroupeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAproposAppBinding
 
@@ -13,7 +13,7 @@ class AProposAppActivity : AppCompatActivity() {
         binding = ActivityAproposAppBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.title = "À propos de l'application"
+        supportActionBar?.title = "À propos du groupe"
 
         binding.textInfoApp.text = """
             Cette application est un recueil de chants chrétiens du groupe Jésus Revient.
