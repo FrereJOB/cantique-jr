@@ -41,7 +41,7 @@ class SupprimerCantiqueActivity : AppCompatActivity() {
                             .setTitle("Confirmer la suppression")
                             .setMessage("Voulez-vous vraiment supprimer \"$titre\" (N° $numero) ?")
                             .setPositiveButton("Oui") { _, _ ->
-                                db.collection("cantique").document(docId).delete()
+                                db.collection("cantiques").document(docId).delete()
                                     .addOnSuccessListener {
                                         Toast.makeText(this, "Cantique supprimé avec succès.", Toast.LENGTH_SHORT).show()
                                         numeroInput.text.clear()
