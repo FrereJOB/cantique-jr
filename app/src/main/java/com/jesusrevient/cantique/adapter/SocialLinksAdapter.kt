@@ -15,8 +15,8 @@ class SocialLinksAdapter(private val links: List<SocialLink>) :
     RecyclerView.Adapter<SocialLinksAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val iconImageView: ImageView = view.findViewById(R.id.iconImageView)
-        val nameTextView: TextView = view.findViewById(R.id.nameTextView)
+        val iconImageView: ImageView = view.findViewById(R.id.icon_social)
+        val nameTextView: TextView = view.findViewById(R.id.social_link_text)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
