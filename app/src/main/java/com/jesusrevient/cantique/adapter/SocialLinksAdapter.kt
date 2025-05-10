@@ -28,7 +28,7 @@ class SocialLinksAdapter(private val links: List<SocialLink>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val link = links[position]
         holder.nameTextView.text = link.name
-        holder.iconImageView.setImageResource(R.mipmap.ic_launcher)
+        holder.iconImageView.setImageResource(link.iconResId) // ✅ ici
         holder.itemView.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link.url))
             it.context.startActivity(intent)
