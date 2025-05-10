@@ -102,7 +102,7 @@ class AjouterCantiqueActivity : AppCompatActivity() {
                                     "dateAjout" to Date()
                                 )
 
-                                firestore.collection("cantique")
+                                firestore.collection("cantiques")
                                     .add(chant)
                                     .addOnSuccessListener {
                                         Toast.makeText(this, "Cantique ajouté avec succès", Toast.LENGTH_LONG).show()
