@@ -56,13 +56,15 @@ class AjouterCantiqueActivity : AppCompatActivity() {
         }
 
         buttonAjouter.setOnClickListener {
-            val titre = editTitre.text.toString()
-            val auteur = editAuteur.text.toString()
-            val categorie = editCategorie.text.toString()
-            val numero = editNumero.text.toString()
-            val paroles = editParoles.text.toString()
+            val titre = editTitre.text.toString().trim()
+            val auteur = editAuteur.text.toString().trim()
+            val categorie = editCategorie.text.toString().trim()
+            val numero = editNumero.text.toString().trim()
+            val paroles = editParoles.text.toString().trim()
 
-            if (titre.isBlank() || audioUri == null || pdfUri == null) {
+            if (titre.isBlank() || auteur.isBlank() || categorie.isBlank() ||
+                numero.isBlank() || paroles.isBlank() || audioUri == null || pdfUri == null
+            ) {
                 Toast.makeText(this, "Tous les champs sont requis", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -82,7 +84,7 @@ class AjouterCantiqueActivity : AppCompatActivity() {
         val pdfRef = storage.reference.child("partitions/${UUID.randomUUID()}.pdf")
 
         audioUri?.let { audio ->
-            audioRef.putFile(audio).addOnSuccessListener { audioTask ->
+            audioRef.putFile(audio).addOnSuccessListener {
                 audioRef.downloadUrl.addOnSuccessListener { audioUrl ->
 
                     pdfUri?.let { pdf ->
@@ -104,17 +106,27 @@ class AjouterCantiqueActivity : AppCompatActivity() {
                                     .add(chant)
                                     .addOnSuccessListener {
                                         Toast.makeText(this, "Cantique ajouté avec succès", Toast.LENGTH_LONG).show()
+                                        // Retour explicite au tableau de bord
+                                        startActivity(Intent(this, AdminDashboardActivity::class.java))
                                         finish()
                                     }
                                     .addOnFailureListener {
                                         Toast.makeText(this, "Erreur d'ajout dans Firestore", Toast.LENGTH_LONG).show()
                                     }
 
+                            }.addOnFailureListener {
+                                Toast.makeText(this, "Échec du téléchargement du PDF", Toast.LENGTH_LONG).show()
                             }
+                        }.addOnFailureListener {
+                            Toast.makeText(this, "Échec de l'envoi du fichier PDF", Toast.LENGTH_LONG).show()
                         }
                     }
 
+                }.addOnFailureListener {
+                    Toast.makeText(this, "Échec du téléchargement de l'audio", Toast.LENGTH_LONG).show()
                 }
+            }.addOnFailureListener {
+                Toast.makeText(this, "Échec de l'envoi du fichier audio", Toast.LENGTH_LONG).show()
             }
         }
     }
