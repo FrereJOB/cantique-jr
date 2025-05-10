@@ -93,7 +93,7 @@ class ModifierCantiqueActivity : AppCompatActivity() {
             "paroles" to paroles
         )
 
-        db.collection("cantique").document(id)
+        db.collection("cantiques").document(id)
             .update(updatedSong)
             .addOnSuccessListener {
                 Toast.makeText(this, "Cantique modifié avec succès", Toast.LENGTH_SHORT).show()
