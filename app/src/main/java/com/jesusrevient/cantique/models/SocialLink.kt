@@ -1,9 +1,9 @@
-// app/src/main/java/com/jesusrevient/cantique/models/SocialLink.kt
 package com.jesusrevient.cantique.models
+
+import androidx.annotation.DrawableRes
 
 data class SocialLink(
     val name: String,
     val url: String,
-    val iconResId: Int
+    @DrawableRes val iconResId: Int
 )
-
