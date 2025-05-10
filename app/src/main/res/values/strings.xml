@@ -1,53 +1,27 @@
 <resources>
-    <string name="app_name">Cantique Jésus-Revient</string>
-
-    <!-- Titres généraux -->
-    <string name="song_list_title">Liste des Cantiques</string>
-    <string name="search_hint">Rechercher un chant...</string>
-
-    <!-- Menu latéral -->
-    <string name="open_drawer">Ouvrir le menu</string>
-    <string name="close_drawer">Fermer le menu</string>
-    <string name="nav_about_group">À propos du groupe</string>
-    <string name="nav_about_app">À propos de l’application</string>
-    <string name="nav_admin">Admin</string>
-    <string name="nav_share">Partager l’application</string>
-
-    <!-- Liens sociaux -->
-    <string name="site_web">Site web</string>
-    <string name="facebook_page">Page Facebook</string>
-    <string name="facebook_group">Groupe Facebook</string>
-    <string name="whatsapp_channel">Chaîne WhatsApp</string>
-    <string name="telegram_channel">Canal Telegram</string>
-    <string name="telegram_group">Groupe Telegram</string>
-    <string name="twitter">Twitter</string>
-    <string name="gps_location">Localisation GPS</string>
-    <string name="android_app">Application Android</string>
-
-    <!-- Divers -->
-    <string name="group_info_text">Bienvenue dans l’univers du groupe Jésus-Revient. Retrouvez ici toutes nos plateformes officielles pour rester connecté.</string>
-    <string name="link_icon_desc">Icône du lien</string>
-    <string name="groupe_description">
-    ✨ Description du Groupe Jésus-Revient\n\n
-    🔥 Qui sommes-nous ?\n
-    Le Groupe Jésus-Revient est un mouvement international de réveil et d’évangélisation.\n
-    Nous sonnons la trompette de la repentance, prêchons la sanctification et la saine doctrine biblique dans son entièreté, afin de préparer les saints pour l’Enlèvement.\n\n
-
-    🟦 Notre mission\n
-    Nous sommes heureux de vous accueillir sur notre plateforme.\n
-    🎯 Notre objectif est de vous aider à :\n
-    - Connaître Jésus-Christ, le véritable Dieu Sauveur de l’humanité ;\n
-    - Mettre de l’ordre dans votre vie ;\n
-    - Vous préparer pour Son retour imminent.\n\n
-
-    🟨 Rejoignez nos activités et programmes\n
-    Vous pouvez participer à nos différentes activités en rejoignant nos plateformes via les canaux suivants :\n\n
-
-    🟥 Coordonnées du siège\n
-    📍 Adresse : Bénin, Dekoungbé, Hedomey (Yinkindji), environ 200m après la pharmacie Hedomey, au bord des nouveaux pavés.\n
-    📞 Téléphone : (+229) 97 25 35 39 / 94 33 69 05\n
-    📺 Télévision : Captez notre chaîne "JESUS-REVIENT.TV" via un décodeur STRONG ou tout autre décodeur diffusant les chaînes gratuites (Satellite : AMOS 17).
-</string>
-
-
+<string name="app_name">Cantique Jésus-Revient</string>
+<!--  Titres généraux  -->
+<string name="song_list_title">Liste des Cantiques</string>
+<string name="search_hint">Rechercher un chant...</string>
+<!--  Menu latéral  -->
+<string name="open_drawer">Ouvrir le menu</string>
+<string name="close_drawer">Fermer le menu</string>
+<string name="nav_about_group">À propos du groupe</string>
+<string name="nav_about_app">À propos de l’application</string>
+<string name="nav_admin">Admin</string>
+<string name="nav_share">Partager l’application</string>
+<!--  Liens sociaux  -->
+<string name="site_web">Site web</string>
+<string name="facebook_page">Page Facebook</string>
+<string name="facebook_group">Groupe Facebook</string>
+<string name="whatsapp_channel">Chaîne WhatsApp</string>
+<string name="telegram_channel">Canal Telegram</string>
+<string name="telegram_group">Groupe Telegram</string>
+<string name="twitter">Twitter</string>
+<string name="gps_location">Localisation GPS</string>
+<string name="android_app">Application Android</string>
+<!--  Divers  -->
+<string name="group_info_text">Bienvenue dans l’univers du groupe Jésus-Revient. Retrouvez ici toutes nos plateformes officielles pour rester connecté.</string>
+<string name="link_icon_desc">Icône du lien</string>
+<string name="groupe_description"> ✨ Description du Groupe Jésus-Revient\n\n 🔥 Qui sommes-nous ?\n Le Groupe Jésus-Revient est un mouvement international de réveil et d’évangélisation.\n Nous sonnons la trompette de la repentance, prêchons la sanctification et la saine doctrine biblique dans son entièreté, afin de préparer les saints pour l’Enlèvement.\n\n 🟦 Notre mission\n Nous sommes heureux de vous accueillir sur notre plateforme.\n 🎯 Notre objectif est de vous aider à :\n - Connaître Jésus-Christ, le véritable Dieu Sauveur de l’humanité ;\n - Mettre de l’ordre dans votre vie ;\n - Vous préparer pour Son retour imminent.\n\n 🟨 Rejoignez nos activités et programmes\n Vous pouvez participer à nos différentes activités en rejoignant nos plateformes via les canaux suivants :\n\n 🟥 Coordonnées du siège\n 📍 Adresse : Bénin, Dekoungbé, Hedomey (Yinkindji), environ 200m après la pharmacie Hedomey, au bord des nouveaux pavés.\n 📞 Téléphone : (+229) 97 25 35 39 / 94 33 69 05\n 📺 Télévision : Captez notre chaîne "JESUS-REVIENT.TV" via un décodeur STRONG ou tout autre décodeur diffusant les chaînes gratuites (Satellite : AMOS 17). </string>
 </resources>
