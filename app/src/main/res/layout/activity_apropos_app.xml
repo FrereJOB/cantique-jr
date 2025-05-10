@@ -22,7 +22,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/site" <!-- Remplace par ton icône -->
-                android:contentDescription="Logo" />
+                android:contentDescription="Logo de l'application Cantique Jésus-Revient" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -89,16 +89,22 @@
             android:textColor="#1E3A8A"
             android:paddingBottom="4dp" />
 
-        <TextView
+        <!-- Structure Firestore avec ScrollView horizontal -->
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="{\n  \"titre\": \"...\",\n  \"auteur\": \"...\",\n  \"numero\": 1,\n  \"categorie\": \"Adoration\",\n  ...\n}"
-            android:typeface="monospace"
-            android:textSize="14sp"
-            android:textColor="?android:textColorPrimary"
-            android:background="#F3F4F6"
-            android:padding="10dp"
-            android:layout_marginBottom="24dp" />
+            android:scrollbars="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="{\n  \"titre\": \"...\",\n  \"auteur\": \"...\",\n  \"numero\": 1,\n  \"categorie\": \"Adoration\",\n  ...\n}"
+                android:typeface="monospace"
+                android:textSize="14sp"
+                android:textColor="?android:textColorPrimary"
+                android:background="#F3F4F6"
+                android:padding="10dp"
+                android:layout_marginBottom="24dp" />
+        </ScrollView>
 
         <!-- Footer -->
         <TextView
