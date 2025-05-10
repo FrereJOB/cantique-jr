@@ -12,3 +12,32 @@
     </style>
 
 </resources>
+<resources>
+
+    <!-- Style pour le bouton arrondi -->
+    <style name="RoundedButton">
+        <item name="android:background">@drawable/rounded_button_background</item> <!-- Exemple de drawable -->
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- Style pour le titre du texte -->
+    <style name="TextTitle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Style pour le sous-titre du texte -->
+    <style name="TextSubtitle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorSecondary</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <!-- Style pour les paroles du texte -->
+    <style name="TextLyrics">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+</resources>
