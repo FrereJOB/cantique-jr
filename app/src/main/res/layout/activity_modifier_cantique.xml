@@ -1,80 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="24dp"
-    android:background="#FFF8E1">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <!-- Image de fond -->
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:src="@drawable/background_spirituel"
+        android:scaleType="centerCrop"
+        android:alpha="0.3" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Modifier un cantique"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="#795548"
-            android:layout_gravity="center"
-            android:layout_marginBottom="16dp" />
+    <!-- ScrollView contenant ton contenu d’origine -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="24dp"
+        android:background="#FFF8E1">
 
-        <EditText
-            android:id="@+id/editTextNumero"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Numéro du cantique à rechercher"
-            android:inputType="number"
-            android:layout_marginBottom="8dp" />
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnRechercher"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Rechercher" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Modifier un cantique"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#795548"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#CCC"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp" />
+            <EditText
+                android:id="@+id/editTextNumero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Numéro du cantique à rechercher"
+                android:inputType="number"
+                android:layout_marginBottom="8dp" />
 
-        <EditText
-            android:id="@+id/editTextTitre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Titre du cantique" />
+            <Button
+                android:id="@+id/btnRechercher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rechercher" />
 
-        <EditText
-            android:id="@+id/editTextAuteur"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Auteur du cantique"
-            android:layout_marginTop="8dp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCC"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp" />
 
-        <EditText
-            android:id="@+id/editTextCategorie"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Catégorie"
-            android:layout_marginTop="8dp" />
+            <EditText
+                android:id="@+id/editTextTitre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Titre du cantique" />
 
-        <EditText
-            android:id="@+id/editTextParoles"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:hint="Paroles"
-            android:gravity="top"
-            android:inputType="textMultiLine"
-            android:layout_marginTop="8dp" />
+            <EditText
+                android:id="@+id/editTextAuteur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Auteur du cantique"
+                android:layout_marginTop="8dp" />
 
-        <Button
-            android:id="@+id/btnEnregistrer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Enregistrer les modifications"
-            android:layout_marginTop="16dp" />
-    </LinearLayout>
-</ScrollView>
+            <EditText
+                android:id="@+id/editTextCategorie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Catégorie"
+                android:layout_marginTop="8dp" />
+
+            <EditText
+                android:id="@+id/editTextParoles"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:hint="Paroles"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:layout_marginTop="8dp" />
+
+            <Button
+                android:id="@+id/btnEnregistrer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enregistrer les modifications"
+                android:layout_marginTop="16dp" />
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>
