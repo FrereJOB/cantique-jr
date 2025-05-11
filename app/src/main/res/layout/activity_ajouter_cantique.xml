@@ -1,71 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="#FBEEC1">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <!-- Image d’arrière-plan -->
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:src="@drawable/background_spirituel"
+        android:scaleType="centerCrop"
+        android:alpha="0.3" />
 
-        <EditText
-            android:id="@+id/editTitre"
+    <!-- ScrollView contenant le contenu d'origine -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:background="#FBEEC1">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Titre"
-            android:inputType="text" />
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editAuteur"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Auteur"
-            android:inputType="text" />
+            <EditText
+                android:id="@+id/editTitre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Titre"
+                android:inputType="text" />
 
-        <EditText
-            android:id="@+id/editCategorie"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Catégorie"
-            android:inputType="text" />
+            <EditText
+                android:id="@+id/editAuteur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Auteur"
+                android:inputType="text" />
 
-        <EditText
-            android:id="@+id/editNumero"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Numéro"
-            android:inputType="number" />
+            <EditText
+                android:id="@+id/editCategorie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Catégorie"
+                android:inputType="text" />
 
-        <EditText
-            android:id="@+id/editParoles"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:hint="Paroles"
-            android:inputType="textMultiLine"
-            android:gravity="top"
-            android:scrollbars="vertical" />
+            <EditText
+                android:id="@+id/editNumero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Numéro"
+                android:inputType="number" />
 
-        <Button
-            android:id="@+id/buttonChooseAudio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Choisir un fichier audio" />
+            <EditText
+                android:id="@+id/editParoles"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:hint="Paroles"
+                android:inputType="textMultiLine"
+                android:gravity="top"
+                android:scrollbars="vertical" />
 
-        <Button
-            android:id="@+id/buttonChoosePdf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Choisir une partition PDF" />
+            <Button
+                android:id="@+id/buttonChooseAudio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Choisir un fichier audio" />
 
-        <Button
-            android:id="@+id/buttonAjouter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ajouter le cantique"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#A67C52"
-            android:textColor="#FFFFFF" />
-    </LinearLayout>
-</ScrollView>
+            <Button
+                android:id="@+id/buttonChoosePdf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Choisir une partition PDF" />
+
+            <Button
+                android:id="@+id/buttonAjouter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ajouter le cantique"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#A67C52"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>
