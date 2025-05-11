@@ -1,24 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="32dp"
-    android:background="@color/light_brown">
+    android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/passwordInput"
+    <!-- Image d’arrière-plan transparente -->
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Mot de passe admin"
-        android:inputType="textPassword"
-        android:backgroundTint="@color/colorPrimary" />
+        android:layout_height="match_parent"
+        android:src="@drawable/background_spirituel"
+        android:scaleType="centerCrop"
+        android:alpha="0.3" />
 
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Se connecter"
-        android:layout_marginTop="16dp" />
-</LinearLayout>
+    <!-- Contenu existant -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp"
+        android:background="@color/light_brown">
+
+        <EditText
+            android:id="@+id/passwordInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mot de passe admin"
+            android:inputType="textPassword"
+            android:backgroundTint="@color/colorPrimary" />
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Se connecter"
+            android:layout_marginTop="16dp" />
+    </LinearLayout>
+</FrameLayout>
