@@ -125,7 +125,7 @@
                     android:typeface="monospace"
                     android:textSize="14sp"
                     android:textColor="?android:textColorPrimary"
-                    android:background="#1E3A8A"
+                    android:background="@drawable/rounded_background"
                     android:padding="10dp"
                     android:layout_marginBottom="24dp" />
             </HorizontalScrollView>
@@ -150,7 +150,7 @@
                 android:textStyle="bold"
                 android:textColor="#FFD700"
                 android:gravity="center"
-                android:background="#1E3A8A"
+                android:background="@drawable/rounded_background"
                 android:padding="14dp"
                 android:layout_marginTop="8dp" />
         </LinearLayout>
