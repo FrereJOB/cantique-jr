@@ -1,106 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background_spirituel"
-    android:alpha="0.3">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <!-- Image d’arrière-plan avec transparence -->
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:layout_height="match_parent"
+        android:src="@drawable/background_spirituel"
+        android:scaleType="centerCrop"
+        android:alpha="0.3" />
 
-        <!-- Header avec icône -->
+    <!-- Contenu scrollable -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+            android:orientation="vertical"
+            android:padding="20dp">
 
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/site"
-                android:contentDescription="Logo de l'application Cantique Jésus-Revient" 
-                android:background="@drawable/rounded_corner"
-                android:clipToOutline="true"/>
-
-            <TextView
-                android:layout_width="wrap_content"
+            <!-- Header avec icône -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cantique Jésus-Revient"
-                android:textSize="22sp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="16dp">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/site"
+                    android:contentDescription="Logo de l'application Cantique Jésus-Revient"
+                    android:background="@drawable/rounded_corner"
+                    android:clipToOutline="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cantique Jésus-Revient"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#0D47A1"
+                    android:paddingStart="12dp" />
+            </LinearLayout>
+
+            <!-- Description -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cantique Jésus-Revient est une application Android dédiée à la gestion et à la diffusion des cantiques chrétiens produits par le groupe Jésus-Revient..."
+                android:textSize="16sp"
+                android:textColor="?android:textColorSecondary"
+                android:lineSpacingExtra="6dp"
+                android:paddingBottom="16dp" />
+
+            <!-- Sous-titres et sections -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fonctionnalités principales"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="#0D47A1"
-                android:paddingStart="12dp" />
-        </LinearLayout>
-
-        <!-- Description -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cantique Jésus-Revient est une application Android dédiée à la gestion et à la diffusion des cantiques chrétiens produits par le groupe Jésus-Revient..."
-            android:textSize="16sp"
-            android:textColor="?android:textColorSecondary"
-            android:lineSpacingExtra="6dp"
-            android:paddingBottom="16dp" />
-
-        <!-- Sous-titres et sections -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Fonctionnalités principales"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#1E3A8A"
-            android:paddingBottom="8dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="• Catalogue de cantiques\n• Lecture audio\n• Partitions PDF\n• Mode hors ligne\n• Menu latéral : À propos, Partage, Admin"
-            android:textSize="15sp"
-            android:textColor="?android:textColorSecondary"
-            android:lineSpacingExtra="6dp"
-            android:paddingBottom="16dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Espace Admin (restreint)"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="#1E3A8A"
-            android:paddingBottom="4dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="• Connexion sécurisée\n• Gestion complète des cantiques\n• Tableau de bord simple"
-            android:textSize="15sp"
-            android:textColor="?android:textColorSecondary"
-            android:paddingBottom="16dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Structure de la base Firestore"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="#1E3A8A"
-            android:paddingBottom="4dp" />
-
-        <!-- Structure Firestore avec HorizontalScrollView -->
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                android:textColor="#1E3A8A"
+                android:paddingBottom="8dp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text='{
+                android:text="• Catalogue de cantiques\n• Lecture audio\n• Partitions PDF\n• Mode hors ligne\n• Menu latéral : À propos, Partage, Admin"
+                android:textSize="15sp"
+                android:textColor="?android:textColorSecondary"
+                android:lineSpacingExtra="6dp"
+                android:paddingBottom="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Espace Admin (restreint)"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#1E3A8A"
+                android:paddingBottom="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Connexion sécurisée\n• Gestion complète des cantiques\n• Tableau de bord simple"
+                android:textSize="15sp"
+                android:textColor="?android:textColorSecondary"
+                android:paddingBottom="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Structure de la base Firestore"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#1E3A8A"
+                android:paddingBottom="4dp" />
+
+            <!-- Structure Firestore avec HorizontalScrollView -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text='{
   "titre": "...",
   "auteur": "...",
   "numero": 1,
@@ -110,36 +122,37 @@
   "dateAjout": "...",
   "paroles": "..."
 }'
-                android:typeface="monospace"
-                android:textSize="14sp"
-                android:textColor="?android:textColorPrimary"
+                    android:typeface="monospace"
+                    android:textSize="14sp"
+                    android:textColor="?android:textColorPrimary"
+                    android:background="#1E3A8A"
+                    android:padding="10dp"
+                    android:layout_marginBottom="24dp" />
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/textInfoApp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="15sp"
+                android:textColor="?android:textColorSecondary"
+                android:lineSpacingExtra="6dp"
+                android:paddingBottom="16dp" />
+
+            <!-- Footer -->
+            <TextView
+                android:id="@+id/footer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="La Trompète va sonner"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#FFD700"
+                android:gravity="center"
                 android:background="#1E3A8A"
-                android:padding="10dp"
-                android:layout_marginBottom="24dp" />
-        </HorizontalScrollView>
-
-        <TextView
-            android:id="@+id/textInfoApp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="15sp"
-            android:textColor="?android:textColorSecondary"
-            android:lineSpacingExtra="6dp"
-            android:paddingBottom="16dp" />
-
-        <!-- Footer -->
-        <TextView
-            android:id="@+id/footer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="La Trompète va sonner"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#FFD700"
-            android:gravity="center"
-            android:background="#1E3A8A"
-            android:padding="14dp"
-            android:layout_marginTop="8dp" />
-    </LinearLayout>
-</ScrollView>
+                android:padding="14dp"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>
