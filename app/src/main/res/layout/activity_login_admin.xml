@@ -17,8 +17,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:padding="32dp"
-        android:background="@color/light_brown">
+        android:padding="32dp">
 
         <EditText
             android:id="@+id/passwordInput"
