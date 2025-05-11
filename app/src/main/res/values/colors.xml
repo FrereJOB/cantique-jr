@@ -13,4 +13,5 @@
     <!-- Ajout des couleurs manquantes -->
     <color name="background_light">#F5F5F5</color> <!-- Exemple de couleur -->
     <color name="text_primary">#212121</color>
+    <color name="semi_transparent_black">#80000000</color>
 </resources>
