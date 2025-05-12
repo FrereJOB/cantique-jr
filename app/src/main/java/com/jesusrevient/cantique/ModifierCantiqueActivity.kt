@@ -1,108 +1,163 @@
 package com.jesusrevient.cantique
 
+import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
-import com.jesusrevient.cantique.models.Song
+import com.google.firebase.storage.FirebaseStorage
+import java.util.*
 
-class ModifierCantiqueActivity : AppCompatActivity() {
+class AjouterCantiqueActivity : AppCompatActivity() {
 
-    private lateinit var numeroInput: EditText
-    private lateinit var btnRechercher: Button
-    private lateinit var titreInput: EditText
-    private lateinit var auteurInput: EditText
-    private lateinit var categorieInput: EditText
-    private lateinit var parolesInput: EditText
-    private lateinit var btnEnregistrer: Button
+    private lateinit var editTitre: EditText
+    private lateinit var editAuteur: EditText
+    private lateinit var editCategorie: EditText
+    private lateinit var editNumero: EditText
+    private lateinit var editParoles: EditText
+    private lateinit var buttonChooseAudio: Button
+    private lateinit var buttonChoosePdf: Button
+    private lateinit var buttonAjouter: Button
 
-    private val db = FirebaseFirestore.getInstance()
-    private var songId: String? = null  // pour stocker l'ID du document à modifier
+    private var audioUri: Uri? = null
+    private var pdfUri: Uri? = null
+
+    private val storage = FirebaseStorage.getInstance()
+    private val firestore = FirebaseFirestore.getInstance()
+
+    private val REQUEST_AUDIO = 100
+    private val REQUEST_PDF = 200
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_modifier_cantique)
+        setContentView(R.layout.activity_ajouter_cantique)
 
-        numeroInput = findViewById(R.id.editTextNumero)
-        btnRechercher = findViewById(R.id.btnRechercher)
-        titreInput = findViewById(R.id.editTextTitre)
-        auteurInput = findViewById(R.id.editTextAuteur)
-        categorieInput = findViewById(R.id.editTextCategorie)
-        parolesInput = findViewById(R.id.editTextParoles)
-        btnEnregistrer = findViewById(R.id.btnEnregistrer)
+        editTitre = findViewById(R.id.editTitre)
+        editAuteur = findViewById(R.id.editAuteur)
+        editCategorie = findViewById(R.id.editCategorie)
+        editNumero = findViewById(R.id.editNumero)
+        editParoles = findViewById(R.id.editParoles)
+        buttonChooseAudio = findViewById(R.id.buttonChooseAudio)
+        buttonChoosePdf = findViewById(R.id.buttonChoosePdf)
+        buttonAjouter = findViewById(R.id.buttonAjouter)
 
-        btnRechercher.setOnClickListener {
-            val numero = numeroInput.text.toString().trim()
-            if (numero.isNotEmpty()) {
-                rechercherCantique(numero)
-            } else {
-                Toast.makeText(this, "Veuillez entrer un numéro", Toast.LENGTH_SHORT).show()
-            }
+        buttonChooseAudio.setOnClickListener {
+            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.type = "audio/*"
+            startActivityForResult(intent, REQUEST_AUDIO)
         }
 
-        btnEnregistrer.setOnClickListener {
-            modifierCantique()
+        buttonChoosePdf.setOnClickListener {
+            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.type = "application/pdf"
+            startActivityForResult(intent, REQUEST_PDF)
+        }
+
+        buttonAjouter.setOnClickListener {
+            val titre = editTitre.text.toString().trim()
+            val auteur = editAuteur.text.toString().trim()
+            val categorie = editCategorie.text.toString().trim()
+            val numero = editNumero.text.toString().trim()
+            val paroles = editParoles.text.toString().trim()
+
+            if (titre.isBlank() || auteur.isBlank() || categorie.isBlank() ||
+                numero.isBlank() || paroles.isBlank()
+            ) {
+                Toast.makeText(this, "Tous les champs sauf audio et partition sont requis", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            uploadFilesAndSave(titre, auteur, categorie, numero, paroles)
         }
     }
 
-    private fun rechercherCantique(numero: String) {
-        db.collection("cantique")
-            .whereEqualTo("numero", numero)
-            .get()
-            .addOnSuccessListener { documents ->
-                if (!documents.isEmpty) {
-                    val doc = documents.first()
-                    val song = doc.toObject(Song::class.java)
-                    songId = doc.id
-
-                    titreInput.setText(song.titre)
-                    auteurInput.setText(song.auteur)
-                    categorieInput.setText(song.categorie)
-                    parolesInput.setText(song.paroles)
-                } else {
-                    Toast.makeText(this, "Aucun cantique trouvé avec ce numéro", Toast.LENGTH_SHORT).show()
-                }
-            }
-            .addOnFailureListener {
-                Toast.makeText(this, "Erreur lors de la recherche", Toast.LENGTH_SHORT).show()
-            }
-    }
-
-    private fun modifierCantique() {
-        val id = songId
-        if (id == null) {
-            Toast.makeText(this, "Veuillez rechercher un cantique d'abord", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        val titre = titreInput.text.toString().trim()
-        val auteur = auteurInput.text.toString().trim()
-        val categorie = categorieInput.text.toString().trim()
-        val paroles = parolesInput.text.toString().trim()
-
-        if (titre.isEmpty() || auteur.isEmpty() || categorie.isEmpty() || paroles.isEmpty()) {
-            Toast.makeText(this, "Tous les champs doivent être remplis", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        val updatedSong = mapOf(
+    private fun uploadFilesAndSave(
+        titre: String,
+        auteur: String,
+        categorie: String,
+        numero: String,
+        paroles: String
+    ) {
+        val chant = hashMapOf(
             "titre" to titre,
             "auteur" to auteur,
             "categorie" to categorie,
-            "paroles" to paroles
+            "numero" to numero,
+            "paroles" to paroles,
+            "dateAjout" to Date()
         )
 
-        db.collection("cantiques").document(id)
-            .update(updatedSong)
-            .addOnSuccessListener {
-                Toast.makeText(this, "Cantique modifié avec succès", Toast.LENGTH_SHORT).show()
-                // Retour à l'écran d'administration
-                startActivity(Intent(this, AdminDashboardActivity::class.java))
-                finish()
+        fun saveChant(audioUrl: String?, pdfUrl: String?) {
+            audioUrl?.let { chant["audioUrl"] = it }
+            pdfUrl?.let { chant["partitionPdfUrl"] = it }
+
+            firestore.collection("cantiques")
+                .add(chant)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Cantique ajouté avec succès", Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this, AdminDashboardActivity::class.java))
+                    finish()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Erreur d'ajout dans Firestore", Toast.LENGTH_LONG).show()
+                }
+        }
+
+        if (audioUri != null) {
+            val audioRef = storage.reference.child("audios/${UUID.randomUUID()}.mp3")
+            audioRef.putFile(audioUri!!).addOnSuccessListener {
+                audioRef.downloadUrl.addOnSuccessListener { audioUrl ->
+                    if (pdfUri != null) {
+                        val pdfRef = storage.reference.child("partitions/${UUID.randomUUID()}.pdf")
+                        pdfRef.putFile(pdfUri!!).addOnSuccessListener {
+                            pdfRef.downloadUrl.addOnSuccessListener { pdfUrl ->
+                                saveChant(audioUrl.toString(), pdfUrl.toString())
+                            }.addOnFailureListener {
+                                Toast.makeText(this, "Échec du téléchargement du PDF", Toast.LENGTH_LONG).show()
+                            }
+                        }.addOnFailureListener {
+                            Toast.makeText(this, "Échec de l'envoi du fichier PDF", Toast.LENGTH_LONG).show()
+                        }
+                    } else {
+                        saveChant(audioUrl.toString(), null)
+                    }
+                }.addOnFailureListener {
+                    Toast.makeText(this, "Échec du téléchargement de l'audio", Toast.LENGTH_LONG).show()
+                }
+            }.addOnFailureListener {
+                Toast.makeText(this, "Échec de l'envoi du fichier audio", Toast.LENGTH_LONG).show()
             }
-            .addOnFailureListener {
-                Toast.makeText(this, "Échec de la modification", Toast.LENGTH_SHORT).show()
+        } else if (pdfUri != null) {
+            val pdfRef = storage.reference.child("partitions/${UUID.randomUUID()}.pdf")
+            pdfRef.putFile(pdfUri!!).addOnSuccessListener {
+                pdfRef.downloadUrl.addOnSuccessListener { pdfUrl ->
+                    saveChant(null, pdfUrl.toString())
+                }.addOnFailureListener {
+                    Toast.makeText(this, "Échec du téléchargement du PDF", Toast.LENGTH_LONG).show()
+                }
+            }.addOnFailureListener {
+                Toast.makeText(this, "Échec de l'envoi du fichier PDF", Toast.LENGTH_LONG).show()
             }
+        } else {
+            saveChant(null, null)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && data != null) {
+            when (requestCode) {
+                REQUEST_AUDIO -> {
+                    audioUri = data.data
+                    buttonChooseAudio.text = "Audio sélectionné"
+                }
+                REQUEST_PDF -> {
+                    pdfUri = data.data
+                    buttonChoosePdf.text = "PDF sélectionné"
+                }
+            }
+        }
     }
 }
