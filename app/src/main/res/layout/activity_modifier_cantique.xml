@@ -81,6 +81,17 @@
                 android:gravity="top"
                 android:inputType="textMultiLine"
                 android:layout_marginTop="8dp" />
+            <Button
+                android:id="@+id/btnAudio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Choisir un fichier audio facultatif" />
+            
+            <Button
+                android:id="@+id/btnPdf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Choisir un fichier PDF facultatif" />
 
             <Button
                 android:id="@+id/btnEnregistrer"
