@@ -36,7 +36,6 @@ class SongAdapter(
 
         val context = holder.itemView.context
 
-        // Titre cliquable → écran de détails
         holder.titleText.setOnClickListener {
             val intent = Intent(context, SongDetailActivity::class.java).apply {
                 putExtra("titre", song.titre)
@@ -49,31 +48,38 @@ class SongAdapter(
             context.startActivity(intent)
         }
 
-        // Ouvre la partition PDF dans PdfViewerActivity
-        holder.pdfLinkText.setOnClickListener {
-            val intent = Intent(context, PdfViewerActivity::class.java).apply {
-                putExtra("pdfUrl", song.partitionPdfUrl)
+        // Ouvre la partition PDF uniquement si l'URL est valide
+        if (!song.partitionPdfUrl.isNullOrEmpty()) {
+            holder.pdfLinkText.visibility = View.VISIBLE
+            holder.pdfLinkText.setOnClickListener {
+                val intent = Intent(context, PdfViewerActivity::class.java).apply {
+                    putExtra("pdfUrl", song.partitionPdfUrl)
+                }
+                context.startActivity(intent)
             }
-            context.startActivity(intent)
+        } else {
+            holder.pdfLinkText.visibility = View.GONE
         }
 
-        // Lien vers le fichier audio
-        holder.audioLinkText.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW).apply {
-                setDataAndType(Uri.parse(song.audioUrl), "audio/*")
+        // Lien vers le fichier audio uniquement si l'URL est valide
+        if (!song.audioUrl.isNullOrEmpty()) {
+            holder.audioLinkText.visibility = View.VISIBLE
+            holder.audioLinkText.setOnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW).apply {
+                    setDataAndType(Uri.parse(song.audioUrl), "audio/*")
+                }
+                context.startActivity(intent)
             }
-            context.startActivity(intent)
+        } else {
+            holder.audioLinkText.visibility = View.GONE
         }
     }
 
     override fun getItemCount(): Int = songs.size
 
-    // 🔄 Mise à jour dynamique de la liste
     fun updateList(newList: List<Song>) {
         songs = newList
         notifyDataSetChanged()
-
-        // Affiche ou masque le message "Aucun cantique trouvé"
         emptyTextView.visibility = if (songs.isEmpty()) View.VISIBLE else View.GONE
     }
 }
