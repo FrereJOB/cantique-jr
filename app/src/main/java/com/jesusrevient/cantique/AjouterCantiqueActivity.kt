@@ -63,9 +63,9 @@ class AjouterCantiqueActivity : AppCompatActivity() {
             val paroles = editParoles.text.toString().trim()
 
             if (titre.isBlank() || auteur.isBlank() || categorie.isBlank() ||
-                numero.isBlank() || paroles.isBlank() || audioUri == null || pdfUri == null
+                numero.isBlank() || paroles.isBlank()
             ) {
-                Toast.makeText(this, "Tous les champs sont requis", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Tous les champs (sauf audio et PDF) sont requis", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -80,46 +80,48 @@ class AjouterCantiqueActivity : AppCompatActivity() {
         numero: String,
         paroles: String
     ) {
-        val audioRef = storage.reference.child("audios/${UUID.randomUUID()}.mp3")
-        val pdfRef = storage.reference.child("partitions/${UUID.randomUUID()}.pdf")
+        val chant = hashMapOf(
+            "titre" to titre,
+            "auteur" to auteur,
+            "categorie" to categorie,
+            "numero" to numero,
+            "paroles" to paroles,
+            "dateAjout" to Date()
+        )
 
-        audioUri?.let { audio ->
-            audioRef.putFile(audio).addOnSuccessListener {
+        fun saveToFirestore() {
+            firestore.collection("cantiques")
+                .add(chant)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Cantique ajouté avec succès", Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this, AdminDashboardActivity::class.java))
+                    finish()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Erreur d'ajout dans Firestore", Toast.LENGTH_LONG).show()
+                }
+        }
+
+        if (audioUri != null) {
+            val audioRef = storage.reference.child("audios/${UUID.randomUUID()}.mp3")
+            audioRef.putFile(audioUri!!).addOnSuccessListener {
                 audioRef.downloadUrl.addOnSuccessListener { audioUrl ->
+                    chant["audioUrl"] = audioUrl.toString()
 
-                    pdfUri?.let { pdf ->
-                        pdfRef.putFile(pdf).addOnSuccessListener {
+                    if (pdfUri != null) {
+                        val pdfRef = storage.reference.child("partitions/${UUID.randomUUID()}.pdf")
+                        pdfRef.putFile(pdfUri!!).addOnSuccessListener {
                             pdfRef.downloadUrl.addOnSuccessListener { pdfUrl ->
-
-                                val chant = hashMapOf(
-                                    "titre" to titre,
-                                    "auteur" to auteur,
-                                    "categorie" to categorie,
-                                    "numero" to numero,
-                                    "paroles" to paroles,
-                                    "audioUrl" to audioUrl.toString(),
-                                    "partitionPdfUrl" to pdfUrl.toString(),
-                                    "dateAjout" to Date()
-                                )
-
-                                firestore.collection("cantiques")
-                                    .add(chant)
-                                    .addOnSuccessListener {
-                                        Toast.makeText(this, "Cantique ajouté avec succès", Toast.LENGTH_LONG).show()
-                                        // Retour explicite au tableau de bord
-                                        startActivity(Intent(this, AdminDashboardActivity::class.java))
-                                        finish()
-                                    }
-                                    .addOnFailureListener {
-                                        Toast.makeText(this, "Erreur d'ajout dans Firestore", Toast.LENGTH_LONG).show()
-                                    }
-
+                                chant["partitionPdfUrl"] = pdfUrl.toString()
+                                saveToFirestore()
                             }.addOnFailureListener {
                                 Toast.makeText(this, "Échec du téléchargement du PDF", Toast.LENGTH_LONG).show()
                             }
                         }.addOnFailureListener {
                             Toast.makeText(this, "Échec de l'envoi du fichier PDF", Toast.LENGTH_LONG).show()
                         }
+                    } else {
+                        saveToFirestore()
                     }
 
                 }.addOnFailureListener {
@@ -128,6 +130,20 @@ class AjouterCantiqueActivity : AppCompatActivity() {
             }.addOnFailureListener {
                 Toast.makeText(this, "Échec de l'envoi du fichier audio", Toast.LENGTH_LONG).show()
             }
+        } else if (pdfUri != null) {
+            val pdfRef = storage.reference.child("partitions/${UUID.randomUUID()}.pdf")
+            pdfRef.putFile(pdfUri!!).addOnSuccessListener {
+                pdfRef.downloadUrl.addOnSuccessListener { pdfUrl ->
+                    chant["partitionPdfUrl"] = pdfUrl.toString()
+                    saveToFirestore()
+                }.addOnFailureListener {
+                    Toast.makeText(this, "Échec du téléchargement du PDF", Toast.LENGTH_LONG).show()
+                }
+            }.addOnFailureListener {
+                Toast.makeText(this, "Échec de l'envoi du fichier PDF", Toast.LENGTH_LONG).show()
+            }
+        } else {
+            saveToFirestore()
         }
     }
 
