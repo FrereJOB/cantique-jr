@@ -59,13 +59,19 @@ class AjouterCantiqueActivity : AppCompatActivity() {
             val titre = editTitre.text.toString().trim()
             val auteur = editAuteur.text.toString().trim()
             val categorie = editCategorie.text.toString().trim()
-            val numero = editNumero.text.toString().trim()
+            val numeroStr = editNumero.text.toString().trim()
             val paroles = editParoles.text.toString().trim()
 
             if (titre.isBlank() || auteur.isBlank() || categorie.isBlank() ||
-                numero.isBlank() || paroles.isBlank()
+                numeroStr.isBlank() || paroles.isBlank()
             ) {
                 Toast.makeText(this, "Tous les champs (sauf audio et PDF) sont requis", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val numero = numeroStr.toIntOrNull()
+            if (numero == null) {
+                Toast.makeText(this, "Le numéro doit être un entier valide", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -77,14 +83,14 @@ class AjouterCantiqueActivity : AppCompatActivity() {
         titre: String,
         auteur: String,
         categorie: String,
-        numero: String,
+        numero: Int,
         paroles: String
     ) {
         val chant = mutableMapOf<String, Any>(
             "titre" to titre,
             "auteur" to auteur,
             "categorie" to categorie,
-            "numero" to numero.toIntOrNull() ?: 0,
+            "numero" to numero,
             "paroles" to paroles,
             "dateAjout" to Date()
         )
