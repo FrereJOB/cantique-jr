@@ -60,7 +60,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         recyclerView.layoutManager = LinearLayoutManager(this)
         songList = mutableListOf()
         fullSongList = mutableListOf()
-        adapter = SongAdapter(songList)
+        val emptyTextView = findViewById<TextView>(R.id.emptyTextView)
+        adapter = SongAdapter(songList, emptyTextView)
         recyclerView.adapter = adapter
 
         fetchSongs()
@@ -68,7 +69,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // 🔍 Logique de recherche
         val searchEditText = findViewById<EditText>(R.id.searchEditText)
         val searchButton = findViewById<ImageButton>(R.id.searchButton)
-        val emptyTextView = findViewById<TextView>(R.id.emptyTextView)
 
         searchButton.setOnClickListener {
             val query = searchEditText.text.toString().trim().lowercase()
@@ -78,16 +78,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 song.numero.toString().contains(query) ||
                 song.categorie.lowercase().contains(query)
             }
-
-            if (filteredList.isEmpty()) {
-                emptyTextView.visibility = View.VISIBLE
-            } else {
-                emptyTextView.visibility = View.GONE
-            }
-
-            songList.clear()
-            songList.addAll(filteredList)
-            adapter.notifyDataSetChanged()
+            adapter.updateList(filteredList)
         }
     }
 
