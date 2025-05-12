@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     songList.add(song)
                     fullSongList.add(song)
                 }
-                adapter.notifyDataSetChanged()
+                adapter.updateList(songList)
             }
             .addOnFailureListener { exception ->
                 Log.e("MainActivity", "Erreur lors du chargement des cantiques", exception)
