@@ -80,7 +80,7 @@ class AjouterCantiqueActivity : AppCompatActivity() {
         numero: String,
         paroles: String
     ) {
-        val chant = hashMapOf(
+        val chant = mutableMapOf<String, Any>(
             "titre" to titre,
             "auteur" to auteur,
             "categorie" to categorie,
@@ -123,6 +123,7 @@ class AjouterCantiqueActivity : AppCompatActivity() {
                     } else {
                         saveToFirestore()
                     }
+
                 }.addOnFailureListener {
                     Toast.makeText(this, "Échec du téléchargement de l'audio", Toast.LENGTH_LONG).show()
                 }
