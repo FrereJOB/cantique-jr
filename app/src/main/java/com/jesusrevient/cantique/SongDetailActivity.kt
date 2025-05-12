@@ -3,7 +3,6 @@ package com.jesusrevient.cantique
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -33,16 +32,24 @@ class SongDetailActivity : AppCompatActivity() {
         categoryTextView.text = "Catégorie : ${categorie ?: "inconnue"}"
         lyricsTextView.text = paroles ?: "Paroles non disponibles"
 
-        playButton.setOnClickListener {
-            audioUrl?.let { url ->
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+        // Bouton audio visible uniquement si URL non vide
+        if (!audioUrl.isNullOrEmpty()) {
+            playButton.visibility = Button.VISIBLE
+            playButton.setOnClickListener {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(audioUrl)))
             }
+        } else {
+            playButton.visibility = Button.GONE
         }
 
-        sheetButton.setOnClickListener {
-            partitionPdfUrl?.let { url ->
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+        // Bouton PDF visible uniquement si URL non vide
+        if (!partitionPdfUrl.isNullOrEmpty()) {
+            sheetButton.visibility = Button.VISIBLE
+            sheetButton.setOnClickListener {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(partitionPdfUrl)))
             }
+        } else {
+            sheetButton.visibility = Button.GONE
         }
     }
 }
