@@ -81,13 +81,14 @@ class AjouterCantiqueActivity : AppCompatActivity() {
         paroles: String
     ) {
         val chant = hashMapOf(
-            "titre" to titre,
-            "auteur" to auteur,
-            "categorie" to categorie,
-            "numero" to numero,
-            "paroles" to paroles,
-            "dateAjout" to Date()
-        )
+    "titre" to titre,
+    "auteur" to auteur,
+    "categorie" to categorie,
+    "numero" to numero.toIntOrNull() ?: 0,
+    "paroles" to paroles,
+    "dateAjout" to Date()
+)
+
 
         fun saveToFirestore() {
             firestore.collection("cantiques")
