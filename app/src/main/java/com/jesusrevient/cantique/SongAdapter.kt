@@ -9,8 +9,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.jesusrevient.cantique.models.Song
 
-class SongAdapter(private val songs: List<Song>) :
-    RecyclerView.Adapter<SongAdapter.SongViewHolder>() {
+class SongAdapter(
+    private var songs: List<Song>,
+    private val emptyTextView: TextView
+) : RecyclerView.Adapter<SongAdapter.SongViewHolder>() {
 
     class SongViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleText: TextView = itemView.findViewById(R.id.song_title)
@@ -65,4 +67,13 @@ class SongAdapter(private val songs: List<Song>) :
     }
 
     override fun getItemCount(): Int = songs.size
+
+    // 🔄 Mise à jour dynamique de la liste
+    fun updateList(newList: List<Song>) {
+        songs = newList
+        notifyDataSetChanged()
+
+        // Affiche ou masque le message "Aucun cantique trouvé"
+        emptyTextView.visibility = if (songs.isEmpty()) View.VISIBLE else View.GONE
+    }
 }
