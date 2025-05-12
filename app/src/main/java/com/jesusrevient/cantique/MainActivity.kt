@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +25,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: SongAdapter
     private lateinit var songList: MutableList<Song>
+    private lateinit var fullSongList: MutableList<Song>
     private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,10 +59,36 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         recyclerView = findViewById(R.id.songs_list)
         recyclerView.layoutManager = LinearLayoutManager(this)
         songList = mutableListOf()
+        fullSongList = mutableListOf()
         adapter = SongAdapter(songList)
         recyclerView.adapter = adapter
 
         fetchSongs()
+
+        // 🔍 Logique de recherche
+        val searchEditText = findViewById<EditText>(R.id.searchEditText)
+        val searchButton = findViewById<ImageButton>(R.id.searchButton)
+        val emptyTextView = findViewById<TextView>(R.id.emptyTextView)
+
+        searchButton.setOnClickListener {
+            val query = searchEditText.text.toString().trim().lowercase()
+            val filteredList = fullSongList.filter { song ->
+                song.titre.lowercase().contains(query) ||
+                song.auteur.lowercase().contains(query) ||
+                song.numero.toString().contains(query) ||
+                song.categorie.lowercase().contains(query)
+            }
+
+            if (filteredList.isEmpty()) {
+                emptyTextView.visibility = View.VISIBLE
+            } else {
+                emptyTextView.visibility = View.GONE
+            }
+
+            songList.clear()
+            songList.addAll(filteredList)
+            adapter.notifyDataSetChanged()
+        }
     }
 
     private fun fetchSongs() {
@@ -69,6 +98,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 for (document in documents) {
                     val song = document.toObject(Song::class.java)
                     songList.add(song)
+                    fullSongList.add(song)
                 }
                 adapter.notifyDataSetChanged()
             }
