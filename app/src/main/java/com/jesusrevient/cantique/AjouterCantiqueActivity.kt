@@ -31,51 +31,57 @@ class AjouterCantiqueActivity : AppCompatActivity() {
     private val REQUEST_PDF = 200
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ajouter_cantique)
+        try {
+            super.onCreate(savedInstanceState)
+            setContentView(R.layout.activity_ajouter_cantique)
 
-        editTitre = findViewById(R.id.editTitre)
-        editAuteur = findViewById(R.id.editAuteur)
-        editCategorie = findViewById(R.id.editCategorie)
-        editNumero = findViewById(R.id.editNumero)
-        editParoles = findViewById(R.id.editParoles)
-        buttonChooseAudio = findViewById(R.id.buttonChooseAudio)
-        buttonChoosePdf = findViewById(R.id.buttonChoosePdf)
-        buttonAjouter = findViewById(R.id.buttonAjouter)
+            editTitre = findViewById(R.id.editTitre)
+            editAuteur = findViewById(R.id.editAuteur)
+            editCategorie = findViewById(R.id.editCategorie)
+            editNumero = findViewById(R.id.editNumero)
+            editParoles = findViewById(R.id.editParoles)
+            buttonChooseAudio = findViewById(R.id.buttonChooseAudio)
+            buttonChoosePdf = findViewById(R.id.buttonChoosePdf)
+            buttonAjouter = findViewById(R.id.buttonAjouter)
 
-        buttonChooseAudio.setOnClickListener {
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.type = "audio/*"
-            startActivityForResult(intent, REQUEST_AUDIO)
-        }
-
-        buttonChoosePdf.setOnClickListener {
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.type = "application/pdf"
-            startActivityForResult(intent, REQUEST_PDF)
-        }
-
-        buttonAjouter.setOnClickListener {
-            val titre = editTitre.text.toString().trim()
-            val auteur = editAuteur.text.toString().trim()
-            val categorie = editCategorie.text.toString().trim()
-            val numeroStr = editNumero.text.toString().trim()
-            val paroles = editParoles.text.toString().trim()
-
-            if (titre.isBlank() || auteur.isBlank() || categorie.isBlank() ||
-                numeroStr.isBlank() || paroles.isBlank()
-            ) {
-                Toast.makeText(this, "Tous les champs (sauf audio et PDF) sont requis", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+            buttonChooseAudio.setOnClickListener {
+                val intent = Intent(Intent.ACTION_GET_CONTENT)
+                intent.type = "audio/*"
+                startActivityForResult(intent, REQUEST_AUDIO)
             }
 
-            val numero = numeroStr.toIntOrNull()
-            if (numero == null) {
-                Toast.makeText(this, "Le numéro doit être un entier valide", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+            buttonChoosePdf.setOnClickListener {
+                val intent = Intent(Intent.ACTION_GET_CONTENT)
+                intent.type = "application/pdf"
+                startActivityForResult(intent, REQUEST_PDF)
             }
 
-            uploadFilesAndSave(titre, auteur, categorie, numero, paroles)
+            buttonAjouter.setOnClickListener {
+                val titre = editTitre.text.toString().trim()
+                val auteur = editAuteur.text.toString().trim()
+                val categorie = editCategorie.text.toString().trim()
+                val numeroStr = editNumero.text.toString().trim()
+                val paroles = editParoles.text.toString().trim()
+
+                if (titre.isBlank() || auteur.isBlank() || categorie.isBlank() ||
+                    numeroStr.isBlank() || paroles.isBlank()
+                ) {
+                    Toast.makeText(this, "Tous les champs (sauf audio et PDF) sont requis", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
+                val numero = numeroStr.toIntOrNull()
+                if (numero == null) {
+                    Toast.makeText(this, "Le numéro doit être un entier valide", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
+                uploadFilesAndSave(titre, auteur, categorie, numero, paroles)
+            }
+
+        } catch (e: Exception) {
+            Toast.makeText(this, "Erreur dans AjouterCantique: " + e.message, Toast.LENGTH_LONG).show()
+            e.printStackTrace()
         }
     }
 
