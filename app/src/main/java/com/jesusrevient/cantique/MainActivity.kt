@@ -82,21 +82,29 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    private fun fetchSongs() {
-        db.collection("cantiques")
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
+//mise à jour automatique de cantiques
+private fun fetchSongs() {
+    db.collection("cantiques")
+        .addSnapshotListener { snapshot, exception ->
+            if (exception != null) {
+                Log.e("MainActivity", "Erreur d'écoute", exception)
+                return@addSnapshotListener
+            }
+
+            snapshot?.let {
+                songList.clear()
+                fullSongList.clear()
+                for (document in it.documents) {
                     val song = document.toObject(Song::class.java)
-                    songList.add(song)
-                    fullSongList.add(song)
+                    song?.let {
+                        songList.add(it)
+                        fullSongList.add(it)
+                    }
                 }
                 adapter.updateList(songList)
             }
-            .addOnFailureListener { exception ->
-                Log.e("MainActivity", "Erreur lors du chargement des cantiques", exception)
-            }
-    }
+        }
+}
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
