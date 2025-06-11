@@ -8,7 +8,7 @@ import com.google.firebase.firestore.ktx.toObject
 class FirestoreRepository {
 
     private val db = FirebaseFirestore.getInstance()
-    private val songsCollection = db.collection("songs")
+    private val songsCollection = db.collection("cantiques")
 
     // Récupérer tous les chants
     fun getAllSongs(onSuccess: (List<Song>) -> Unit, onFailure: (Exception) -> Unit): ListenerRegistration {
