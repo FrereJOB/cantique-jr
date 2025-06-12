@@ -7,12 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- Contenu principal avec fond spirituel -->
+    <!-- Contenu principal -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Image de fond -->
         <ImageView
             android:id="@+id/background"
             android:layout_width="match_parent"
@@ -21,7 +20,6 @@
             android:scaleType="centerCrop"
             android:alpha="0.3" />
 
-        <!-- Bouton Ouvrir Drawer -->
         <ImageButton
             android:id="@+id/open_drawer"
             android:layout_width="40dp"
@@ -33,7 +31,6 @@
             android:src="@drawable/ic_menu"
             android:contentDescription="Ouvrir le menu" />
 
-        <!-- Bouton Fermer Drawer -->
         <ImageButton
             android:id="@+id/close_drawer"
             android:layout_width="40dp"
@@ -46,7 +43,6 @@
             android:contentDescription="Fermer le menu"
             android:visibility="gone" />
 
-        <!-- Contenu principal -->
         <LinearLayout
             android:id="@+id/main_content"
             android:layout_width="match_parent"
@@ -65,7 +61,6 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="24dp" />
 
-            <!-- Barre de recherche -->
             <LinearLayout
                 android:id="@+id/searchContainer"
                 android:layout_width="match_parent"
@@ -101,7 +96,6 @@
                 android:layout_weight="1"
                 android:layout_marginTop="16dp" />
 
-            <!-- Message si aucun résultat -->
             <TextView
                 android:id="@+id/emptyTextView"
                 android:layout_width="match_parent"
@@ -115,35 +109,36 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <!-- Menu latéral -->
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
+    <!-- Menu latéral complet avec image + liens + texte -->
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@drawable/font_lateral"
-        android:fitsSystemWindows="true"
-        app:menu="@menu/drawer_menu"
-        app:headerLayout="@layout/nav_header"
-        app:itemTextColor="@color/nav_item_text_color"
-        app:itemTextAppearance="@style/CustomDrawerText">
+        android:orientation="vertical"
+        android:layout_gravity="start">
 
-        <!-- Pied personnalisé -->
-        <LinearLayout
+        <!-- Menu avec image en-tête + liens -->
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/font_lateral"
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/nav_header"
+            app:menu="@menu/drawer_menu"
+            app:itemTextColor="@color/nav_item_text_color"
+            app:itemTextAppearance="@style/CustomDrawerText" />
+
+        <!-- Texte biblique en bas -->
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Célébrez l'ÉTERNEL avec la harpe ; chantez ses louanges sur le luth à dix cordes ;\n\nChantez-lui un cantique nouveau ; pincez habilement de vos instruments avec un cri de joie.\n\nCar la parole de l'ÉTERNEL est droite, et toute son œuvre est avec vérité.\n\nPsaumes 33:1-5"
-                android:textSize="14sp"
-                android:textColor="#4E342E"
-                android:gravity="center"
-                android:padding="16dp"
-                android:lineSpacingExtra="4dp" />
-        </LinearLayout>
-    </com.google.android.material.navigation.NavigationView>
+            android:text="Célébrez l'ÉTERNEL avec la harpe ; chantez ses louanges sur le luth à dix cordes ;\n\nChantez-lui un cantique nouveau ; pincez habilement de vos instruments avec un cri de joie.\n\nCar la parole de l'ÉTERNEL est droite, et toute son œuvre est avec vérité.\n\nPsaumes 33:1-5"
+            android:textSize="14sp"
+            android:textColor="#4E342E"
+            android:gravity="center"
+            android:padding="16dp"
+            android:lineSpacingExtra="4dp" />
+    </LinearLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>
