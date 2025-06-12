@@ -3,8 +3,10 @@ package com.jesusrevient.cantique
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class SongDetailActivity : AppCompatActivity() {
@@ -27,29 +29,40 @@ class SongDetailActivity : AppCompatActivity() {
         val playButton = findViewById<Button>(R.id.playButton)
         val sheetButton = findViewById<Button>(R.id.sheetButton)
 
-        titleTextView.text = titre ?: "Titre inconnu"
-        authorTextView.text = "Auteur : ${auteur ?: "inconnu"}"
-        categoryTextView.text = "Catégorie : ${categorie ?: "inconnue"}"
+        // 🔥 Titre avec flammes
+        titleTextView.text = if (!titre.isNullOrBlank()) "🔥 $titre 🔥" else "🔥 Titre inconnu 🔥"
+
+        // Texte normal pour catégorie et auteur
+        categoryTextView.text = categorie ?: "Catégorie inconnue"
+        authorTextView.text = auteur ?: "Auteur inconnu"
         lyricsTextView.text = paroles ?: "Paroles non disponibles"
 
         // Bouton audio visible uniquement si URL non vide
         if (!audioUrl.isNullOrEmpty()) {
-            playButton.visibility = Button.VISIBLE
+            playButton.visibility = View.VISIBLE
             playButton.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(audioUrl)))
+                try {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(audioUrl)))
+                } catch (e: Exception) {
+                    Toast.makeText(this, "Impossible d’ouvrir le chant audio.", Toast.LENGTH_SHORT).show()
+                }
             }
         } else {
-            playButton.visibility = Button.GONE
+            playButton.visibility = View.GONE
         }
 
         // Bouton PDF visible uniquement si URL non vide
         if (!partitionPdfUrl.isNullOrEmpty()) {
-            sheetButton.visibility = Button.VISIBLE
+            sheetButton.visibility = View.VISIBLE
             sheetButton.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(partitionPdfUrl)))
+                try {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(partitionPdfUrl)))
+                } catch (e: Exception) {
+                    Toast.makeText(this, "Impossible d’ouvrir la partition.", Toast.LENGTH_SHORT).show()
+                }
             }
         } else {
-            sheetButton.visibility = Button.GONE
+            sheetButton.visibility = View.GONE
         }
     }
 }
