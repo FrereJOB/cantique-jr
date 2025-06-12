@@ -134,6 +134,7 @@
             android:background="@android:color/transparent"
             android:fitsSystemWindows="true"
             app:menu="@menu/drawer_menu"
+            app:itemIconTint="@null"
             app:itemBackground="@drawable/nav_item_background"
             app:itemTextColor="@color/nav_item_text_color"
             app:itemTextAppearance="@style/CustomDrawerText" />
