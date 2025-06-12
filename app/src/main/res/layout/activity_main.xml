@@ -109,7 +109,7 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <!-- Menu latéral structuré en 3 blocs verticaux -->
+    <!-- Menu latéral structuré en 3 blocs -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -117,7 +117,7 @@
         android:orientation="vertical"
         android:background="@drawable/font_lateral">
 
-        <!-- Bloc 1 : Image louange -->
+        <!-- Bloc 1 : Image en haut -->
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="180dp"
@@ -125,7 +125,7 @@
             android:scaleType="centerCrop"
             android:contentDescription="Image de louange" />
 
-        <!-- Bloc 2 : Liens du menu avec fond transparent + surbrillance -->
+        <!-- Bloc 2 : Liens du menu -->
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"
             android:layout_width="wrap_content"
