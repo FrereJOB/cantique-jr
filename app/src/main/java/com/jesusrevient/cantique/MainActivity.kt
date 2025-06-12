@@ -95,7 +95,14 @@ private fun fetchSongs() {
                 songList.clear()
                 fullSongList.clear()
                 for (document in it.documents) {
-                    val song = document.toObject(Song::class.java)
+                    try {
+    val song = document.toObject(Song::class.java)
+    if (song != null) {
+        songList.add(song)
+    }
+} catch (e: Exception) {
+    Log.e("MainActivity", "Erreur de désérialisation : ${e.message}")
+}
                     song?.let {
                         songList.add(it)
                         fullSongList.add(it)
