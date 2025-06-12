@@ -1,70 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".SongDetailActivity">
 
-    <LinearLayout
+    <!-- Image de fond -->
+    <ImageView
+        android:id="@+id/background"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:background="@drawable/background_spirituel">
+        android:layout_height="match_parent"
+        android:src="@drawable/background_spirituel"
+        android:scaleType="centerCrop"
+        android:alpha="0.3" />
 
-        <!-- Titre centré -->
-        <TextView
-            android:id="@+id/titleTextView"
-            style="@style/TextTitle"
+    <!-- Contenu principal -->
+    <ScrollView
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:padding="24dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Titre du Cantique"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:layout_marginBottom="4dp" />
+            android:orientation="vertical">
 
-        <!-- Catégorie alignée à gauche sous le titre -->
-        <TextView
-            android:id="@+id/categoryTextView"
-            style="@style/TextSubtitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Catégorie"
-            android:gravity="start"
-            android:layout_marginBottom="12dp" />
+            <!-- Titre centré -->
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Titre du Cantique"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginBottom="4dp"
+                android:shadowColor="#80000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2" />
 
-        <!-- Paroles -->
-        <TextView
-            android:id="@+id/lyricsTextView"
-            style="@style/TextLyrics"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Paroles du chant"
-            android:layout_marginBottom="16dp" />
+            <!-- Catégorie alignée à gauche -->
+            <TextView
+                android:id="@+id/categoryTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Catégorie"
+                android:textColor="#EEEEEE"
+                android:textSize="16sp"
+                android:layout_marginBottom="12dp"
+                android:shadowColor="#80000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2" />
 
-        <!-- Auteur aligné à droite après les paroles -->
-        <TextView
-            android:id="@+id/authorTextView"
-            style="@style/TextSubtitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Auteur inconnu"
-            android:gravity="end"
-            android:textAlignment="viewEnd"
-            android:layout_marginBottom="16dp" />
+            <!-- Paroles -->
+            <TextView
+                android:id="@+id/lyricsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Paroles du cantique..."
+                android:textColor="#F8F8F8"
+                android:textSize="16sp"
+                android:layout_marginBottom="16dp"
+                android:shadowColor="#80000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2" />
 
-        <!-- Bouton écouter -->
-        <Button
-            android:id="@+id/playButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Écouter le chant"
-            android:layout_marginBottom="8dp" />
+            <!-- Auteur aligné à droite -->
+            <TextView
+                android:id="@+id/authorTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Auteur inconnu"
+                android:textColor="#DDDDDD"
+                android:textSize="16sp"
+                android:gravity="end"
+                android:textAlignment="viewEnd"
+                android:layout_marginBottom="24dp"
+                android:shadowColor="#80000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2" />
 
-        <!-- Bouton partition -->
-        <Button
-            android:id="@+id/sheetButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Voir la partition" />
+            <!-- Bouton écouter -->
+            <Button
+                android:id="@+id/playButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Écouter le chant"
+                android:layout_marginBottom="12dp" />
 
-    </LinearLayout>
-</ScrollView>
+            <!-- Bouton partition -->
+            <Button
+                android:id="@+id/sheetButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Voir la partition" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
