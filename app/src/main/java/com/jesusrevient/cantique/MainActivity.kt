@@ -41,12 +41,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val slideshowRunnable = object : Runnable {
         override fun run() {
             val fadeOut = AlphaAnimation(1f, 0f).apply {
-                duration = 500
+                duration = 1000
                 fillAfter = true
             }
 
             val fadeIn = AlphaAnimation(0f, 1f).apply {
-                duration = 500
+                duration = 1000
                 fillAfter = true
             }
 
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
             })
 
-            handler.postDelayed(this, 4000)
+            handler.postDelayed(this, 10000)
         }
     }
 
