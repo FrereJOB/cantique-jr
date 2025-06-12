@@ -31,7 +31,6 @@
                 android:id="@+id/titleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="🔥 Titre du Cantique 🔥"
                 android:textColor="#965E3F"
                 android:textSize="22sp"
                 android:textStyle="bold"
