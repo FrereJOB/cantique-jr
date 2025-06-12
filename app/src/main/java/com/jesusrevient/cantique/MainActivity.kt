@@ -85,25 +85,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //mise à jour automatique de cantiques
 private fun fetchSongs() {
     db.collection("cantiques")
-        .addSnapshotListener { snapshot, exception ->
-            if (exception != null) {
-                Log.e("MainActivity", "Erreur d'écoute", exception)
-                return@addSnapshotListener
+        .get()
+        .addOnSuccessListener { documents ->
+            songList.clear()
+            fullSongList.clear()
+            for (document in documents) {
+                try {
+                    val song = document.toObject(Song::class.java)
+                    songList.add(song)
+                    fullSongList.add(song)
+                } catch (e: Exception) {
+                    Log.e("MainActivity", "Erreur de désérialisation : ${e.message}")
+                }
             }
-
-            snapshot?.let {
-                songList.clear()
-                fullSongList.clear()
-                for (document in it.documents) {
-                    try {
-    val song = document.toObject(Song::class.java)
-    if (song != null) {
-        songList.add(song)
-    }
-} catch (e: Exception) {
-    Log.e("MainActivity", "Erreur de désérialisation : ${e.message}")
-}
-                    song?.let {
+            adapter.updateList(songList)
+        }
+        .addOnFailureListener { exception ->
+            Log.e("MainActivity", "Erreur lors du chargement des cantiques", exception)
+        }
+}                    song?.let {
                         songList.add(it)
                         fullSongList.add(it)
                     }
