@@ -28,7 +28,7 @@ class SupprimerCantiqueActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            db.collection("cantique")
+            db.collection("cantiques")
                 .whereEqualTo("numero", numero)
                 .get()
                 .addOnSuccessListener { documents ->
