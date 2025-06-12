@@ -7,33 +7,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:background="@drawable/background_spirituel">
 
+        <!-- Titre centré -->
         <TextView
             android:id="@+id/titleTextView"
             style="@style/TextTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Titre"
-            android:layout_marginBottom="8dp" />
+            android:text="Titre du Cantique"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:layout_marginBottom="4dp" />
 
-        <TextView
-            android:id="@+id/authorTextView"
-            style="@style/TextSubtitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Auteur inconnu"
-            android:layout_marginBottom="8dp" />
-
-        <!-- Ajout de la catégorie -->
+        <!-- Catégorie alignée à gauche sous le titre -->
         <TextView
             android:id="@+id/categoryTextView"
             style="@style/TextSubtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Catégorie"
-            android:layout_marginBottom="8dp" />
+            android:gravity="start"
+            android:layout_marginBottom="12dp" />
 
+        <!-- Paroles -->
         <TextView
             android:id="@+id/lyricsTextView"
             style="@style/TextLyrics"
@@ -42,7 +40,18 @@
             android:text="Paroles du chant"
             android:layout_marginBottom="16dp" />
 
-        <!-- Ajout des boutons -->
+        <!-- Auteur aligné à droite après les paroles -->
+        <TextView
+            android:id="@+id/authorTextView"
+            style="@style/TextSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Auteur inconnu"
+            android:gravity="end"
+            android:textAlignment="viewEnd"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Bouton écouter -->
         <Button
             android:id="@+id/playButton"
             android:layout_width="match_parent"
@@ -50,6 +59,7 @@
             android:text="Écouter le chant"
             android:layout_marginBottom="8dp" />
 
+        <!-- Bouton partition -->
         <Button
             android:id="@+id/sheetButton"
             android:layout_width="match_parent"
