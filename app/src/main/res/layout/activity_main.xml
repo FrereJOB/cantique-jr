@@ -153,6 +153,7 @@
                 android:textSize="14sp"
                 android:textColor="#4E342E"
                 android:gravity="center"
+                android:textStyle="bold"
                 android:padding="16dp"
                 android:lineSpacingExtra="4dp" />
         </ScrollView>
