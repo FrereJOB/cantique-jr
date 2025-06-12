@@ -82,36 +82,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-//mise à jour automatique de cantiques
-private fun fetchSongs() {
-    db.collection("cantiques")
-        .get()
-        .addOnSuccessListener { documents ->
-            songList.clear()
-            fullSongList.clear()
-            for (document in documents) {
-                try {
-                    val song = document.toObject(Song::class.java)
-                    songList.add(song)
-                    fullSongList.add(song)
-                } catch (e: Exception) {
-                    Log.e("MainActivity", "Erreur de désérialisation : ${e.message}")
-                }
-            }
-            adapter.updateList(songList)
-        }
-        .addOnFailureListener { exception ->
-            Log.e("MainActivity", "Erreur lors du chargement des cantiques", exception)
-        }
-}                    song?.let {
-                        songList.add(it)
-                        fullSongList.add(it)
+    private fun fetchSongs() {
+        db.collection("cantiques")
+            .get()
+            .addOnSuccessListener { documents ->
+                songList.clear()
+                fullSongList.clear()
+                for (document in documents) {
+                    try {
+                        val song = document.toObject(Song::class.java)
+                        songList.add(song)
+                        fullSongList.add(song)
+                    } catch (e: Exception) {
+                        Log.e("MainActivity", "Erreur de désérialisation : ${e.message}")
                     }
                 }
                 adapter.updateList(songList)
             }
-        }
-}
+            .addOnFailureListener { exception ->
+                Log.e("MainActivity", "Erreur lors du chargement des cantiques", exception)
+            }
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
