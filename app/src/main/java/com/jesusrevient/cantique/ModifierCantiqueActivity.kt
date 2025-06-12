@@ -85,8 +85,14 @@ class ModifierCantiqueActivity : AppCompatActivity() {
     }
 
     private fun rechercherCantique(numero: String) {
-        db.collection("cantiques")
-            .whereEqualTo("numero", numero)
+        val numeroInt = numero.toIntOrNull()
+if (numeroInt == null) {
+    Toast.makeText(this, "Numéro invalide", Toast.LENGTH_SHORT).show()
+    return
+}
+
+db.collection("cantiques")
+    .whereEqualTo("numero", numeroInt)
             .get()
             .addOnSuccessListener { documents ->
                 if (!documents.isEmpty) {
