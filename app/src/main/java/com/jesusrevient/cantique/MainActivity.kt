@@ -2,13 +2,13 @@ package com.jesusrevient.cantique
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.TextView
-import android.widget.Toast
+import android.view.animation.AlphaAnimation
+import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -28,14 +28,67 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var fullSongList: MutableList<Song>
     private val db = FirebaseFirestore.getInstance()
 
+    private val handler = Handler(Looper.getMainLooper())
+    private var currentImageIndex = 0
+    private lateinit var imageViewLouange: ImageView
+    private val images = listOf(
+        R.drawable.louange,
+        R.drawable.louange1,
+        R.drawable.louange2,
+        R.drawable.louange3
+    )
+
+    private val slideshowRunnable = object : Runnable {
+        override fun run() {
+            val fadeOut = AlphaAnimation(1f, 0f).apply {
+                duration = 500
+                fillAfter = true
+            }
+
+            val fadeIn = AlphaAnimation(0f, 1f).apply {
+                duration = 500
+                fillAfter = true
+            }
+
+            imageViewLouange.startAnimation(fadeOut)
+            fadeOut.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
+                override fun onAnimationStart(animation: android.view.animation.Animation) {}
+                override fun onAnimationRepeat(animation: android.view.animation.Animation) {}
+                override fun onAnimationEnd(animation: android.view.animation.Animation) {
+                    imageViewLouange.setImageResource(images[currentImageIndex])
+                    imageViewLouange.startAnimation(fadeIn)
+                    currentImageIndex = (currentImageIndex + 1) % images.size
+                }
+            })
+
+            handler.postDelayed(this, 4000)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        imageViewLouange = findViewById(R.id.imageViewLouange)
+        startImageSlideshow()
+
         drawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
 
-        val toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open_drawer, R.string.close_drawer)
+        val toggle = object : ActionBarDrawerToggle(
+            this, drawerLayout, R.string.open_drawer, R.string.close_drawer
+        ) {
+            override fun onDrawerOpened(drawerView: View) {
+                super.onDrawerOpened(drawerView)
+                startImageSlideshow()
+            }
+
+            override fun onDrawerClosed(drawerView: View) {
+                super.onDrawerClosed(drawerView)
+                stopImageSlideshow()
+            }
+        }
+
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -66,7 +119,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         fetchSongs()
 
-        // 🔍 Logique de recherche
         val searchEditText = findViewById<EditText>(R.id.searchEditText)
         val searchButton = findViewById<ImageButton>(R.id.searchButton)
 
@@ -82,20 +134,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
+    private fun startImageSlideshow() {
+        handler.removeCallbacks(slideshowRunnable)
+        handler.post(slideshowRunnable)
+    }
+
+    private fun stopImageSlideshow() {
+        handler.removeCallbacks(slideshowRunnable)
+    }
+
     private fun fetchSongs() {
         db.collection("cantiques")
             .get()
             .addOnSuccessListener { documents ->
-                songList.clear()
-                fullSongList.clear()
                 for (document in documents) {
-                    try {
-                        val song = document.toObject(Song::class.java)
-                        songList.add(song)
-                        fullSongList.add(song)
-                    } catch (e: Exception) {
-                        Log.e("MainActivity", "Erreur de désérialisation : ${e.message}")
-                    }
+                    val song = document.toObject(Song::class.java)
+                    songList.add(song)
+                    fullSongList.add(song)
                 }
                 adapter.updateList(songList)
             }
@@ -114,17 +169,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_group -> {
-                Toast.makeText(this, "À propos du groupe", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, AProposGroupeActivity::class.java))
-            }
-            R.id.nav_app -> {
-                Toast.makeText(this, "À propos de l'application", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, AProposAppActivity::class.java))
-            }
-            R.id.nav_admin -> {
-                startActivity(Intent(this, LoginAdminActivity::class.java))
-            }
+            R.id.nav_group -> startActivity(Intent(this, AProposGroupeActivity::class.java))
+            R.id.nav_app -> startActivity(Intent(this, AProposAppActivity::class.java))
+            R.id.nav_admin -> startActivity(Intent(this, LoginAdminActivity::class.java))
             R.id.nav_share -> {
                 val shareIntent = Intent().apply {
                     action = Intent.ACTION_SEND
@@ -136,5 +183,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onPause() {
+        super.onPause()
+        stopImageSlideshow()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            startImageSlideshow()
+        }
     }
 }
