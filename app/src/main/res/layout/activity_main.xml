@@ -125,7 +125,7 @@
             android:scaleType="centerCrop"
             android:contentDescription="Image de louange" />
 
-        <!-- Bloc 2 : Liens du menu -->
+        <!-- Bloc 2 : Liens du menu avec fond transparent + surbrillance -->
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"
             android:layout_width="wrap_content"
@@ -134,6 +134,7 @@
             android:background="@android:color/transparent"
             android:fitsSystemWindows="true"
             app:menu="@menu/drawer_menu"
+            app:itemBackground="?android:attr/selectableItemBackground" <!-- ✅ Effet surbrillance -->
             app:itemTextColor="@color/nav_item_text_color"
             app:itemTextAppearance="@style/CustomDrawerText" />
 
