@@ -119,11 +119,13 @@
 
         <!-- Bloc 1 : Image en haut -->
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:src="@drawable/louange"
-            android:scaleType="centerCrop"
-            android:contentDescription="Image de louange" />
+    android:id="@+id/imageViewLouange"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:scaleType="centerCrop"
+    android:contentDescription="Image de louange"
+    android:src="@drawable/louange" />
+
 
         <!-- Bloc 2 : Liens du menu -->
         <com.google.android.material.navigation.NavigationView
