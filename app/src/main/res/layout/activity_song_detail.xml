@@ -64,6 +64,7 @@
                 android:text="Paroles du cantique..."
                 android:textColor="#965E3F"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 android:layout_marginBottom="16dp"
                 android:shadowColor="#80000000"
                 android:shadowDx="1"
