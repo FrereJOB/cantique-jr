@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Fond principal -->
         <ImageView
             android:id="@+id/background"
             android:layout_width="match_parent"
@@ -21,7 +20,6 @@
             android:scaleType="centerCrop"
             android:alpha="0.3" />
 
-        <!-- Boutons drawer -->
         <ImageButton
             android:id="@+id/open_drawer"
             android:layout_width="40dp"
@@ -45,7 +43,6 @@
             android:contentDescription="Fermer le menu"
             android:visibility="gone" />
 
-        <!-- Contenu principal -->
         <LinearLayout
             android:id="@+id/main_content"
             android:layout_width="match_parent"
@@ -64,7 +61,7 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="24dp" />
 
-            <!-- Recherche -->
+            <!-- Barre de recherche -->
             <LinearLayout
                 android:id="@+id/searchContainer"
                 android:layout_width="match_parent"
@@ -113,58 +110,144 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <!-- Menu latéral -->
-    <LinearLayout
+    <!-- Menu latéral : liens + texte biblique -->
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:orientation="vertical"
-        android:background="@drawable/font_lateral">
+        android:background="@drawable/font_lateral"
+        android:fillViewport="true">
 
-        <!-- Image du haut -->
-        <ImageView
-            android:id="@+id/imageViewLouange"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:src="@drawable/louange"
-            android:scaleType="centerCrop"
-            android:contentDescription="Louange" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <!-- Bloc avec liens et texte -->
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:background="@android:color/transparent">
+            <!-- Image en haut -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:src="@drawable/louange"
+                android:scaleType="centerCrop"
+                android:contentDescription="Image de louange"
+                android:layout_marginBottom="16dp" />
 
+            <!-- Lien : Groupe -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="8dp">
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:background="@drawable/nav_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onGroupClick">
 
-                <!-- Liens du menu -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/apropos"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="12dp" />
 
-                    <include layout="@layout/nav_links_block" />
-                </LinearLayout>
-
-                <!-- Texte biblique -->
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Célébrez l'ÉTERNEL avec la harpe ; chantez ses louanges sur le luth à dix cordes ;\n\nChantez-lui un cantique nouveau ; pincez habilement de vos instruments avec un cri de joie.\n\nCar la parole de l'ÉTERNEL est droite, et toute son œuvre est avec vérité.\n\nPsaumes 33:1-5"
-                    android:textColor="#4E342E"
-                    android:textSize="14sp"
-                    android:gravity="center"
-                    android:layout_marginTop="16dp"
-                    android:padding="12dp"
-                    android:lineSpacingExtra="4dp" />
+                    android:text="À propos du groupe"
+                    android:textColor="@color/nav_item_text_color"
+                    android:textSize="16sp" />
             </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
 
+            <!-- Lien : Application -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:background="@drawable/nav_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onAppClick">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/apropos"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="À propos de l'application"
+                    android:textColor="@color/nav_item_text_color"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- Lien : Admin -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:background="@drawable/nav_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onAdminClick">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/admin"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Admin"
+                    android:textColor="@color/nav_item_text_color"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- Lien : Partager -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:background="@drawable/nav_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onShareClick">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/partage"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Partager"
+                    android:textColor="@color/nav_item_text_color"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- Texte biblique -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Célébrez l'ÉTERNEL avec la harpe ; chantez ses louanges sur le luth à dix cordes ;\n\nChantez-lui un cantique nouveau ; pincez habilement de vos instruments avec un cri de joie.\n\nCar la parole de l'ÉTERNEL est droite, et toute son œuvre est avec vérité.\n\nPsaumes 33:1-5"
+                android:textSize="14sp"
+                android:textColor="#4E342E"
+                android:gravity="center"
+                android:paddingTop="24dp"
+                android:paddingBottom="32dp"
+                android:lineSpacingExtra="4dp" />
+        </LinearLayout>
+    </ScrollView>
 </androidx.drawerlayout.widget.DrawerLayout>
