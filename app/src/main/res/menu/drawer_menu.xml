@@ -6,31 +6,27 @@
         android:id="@+id/nav_group"
         android:title="À propos du groupe"
         android:icon="@drawable/apropos"
-        android:iconTint="@null"
-        android:actionLayout="@layout/nav_item_separator" />
+        android:iconTint="@null" />
 
     <!-- À propos de l'application -->
     <item
         android:id="@+id/nav_app"
         android:title="À propos de l'application"
         android:icon="@drawable/apropos"
-        android:iconTint="@null"
-        android:actionLayout="@layout/nav_item_separator" />
+        android:iconTint="@null" />
 
     <!-- Admin -->
     <item
         android:id="@+id/nav_admin"
         android:title="Admin"
         android:icon="@drawable/admin"
-        android:iconTint="@null"
-        android:actionLayout="@layout/nav_item_separator" />
+        android:iconTint="@null" />
 
     <!-- Partager -->
     <item
         android:id="@+id/nav_share"
         android:title="Partager"
         android:icon="@drawable/partage"
-        android:iconTint="@null"
-        android:actionLayout="@layout/nav_item_separator" />
+        android:iconTint="@null" />
 
 </menu>
