@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include layout="@layout/nav_link_group" />
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#33000000" />
+
+    <include layout="@layout/nav_link_app" />
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#33000000" />
+
+    <include layout="@layout/nav_link_admin" />
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#33000000" />
+
+    <include layout="@layout/nav_link_share" />
+</LinearLayout>
