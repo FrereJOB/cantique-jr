@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- Fond principal -->
         <ImageView
             android:id="@+id/background"
             android:layout_width="match_parent"
@@ -20,6 +21,7 @@
             android:scaleType="centerCrop"
             android:alpha="0.3" />
 
+        <!-- Boutons drawer -->
         <ImageButton
             android:id="@+id/open_drawer"
             android:layout_width="40dp"
@@ -43,6 +45,7 @@
             android:contentDescription="Fermer le menu"
             android:visibility="gone" />
 
+        <!-- Contenu principal -->
         <LinearLayout
             android:id="@+id/main_content"
             android:layout_width="match_parent"
@@ -61,7 +64,7 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="24dp" />
 
-            <!-- Barre de recherche -->
+            <!-- Recherche -->
             <LinearLayout
                 android:id="@+id/searchContainer"
                 android:layout_width="match_parent"
@@ -110,7 +113,7 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <!-- MENU LATÉRAL STRUCTURÉ EN 3 BLOCS -->
+    <!-- Menu latéral -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -118,47 +121,49 @@
         android:orientation="vertical"
         android:background="@drawable/font_lateral">
 
-        <!-- Bloc 1 : Image fixe -->
+        <!-- Image du haut -->
         <ImageView
             android:id="@+id/imageViewLouange"
             android:layout_width="match_parent"
             android:layout_height="180dp"
+            android:src="@drawable/louange"
             android:scaleType="centerCrop"
-            android:contentDescription="Image de louange"
-            android:src="@drawable/louange" />
+            android:contentDescription="Louange" />
 
-        <!-- Bloc 2 : NavigationView transparent et sans teinte -->
-        <com.google.android.material.navigation.NavigationView
-    android:id="@+id/nav_view"
-    android:layout_width="wrap_content"
-    android:layout_height="0dp"
-    android:layout_weight="1"
-    android:background="@android:color/transparent"
-    android:fitsSystemWindows="true"
-    app:menu="@menu/drawer_menu"
-    app:itemIconTint="@null"
-    app:itemBackground="@android:color/transparent"
-    app:itemTextColor="@color/nav_item_text_color"
-    app:itemTextAppearance="@style/CustomDrawerText"
-    app:divider="@drawable/nav_separator" />
-
-
-
-
-        <!-- Bloc 3 : Texte biblique -->
+        <!-- Bloc avec liens et texte -->
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:background="@android:color/transparent">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Célébrez l'ÉTERNEL avec la harpe ; chantez ses louanges sur le luth à dix cordes ;\n\nChantez-lui un cantique nouveau ; pincez habilement de vos instruments avec un cri de joie.\n\nCar la parole de l'ÉTERNEL est droite, et toute son œuvre est avec vérité.\n\nPsaumes 33:1-5"
-                android:textSize="14sp"
-                android:textColor="#4E342E"
-                android:gravity="center"
-                android:padding="16dp"
-                android:lineSpacingExtra="4dp" />
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <!-- Liens du menu -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/nav_links_block" />
+                </LinearLayout>
+
+                <!-- Texte biblique -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Célébrez l'ÉTERNEL avec la harpe ; chantez ses louanges sur le luth à dix cordes ;\n\nChantez-lui un cantique nouveau ; pincez habilement de vos instruments avec un cri de joie.\n\nCar la parole de l'ÉTERNEL est droite, et toute son œuvre est avec vérité.\n\nPsaumes 33:1-5"
+                    android:textColor="#4E342E"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:padding="12dp"
+                    android:lineSpacingExtra="4dp" />
+            </LinearLayout>
         </ScrollView>
     </LinearLayout>
 
