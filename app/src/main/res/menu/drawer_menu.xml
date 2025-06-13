@@ -1,34 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Groupe 1 : À propos -->
-    <group android:id="@+id/groupe_apropos">
-        <item
-            android:id="@+id/nav_group"
-            android:title="À propos du groupe"
-            android:icon="@drawable/apropos" />
-        <item
-            android:id="@+id/nav_app"
-            android:title="À propos de l'application"
-            android:icon="@drawable/apropos" />
-    </group>
-
-    <!-- Séparateur graphique -->
+    <!-- À propos du groupe -->
     <item
-        android:id="@+id/separator"
-        android:enabled="false"
-        android:actionLayout="@layout/nav_separator" />
+        android:id="@+id/nav_group"
+        android:title="À propos du groupe"
+        android:icon="@drawable/apropos"
+        android:iconTint="@null"
+        android:actionLayout="@layout/nav_item_separator" />
 
-    <!-- Groupe 2 : Admin et Partage -->
-    <group android:id="@+id/groupe_admin_partage">
-        <item
-            android:id="@+id/nav_admin"
-            android:title="Admin"
-            android:icon="@drawable/admin" />
-        <item
-            android:id="@+id/nav_share"
-            android:title="Partager"
-            android:icon="@drawable/partage" />
-    </group>
+    <!-- À propos de l'application -->
+    <item
+        android:id="@+id/nav_app"
+        android:title="À propos de l'application"
+        android:icon="@drawable/apropos"
+        android:iconTint="@null"
+        android:actionLayout="@layout/nav_item_separator" />
+
+    <!-- Admin -->
+    <item
+        android:id="@+id/nav_admin"
+        android:title="Admin"
+        android:icon="@drawable/admin"
+        android:iconTint="@null"
+        android:actionLayout="@layout/nav_item_separator" />
+
+    <!-- Partager -->
+    <item
+        android:id="@+id/nav_share"
+        android:title="Partager"
+        android:icon="@drawable/partage"
+        android:iconTint="@null"
+        android:actionLayout="@layout/nav_item_separator" />
 
 </menu>
