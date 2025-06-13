@@ -1,0 +1,109 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Reutilisable pour tous les liens -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:background="@drawable/nav_item_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onGroupClick">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/apropos"
+            android:layout_marginEnd="12dp"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="À propos du groupe"
+            android:textColor="@color/nav_item_text_color"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#CCCCCC" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:background="@drawable/nav_item_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onAppClick">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/apropos"
+            android:layout_marginEnd="12dp"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="À propos de l'application"
+            android:textColor="@color/nav_item_text_color"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#CCCCCC" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:background="@drawable/nav_item_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onAdminClick">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/admin"
+            android:layout_marginEnd="12dp"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Admin"
+            android:textColor="@color/nav_item_text_color"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#CCCCCC" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:background="@drawable/nav_item_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onShareClick">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/partage"
+            android:layout_marginEnd="12dp"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Partager"
+            android:textColor="@color/nav_item_text_color"
+            android:textSize="16sp" />
+    </LinearLayout>
+</merge>
