@@ -140,8 +140,7 @@
     app:itemBackground="@android:color/transparent"
     app:itemTextColor="@color/nav_item_text_color"
     app:itemTextAppearance="@style/CustomDrawerText"
-    app:divider="@drawable/nav_separator"
-    app:dividerHeight="1dp" />
+    app:divider="@drawable/nav_separator" />
 
 
 
