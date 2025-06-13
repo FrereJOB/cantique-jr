@@ -66,7 +66,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         fetchSongs()
 
-        // 🔍 Logique de recherche
         val searchEditText = findViewById<EditText>(R.id.searchEditText)
         val searchButton = findViewById<ImageButton>(R.id.searchButton)
 
@@ -115,11 +114,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_group -> {
-                Toast.makeText(this, "À propos du groupe", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, AProposGroupeActivity::class.java))
             }
             R.id.nav_app -> {
-                Toast.makeText(this, "À propos de l'application", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, AProposAppActivity::class.java))
             }
             R.id.nav_admin -> {
@@ -136,5 +133,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    fun onGroupClick(view: View) {
+        startActivity(Intent(this, AProposGroupeActivity::class.java))
+        drawerLayout.closeDrawer(GravityCompat.START)
+    }
+
+    fun onAppClick(view: View) {
+        startActivity(Intent(this, AProposAppActivity::class.java))
+        drawerLayout.closeDrawer(GravityCompat.START)
+    }
+
+    fun onAdminClick(view: View) {
+        startActivity(Intent(this, LoginAdminActivity::class.java))
+        drawerLayout.closeDrawer(GravityCompat.START)
+    }
+
+    fun onShareClick(view: View) {
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_TEXT, "Téléchargez l'application Cantique JR sur votre téléphone !")
+        startActivity(Intent.createChooser(intent, "Partager via"))
+        drawerLayout.closeDrawer(GravityCompat.START)
     }
 }
