@@ -61,6 +61,7 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="24dp" />
 
+            <!-- Barre de recherche -->
             <LinearLayout
                 android:id="@+id/searchContainer"
                 android:layout_width="match_parent"
@@ -109,7 +110,7 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <!-- Menu latéral structuré en 3 blocs -->
+    <!-- MENU LATÉRAL STRUCTURÉ EN 3 BLOCS -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -117,17 +118,16 @@
         android:orientation="vertical"
         android:background="@drawable/font_lateral">
 
-        <!-- Bloc 1 : Image en haut -->
+        <!-- Bloc 1 : Image fixe -->
         <ImageView
-    android:id="@+id/imageViewLouange"
-    android:layout_width="match_parent"
-    android:layout_height="180dp"
-    android:scaleType="centerCrop"
-    android:contentDescription="Image de louange"
-    android:src="@drawable/louange" />
+            android:id="@+id/imageViewLouange"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="Image de louange"
+            android:src="@drawable/louange" />
 
-
-        <!-- Bloc 2 : Liens du menu -->
+        <!-- Bloc 2 : NavigationView transparent et sans teinte -->
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"
             android:layout_width="wrap_content"
@@ -153,7 +153,6 @@
                 android:textSize="14sp"
                 android:textColor="#4E342E"
                 android:gravity="center"
-                android:textStyle="bold"
                 android:padding="16dp"
                 android:lineSpacingExtra="4dp" />
         </ScrollView>
