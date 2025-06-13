@@ -129,17 +129,18 @@
 
         <!-- Bloc 2 : NavigationView transparent et sans teinte -->
         <com.google.android.material.navigation.NavigationView
-            android:id="@+id/nav_view"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:fitsSystemWindows="true"
-            app:menu="@menu/drawer_menu"
-            app:itemIconTint="@null"
-            app:itemBackground="@drawable/nav_item_background"
-            app:itemTextColor="@color/nav_item_text_color"
-            app:itemTextAppearance="@style/CustomDrawerText" />
+    android:id="@+id/nav_view"
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:background="@android:color/transparent"
+    android:fitsSystemWindows="true"
+    app:menu="@menu/drawer_menu"
+    app:itemIconTint="@null" 
+    app:itemBackground="@drawable/nav_item_background"
+    app:itemTextColor="@color/nav_item_text_color"
+    app:itemTextAppearance="@style/CustomDrawerText" />
+
 
         <!-- Bloc 3 : Texte biblique -->
         <ScrollView
