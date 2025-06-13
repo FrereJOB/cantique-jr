@@ -1,14 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Surbrillance lors du clic ou de la sélection -->
-    <item android:state_pressed="true">
-        <color android:color="#20FFFFFF" /> <!-- blanc très léger -->
-    </item>
-    <item android:state_focused="true">
-        <color android:color="#10FFFFFF" />
-    </item>
-    <item>
-        <color android:color="@android:color/transparent" /> <!-- fond par défaut -->
-    </item>
+    <item android:drawable="@android:color/darker_gray" android:state_pressed="true" />
+    <item android:drawable="@android:color/transparent" />
 </selector>
-
