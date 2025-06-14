@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.jesusrevient.cantique.models.Song
 
@@ -15,6 +16,7 @@ class SongAdapter(
 ) : RecyclerView.Adapter<SongAdapter.SongViewHolder>() {
 
     class SongViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val cardContainer: View = itemView.findViewById(R.id.song_card_container)
         val titleText: TextView = itemView.findViewById(R.id.song_title)
         val authorText: TextView = itemView.findViewById(R.id.song_author)
         val pdfLinkText: TextView = itemView.findViewById(R.id.song_pdf_link)
@@ -36,6 +38,10 @@ class SongAdapter(
 
         val context = holder.itemView.context
 
+        // 🌗 Appliquer un fond semi-transparent
+        holder.cardContainer.setBackgroundResource(R.drawable.song_card_background)
+
+        // Ouvrir la fiche détail
         holder.titleText.setOnClickListener {
             val intent = Intent(context, SongDetailActivity::class.java).apply {
                 putExtra("titre", song.titre)
@@ -48,7 +54,6 @@ class SongAdapter(
             context.startActivity(intent)
         }
 
-        // Ouvre la partition PDF uniquement si l'URL est valide
         if (!song.partitionPdfUrl.isNullOrEmpty()) {
             holder.pdfLinkText.visibility = View.VISIBLE
             holder.pdfLinkText.setOnClickListener {
@@ -61,7 +66,6 @@ class SongAdapter(
             holder.pdfLinkText.visibility = View.GONE
         }
 
-        // Lien vers le fichier audio uniquement si l'URL est valide
         if (!song.audioUrl.isNullOrEmpty()) {
             holder.audioLinkText.visibility = View.VISIBLE
             holder.audioLinkText.setOnClickListener {
