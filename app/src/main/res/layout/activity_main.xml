@@ -95,7 +95,7 @@
                     android:layout_marginEnd="4dp"
                     android:background="@android:color/transparent"
                     android:src="@android:drawable/ic_menu_search"
-                    android:contentDescription="Rechercher"/>
+                    android:contentDescription="Rechercher" />
             </RelativeLayout>
 
             <!-- Liste des chants -->
@@ -118,58 +118,57 @@
                 android:layout_marginTop="16dp" />
         </LinearLayout>
     </RelativeLayout>
-    
+
     <!-- Menu latéral -->
-    <!-- Menu latéral -->
-<ScrollView
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:layout_gravity="start"
-    android:background="@drawable/font_lateral"
-    android:fillViewport="true">
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@drawable/font_lateral"
+        android:fillViewport="true">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:paddingTop="0dp"
-        android:paddingBottom="16dp"
-        android:paddingStart="0dp"
-        android:paddingEnd="0dp">
-
-        <!-- Image louange : pleine largeur, sans marges sur les côtés -->
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/louange"
-            android:layout_marginBottom="16dp"
-            android:contentDescription="Louange" />
-
-        <!-- Liens -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="12dp"
-            android:background="@drawable/nav_item_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="onGroupClick">
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingTop="0dp"
+            android:paddingBottom="16dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp">
+
+            <!-- Image louange : pleine largeur sans marges sur les côtés -->
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/apropos"
-                android:layout_marginEnd="12dp"
-                android:layout_gravity="center_vertical" />
-            <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/louange"
+                android:layout_marginBottom="16dp"
+                android:contentDescription="Louange" />
+
+            <!-- Liens -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="À propos du groupe"
-                android:textColor="@color/nav_item_text_color"
-                android:textSize="16sp" />
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:background="@drawable/nav_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onGroupClick">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/apropos"
+                    android:layout_marginEnd="12dp"
+                    android:layout_gravity="center_vertical" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="À propos du groupe"
+                    android:textColor="@color/nav_item_text_color"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
