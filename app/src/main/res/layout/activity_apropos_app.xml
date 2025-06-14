@@ -113,14 +113,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text='{
-  "titre": "...",
-  "auteur": "...",
-  "numero": 1,
-  "categorie": "Adoration",
-  "audioUrl": "...",
-  "partitionPdfUrl": "...",
-  "dateAjout": "...",
-  "paroles": "..."
+  titre,
+  auteur,
+  numero,
+  categorie,
+  audioUrl,
+  partitionPdfUrl,
+  dateAjout,
+  paroles
 }'
                     android:typeface="monospace"
                     android:textSize="14sp"
