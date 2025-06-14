@@ -7,16 +7,14 @@
 
     <!-- Image de fond -->
     <ImageView
-        android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/background_spirituel"
         android:scaleType="centerCrop"
         android:alpha="0.3" />
 
-    <!-- Contenu -->
+    <!-- Contenu principal -->
     <ScrollView
-        android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="24dp">
@@ -26,34 +24,34 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- 🔥 Titre centré -->
+            <!-- Titre centré -->
             <TextView
                 android:id="@+id/titleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="🔥 Titre 🔥"
+                android:text="🔥 Titre du Cantique 🔥"
                 android:textColor="#965E3F"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="4dp"
                 android:shadowColor="#80000000"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="2" />
 
-            <!-- 🎼 Catégorie avec icône sol -->
+            <!-- Ligne catégorie + icône sol -->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="12dp">
+                android:layout_marginBottom="12dp"
+                android:gravity="center_vertical">
 
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/sol"
-                    android:layout_gravity="center_vertical"
                     android:layout_marginEnd="8dp" />
 
                 <TextView
@@ -63,10 +61,28 @@
                     android:text="Catégorie"
                     android:textColor="#965E3F"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:shadowColor="#80000000"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2" />
             </LinearLayout>
 
-            <!-- 👤 Auteur -->
+            <!-- Paroles -->
+            <TextView
+                android:id="@+id/lyricsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Paroles du cantique..."
+                android:textColor="#965E3F"
+                android:textSize="16sp"
+                android:layout_marginBottom="16dp"
+                android:shadowColor="#80000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2" />
+
+            <!-- Auteur -->
             <TextView
                 android:id="@+id/authorTextView"
                 android:layout_width="match_parent"
@@ -77,100 +93,72 @@
                 android:textStyle="bold"
                 android:gravity="end"
                 android:textAlignment="viewEnd"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="12dp"
                 android:shadowColor="#80000000"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="2" />
 
-            <!-- ❌ Si audio et pdf non disponibles -->
+            <!-- Icônes audio/piano -->
             <LinearLayout
-                android:id="@+id/unavailableIconsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="space_between"
-                android:layout_marginBottom="16dp">
-
-                <ImageView
-                    android:id="@+id/audioUnavailableIcon"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/audio" />
+                android:layout_marginBottom="24dp">
 
                 <LinearLayout
-                    android:id="@+id/pdfUnavailableLayout"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="end">
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
+                        android:id="@+id/audioUnavailableIcon"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/audio" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/pdfUnavailableIcon"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
                         android:src="@drawable/piano"
-                        android:layout_marginEnd="6dp" />
+                        android:layout_marginEnd="4dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="À venir"
                         android:textColor="#965E3F"
-                        android:textStyle="italic"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textStyle="italic" />
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- 📜 Paroles -->
-            <TextView
-                android:id="@+id/lyricsTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Paroles du cantique..."
-                android:textColor="#965E3F"
-                android:textSize="16sp"
-                android:layout_marginBottom="24dp"
-                android:shadowColor="#80000000"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="2" />
-
-            <!-- 🎧 Icône audio si dispo -->
-            <ImageView
-                android:id="@+id/audioAvailableIcon"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center"
-                android:src="@drawable/audio"
-                android:layout_marginBottom="8dp"
-                android:visibility="gone" />
-
-            <!-- ▶️ Écouter -->
+            <!-- Bouton écouter -->
             <Button
                 android:id="@+id/playButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Écouter le chant"
-                android:layout_marginBottom="12dp"
-                android:visibility="gone" />
+                android:layout_marginBottom="12dp" />
 
-            <!-- 🎼 Icône partition si dispo -->
-            <ImageView
-                android:id="@+id/pdfAvailableIcon"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center"
-                android:src="@drawable/piano"
-                android:layout_marginBottom="8dp"
-                android:visibility="gone" />
-
-            <!-- 🎵 Voir partition -->
+            <!-- Bouton partition -->
             <Button
                 android:id="@+id/sheetButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Voir la partition"
-                android:visibility="gone" />
+                android:text="Voir la partition" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
