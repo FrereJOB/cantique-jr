@@ -4,9 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
 class SongDetailActivity : AppCompatActivity() {
@@ -29,17 +27,21 @@ class SongDetailActivity : AppCompatActivity() {
         val playButton = findViewById<Button>(R.id.playButton)
         val sheetButton = findViewById<Button>(R.id.sheetButton)
 
+        val audioIcon = findViewById<ImageView>(R.id.audioUnavailableIcon)
+        val pdfLayout = findViewById<LinearLayout>(R.id.pdfUnavailableLayout)
+
         // 🔥 Titre avec flammes
         titleTextView.text = if (!titre.isNullOrBlank()) "🔥 $titre 🔥" else "🔥 Titre inconnu 🔥"
 
-        // Texte normal pour catégorie et auteur
+        // Infos principales
         categoryTextView.text = categorie ?: "Catégorie inconnue"
         authorTextView.text = auteur ?: "Auteur inconnu"
         lyricsTextView.text = paroles ?: "Paroles non disponibles"
 
-        // Bouton audio visible uniquement si URL non vide
+        // Affichage ou masquage du bouton audio
         if (!audioUrl.isNullOrEmpty()) {
             playButton.visibility = View.VISIBLE
+            audioIcon.visibility = View.GONE
             playButton.setOnClickListener {
                 try {
                     startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(audioUrl)))
@@ -49,11 +51,13 @@ class SongDetailActivity : AppCompatActivity() {
             }
         } else {
             playButton.visibility = View.GONE
+            audioIcon.visibility = View.VISIBLE
         }
 
-        // Bouton PDF visible uniquement si URL non vide
+        // Affichage ou masquage du bouton PDF
         if (!partitionPdfUrl.isNullOrEmpty()) {
             sheetButton.visibility = View.VISIBLE
+            pdfLayout.visibility = View.GONE
             sheetButton.setOnClickListener {
                 try {
                     startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(partitionPdfUrl)))
@@ -63,6 +67,7 @@ class SongDetailActivity : AppCompatActivity() {
             }
         } else {
             sheetButton.visibility = View.GONE
+            pdfLayout.visibility = View.VISIBLE
         }
     }
 }
