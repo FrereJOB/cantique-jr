@@ -76,6 +76,7 @@
                 android:text="Paroles du cantique..."
                 android:textColor="#965E3F"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 android:layout_marginBottom="16dp"
                 android:shadowColor="#80000000"
                 android:shadowDx="1"
@@ -140,6 +141,7 @@
                         android:layout_height="wrap_content"
                         android:text="À venir"
                         android:textColor="#965E3F"
+                        android:textStyle="bold"
                         android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
