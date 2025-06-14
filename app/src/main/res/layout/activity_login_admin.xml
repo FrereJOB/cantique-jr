@@ -19,6 +19,16 @@
         android:gravity="center"
         android:padding="32dp">
 
+        <!-- Logo admin centré -->
+        <ImageView
+            android:id="@+id/adminLogo"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/admin"
+            android:contentDescription="Logo administrateur"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center" />
+
         <EditText
             android:id="@+id/emailInput"
             android:layout_width="match_parent"
