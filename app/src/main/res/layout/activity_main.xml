@@ -137,16 +137,17 @@
             android:paddingStart="0dp"
             android:paddingEnd="0dp">
 
-            <!-- Image louange : pleine largeur sans marges sur les côtés -->
+            <!-- ✅ Image louange : marge bas ajoutée pour ne pas coller au texte -->
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/louange"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="24dp"
                 android:contentDescription="Louange" />
 
             <!-- Liens -->
+            <!-- inchangé -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -170,6 +171,8 @@
                     android:textSize="16sp" />
             </LinearLayout>
 
+            <!-- autres liens identiques -->
+            <!-- ... -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -274,3 +277,4 @@
         </LinearLayout>
     </ScrollView>
 </androidx.drawerlayout.widget.DrawerLayout>
+                
