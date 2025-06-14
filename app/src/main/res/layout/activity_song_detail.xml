@@ -7,7 +7,6 @@
 
     <!-- Image de fond -->
     <ImageView
-        android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/background_spirituel"
@@ -16,7 +15,6 @@
 
     <!-- Contenu principal -->
     <ScrollView
-        android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="24dp">
@@ -42,19 +40,19 @@
                 android:shadowDy="1"
                 android:shadowRadius="2" />
 
-            <!-- Catégorie avec icône -->
+            <!-- Catégorie avec icône sol -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="12dp">
+                android:layout_marginBottom="12dp"
+                android:gravity="center_vertical">
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/sol"
-                    android:layout_marginEnd="8dp"
-                    android:contentDescription="Icône catégorie" />
+                    android:layout_marginEnd="8dp" />
 
                 <TextView
                     android:id="@+id/categoryTextView"
@@ -84,7 +82,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="2" />
 
-            <!-- Auteur -->
+            <!-- Auteur aligné à droite -->
             <TextView
                 android:id="@+id/authorTextView"
                 android:layout_width="match_parent"
@@ -95,59 +93,54 @@
                 android:textStyle="bold"
                 android:gravity="end"
                 android:textAlignment="viewEnd"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="12dp"
                 android:shadowColor="#80000000"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="2" />
 
-            <!-- Ligne audio + partition à venir -->
+            <!-- Ligne conditionnelle : audio indisponible (gauche), partition à venir (droite) -->
             <LinearLayout
-                android:id="@+id/availabilityLayout"
+                android:id="@+id/placeholderRow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="space_between"
-                android:layout_marginBottom="24dp">
+                android:layout_marginBottom="16dp"
+                android:gravity="center_vertical"
+                android:visibility="gone">
 
                 <!-- Audio indisponible -->
                 <ImageView
-                    android:id="@+id/audioUnavailableIcon"
+                    android:id="@+id/audioPlaceholder"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    android:layout_weight="1"
                     android:src="@drawable/audio"
-                    android:visibility="gone"
-                    android:contentDescription="Audio indisponible" />
+                    android:contentDescription="Audio manquant" />
 
-                <!-- Spacer -->
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1" />
-
-                <!-- Partition indisponible -->
+                <!-- Partition à venir -->
                 <LinearLayout
-                    android:id="@+id/pdfUnavailableLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="end"
-                    android:visibility="gone">
+                    android:layout_weight="1"
+                    android:gravity="end|center_vertical"
+                    android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:id="@+id/pdfPlaceholder"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:src="@drawable/piano"
-                        android:layout_marginEnd="4dp"
-                        android:contentDescription="Partition à venir" />
+                        android:contentDescription="Partition à venir"
+                        android:layout_marginEnd="4dp" />
 
                     <TextView
+                        android:id="@+id/pdfTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="À venir"
                         android:textColor="#965E3F"
-                        android:textSize="14sp"
-                        android:textStyle="italic" />
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -165,7 +158,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Voir la partition" />
-
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
