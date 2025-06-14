@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- Fond spirituel -->
         <ImageView
             android:id="@+id/background"
             android:layout_width="match_parent"
@@ -20,6 +21,7 @@
             android:scaleType="centerCrop"
             android:alpha="0.3" />
 
+        <!-- Bouton ouverture menu -->
         <ImageButton
             android:id="@+id/open_drawer"
             android:layout_width="40dp"
@@ -31,6 +33,7 @@
             android:src="@drawable/ic_menu"
             android:contentDescription="Ouvrir le menu" />
 
+        <!-- Bouton fermeture menu -->
         <ImageButton
             android:id="@+id/close_drawer"
             android:layout_width="40dp"
@@ -43,6 +46,7 @@
             android:contentDescription="Fermer le menu"
             android:visibility="gone" />
 
+        <!-- Contenu principal -->
         <LinearLayout
             android:id="@+id/main_content"
             android:layout_width="match_parent"
@@ -52,21 +56,23 @@
             android:padding="24dp"
             android:layout_below="@+id/open_drawer">
 
+            <!-- Titre -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bienvenue dans Cantique JR"
+                android:text="Cantiques Spirituels"
                 android:textColor="#0D47A1"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="24dp" />
+                android:layout_marginBottom="12dp" />
 
+            <!-- Barre de recherche -->
             <LinearLayout
                 android:id="@+id/searchContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="24dp">
+                android:layout_marginTop="8dp">
 
                 <EditText
                     android:id="@+id/searchEditText"
@@ -89,6 +95,7 @@
                     android:padding="8dp" />
             </LinearLayout>
 
+            <!-- Liste des cantiques -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/songs_list"
                 android:layout_width="match_parent"
@@ -109,9 +116,9 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <!-- Menu latéral : liens + texte biblique -->
+    <!-- Menu latéral -->
     <ScrollView
-        android:layout_width="wrap_content"
+        android:layout_width="280dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@drawable/font_lateral"
@@ -120,24 +127,28 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="0dp">
 
-            <!-- Image plein cadre -->
+            <!-- Image supérieure sans bordure -->
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:src="@drawable/louange"
                 android:scaleType="centerCrop"
+                android:src="@drawable/louange"
                 android:contentDescription="Image de louange" />
 
-            <!-- Liens du menu -->
+            <!-- Liens de menu -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:paddingHorizontal="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp">
 
-                <!-- Lien : Groupe -->
+                <!-- Groupe -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -152,7 +163,6 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/apropos"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginEnd="12dp" />
 
                     <TextView
@@ -163,13 +173,14 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Lien : App -->
+                <!-- Application -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="12dp"
                     android:background="@drawable/nav_item_background"
+                    android:layout_marginTop="8dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:onClick="onAppClick">
@@ -178,7 +189,6 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/apropos"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginEnd="12dp" />
 
                     <TextView
@@ -189,13 +199,14 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Lien : Admin -->
+                <!-- Admin -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="12dp"
                     android:background="@drawable/nav_item_background"
+                    android:layout_marginTop="8dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:onClick="onAdminClick">
@@ -204,7 +215,6 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/admin"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginEnd="12dp" />
 
                     <TextView
@@ -215,13 +225,14 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Lien : Partager -->
+                <!-- Partager -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="12dp"
                     android:background="@drawable/nav_item_background"
+                    android:layout_marginTop="8dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:onClick="onShareClick">
@@ -230,7 +241,6 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/partage"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginEnd="12dp" />
 
                     <TextView
@@ -243,26 +253,30 @@
             </LinearLayout>
 
             <!-- Texte biblique -->
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Célébrez l'ÉTERNEL avec la harpe ; chantez ses louanges sur le luth à dix cordes ;\n\nChantez-lui un cantique nouveau ; pincez habilement de vos instruments avec un cri de joie.\n\nCar la parole de l'ÉTERNEL est droite, et toute son œuvre est avec vérité.\n\nPsaumes 33:1-5"
-                android:textSize="14sp"
-                android:textColor="#4E342E"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:paddingTop="24dp"
-                android:paddingBottom="12dp"
-                android:lineSpacingExtra="4dp" />
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:padding="16dp">
 
-            <!-- Icône Bible -->
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/bible"
-                android:layout_gravity="center"
-                android:layout_marginBottom="24dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Célébrez l'ÉTERNEL avec la harpe ; chantez ses louanges sur le luth à dix cordes ;\n\nChantez-lui un cantique nouveau ; pincez habilement de vos instruments avec un cri de joie.\n\nCar la parole de l'ÉTERNEL est droite, et toute son œuvre est avec vérité.\n\nPsaumes 33:1-5"
+                    android:textSize="14sp"
+                    android:textColor="#4E342E"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:lineSpacingExtra="4dp"
+                    android:layout_marginBottom="12dp" />
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/bible"
+                    android:contentDescription="Icône Bible" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
 </androidx.drawerlayout.widget.DrawerLayout>
