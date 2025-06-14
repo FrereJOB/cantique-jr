@@ -18,9 +18,6 @@
  
    <!-- Couleur principale utilisée pour les liens cliquables -->
     <color name="teal_700">#018786</color>
-
- <!-- Couleur du texte des éléments de menu  -->
-    <color name="nav_item_text_color">#FFFFFF</color>
  
  <!-- Autres couleurs classiques si besoin -->
     
