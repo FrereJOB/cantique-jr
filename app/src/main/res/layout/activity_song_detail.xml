@@ -136,7 +136,7 @@
                 android:gravity="center_vertical">
 
                 <LinearLayout
-                    android:id="@+id/audioAvailableIcon"
+                    android:id="@+id/audioUnavailableLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
