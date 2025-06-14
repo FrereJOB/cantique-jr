@@ -78,6 +78,7 @@
                 android:text="Paroles du cantique..."
                 android:textColor="#965E3F"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 android:layout_marginBottom="16dp"
                 android:shadowColor="#80000000"
                 android:shadowDx="1"
@@ -103,6 +104,7 @@
 
             <!-- Icônes audio/piano non disponibles -->
             <LinearLayout
+                android:id="@+id/unavailableIconsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -110,6 +112,7 @@
                 android:gravity="center_vertical">
 
                 <LinearLayout
+                    android:id="@+id/audioAvailableIcon"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -124,6 +127,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/pdfUnavailableLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -161,7 +165,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Voir la partition" />
-
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
