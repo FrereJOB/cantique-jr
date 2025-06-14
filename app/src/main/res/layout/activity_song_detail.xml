@@ -7,6 +7,7 @@
 
     <!-- Image de fond -->
     <ImageView
+        android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/background_spirituel"
@@ -15,6 +16,7 @@
 
     <!-- Contenu principal -->
     <ScrollView
+        android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="24dp">
@@ -40,18 +42,18 @@
                 android:shadowDy="1"
                 android:shadowRadius="2" />
 
-            <!-- Ligne catégorie + icône sol -->
+            <!-- Catégorie avec icône sol -->
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="12dp"
-                android:gravity="center_vertical">
+                android:layout_marginBottom="12dp">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
                     android:src="@drawable/sol"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginEnd="8dp" />
 
                 <TextView
@@ -99,13 +101,13 @@
                 android:shadowDy="1"
                 android:shadowRadius="2" />
 
-            <!-- Icônes audio/piano -->
+            <!-- Icônes audio/piano non disponibles -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="space_between"
-                android:layout_marginBottom="24dp">
+                android:layout_marginBottom="24dp"
+                android:gravity="center_vertical">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -159,6 +161,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Voir la partition" />
+
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
