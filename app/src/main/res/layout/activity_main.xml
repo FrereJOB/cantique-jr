@@ -64,36 +64,39 @@
                 android:textColor="#0D47A1"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="12dp" />
+                android:layout_marginBottom="4dp" />
 
-            <!-- Barre de recherche -->
-            <LinearLayout
-                android:id="@+id/searchContainer"
+            <!-- Barre de recherche avec bouton intégré -->
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp">
 
                 <EditText
                     android:id="@+id/searchEditText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
                     android:hint="Rechercher titre, auteur, numéro, catégorie"
                     android:inputType="text"
-                    android:background="@android:drawable/editbox_background"
-                    android:padding="8dp" />
+                    android:padding="12dp"
+                    android:background="@drawable/search_edittext_bg"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/searchButton"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="48dp" />
 
                 <ImageButton
                     android:id="@+id/searchButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="4dp"
+                    android:background="@android:color/transparent"
                     android:src="@android:drawable/ic_menu_search"
-                    android:contentDescription="Rechercher"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:layout_marginStart="8dp"
-                    android:padding="8dp" />
-            </LinearLayout>
+                    android:contentDescription="Rechercher"/>
+            </RelativeLayout>
 
             <!-- Liste des chants -->
             <androidx.recyclerview.widget.RecyclerView
@@ -101,7 +104,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="8dp" />
 
             <TextView
                 android:id="@+id/emptyTextView"
@@ -115,7 +118,7 @@
                 android:layout_marginTop="16dp" />
         </LinearLayout>
     </RelativeLayout>
-
+    
     <!-- Menu latéral -->
     <ScrollView
         android:layout_width="wrap_content"
