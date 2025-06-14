@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Fond spirituel -->
+        <!-- Image de fond -->
         <ImageView
             android:id="@+id/background"
             android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             android:scaleType="centerCrop"
             android:alpha="0.3" />
 
-        <!-- Bouton ouverture menu -->
+        <!-- Bouton ouvrir menu -->
         <ImageButton
             android:id="@+id/open_drawer"
             android:layout_width="40dp"
@@ -33,7 +33,7 @@
             android:src="@drawable/ic_menu"
             android:contentDescription="Ouvrir le menu" />
 
-        <!-- Bouton fermeture menu -->
+        <!-- Bouton fermer menu -->
         <ImageButton
             android:id="@+id/close_drawer"
             android:layout_width="40dp"
@@ -56,7 +56,7 @@
             android:padding="24dp"
             android:layout_below="@+id/open_drawer">
 
-            <!-- Titre -->
+            <!-- Titre principal -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
                     android:padding="8dp" />
             </LinearLayout>
 
-            <!-- Liste des cantiques -->
+            <!-- Liste des chants -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/songs_list"
                 android:layout_width="match_parent"
@@ -118,7 +118,7 @@
 
     <!-- Menu latéral -->
     <ScrollView
-        android:layout_width="280dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@drawable/font_lateral"
@@ -128,155 +128,143 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:padding="0dp">
+            android:padding="16dp"
+            android:gravity="center_horizontal">
 
-            <!-- Image supérieure sans bordure -->
+            <!-- Image louange -->
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/louange"
-                android:contentDescription="Image de louange" />
+                android:layout_marginBottom="16dp"
+                android:contentDescription="Louange" />
 
-            <!-- Liens de menu -->
+            <!-- Liens -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingHorizontal="16dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp">
-
-                <!-- Groupe -->
-                <LinearLayout
-                    android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:background="@drawable/nav_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onGroupClick">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/apropos"
+                    android:layout_marginEnd="12dp"
+                    android:layout_gravity="center_vertical" />
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="12dp"
-                    android:background="@drawable/nav_item_background"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:onClick="onGroupClick">
+                    android:text="À propos du groupe"
+                    android:textColor="@color/nav_item_text_color"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/apropos"
-                        android:layout_marginEnd="12dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="À propos du groupe"
-                        android:textColor="@color/nav_item_text_color"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-                <!-- Application -->
-                <LinearLayout
-                    android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:background="@drawable/nav_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onAppClick">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/apropos"
+                    android:layout_marginEnd="12dp"
+                    android:layout_gravity="center_vertical" />
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="12dp"
-                    android:background="@drawable/nav_item_background"
-                    android:layout_marginTop="8dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:onClick="onAppClick">
+                    android:text="À propos de l'application"
+                    android:textColor="@color/nav_item_text_color"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/apropos"
-                        android:layout_marginEnd="12dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="À propos de l'application"
-                        android:textColor="@color/nav_item_text_color"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-                <!-- Admin -->
-                <LinearLayout
-                    android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:background="@drawable/nav_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onAdminClick">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/admin"
+                    android:layout_marginEnd="12dp"
+                    android:layout_gravity="center_vertical" />
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="12dp"
-                    android:background="@drawable/nav_item_background"
-                    android:layout_marginTop="8dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:onClick="onAdminClick">
+                    android:text="Admin"
+                    android:textColor="@color/nav_item_text_color"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/admin"
-                        android:layout_marginEnd="12dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Admin"
-                        android:textColor="@color/nav_item_text_color"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-                <!-- Partager -->
-                <LinearLayout
-                    android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:background="@drawable/nav_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onShareClick">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/partage"
+                    android:layout_marginEnd="12dp"
+                    android:layout_gravity="center_vertical" />
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="12dp"
-                    android:background="@drawable/nav_item_background"
-                    android:layout_marginTop="8dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:onClick="onShareClick">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/partage"
-                        android:layout_marginEnd="12dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Partager"
-                        android:textColor="@color/nav_item_text_color"
-                        android:textSize="16sp" />
-                </LinearLayout>
+                    android:text="Partager"
+                    android:textColor="@color/nav_item_text_color"
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <!-- Texte biblique -->
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                android:padding="16dp">
+                android:text="Célébrez l'ÉTERNEL avec la harpe ; chantez ses louanges sur le luth à dix cordes ;\n\nChantez-lui un cantique nouveau ; pincez habilement de vos instruments avec un cri de joie.\n\nCar la parole de l'ÉTERNEL est droite, et toute son œuvre est avec vérité.\n\nPsaumes 33:1-5"
+                android:textSize="14sp"
+                android:textColor="#4E342E"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:paddingTop="24dp"
+                android:paddingBottom="16dp"
+                android:lineSpacingExtra="4dp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Célébrez l'ÉTERNEL avec la harpe ; chantez ses louanges sur le luth à dix cordes ;\n\nChantez-lui un cantique nouveau ; pincez habilement de vos instruments avec un cri de joie.\n\nCar la parole de l'ÉTERNEL est droite, et toute son œuvre est avec vérité.\n\nPsaumes 33:1-5"
-                    android:textSize="14sp"
-                    android:textColor="#4E342E"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:lineSpacingExtra="4dp"
-                    android:layout_marginBottom="12dp" />
+            <!-- Image Bible -->
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/bible"
+                android:contentDescription="Icône Bible"
+                android:layout_marginTop="8dp" />
 
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/bible"
-                    android:contentDescription="Icône Bible" />
-            </LinearLayout>
+            <!-- Version / Copyright -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Version 1.0\n© 2025 Jésus-Revient Ministère"
+                android:textSize="12sp"
+                android:textColor="#4E342E"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:paddingBottom="16dp"
+                android:textAlignment="center" />
         </LinearLayout>
     </ScrollView>
 </androidx.drawerlayout.widget.DrawerLayout>
