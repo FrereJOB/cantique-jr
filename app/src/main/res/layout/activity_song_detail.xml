@@ -160,8 +160,8 @@
 
                     <ImageView
                         android:id="@+id/pdfUnavailableIcon"
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
                         android:src="@drawable/piano"
                         android:layout_marginEnd="4dp" />
 
