@@ -109,7 +109,7 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <!-- Menu latéral -->
+    <!-- Menu latéral : liens + texte biblique -->
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -120,19 +120,127 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:orientation="vertical">
 
+            <!-- Image plein cadre -->
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:src="@drawable/louange"
                 android:scaleType="centerCrop"
-                android:contentDescription="Louange"
-                android:layout_marginBottom="16dp" />
+                android:contentDescription="Image de louange" />
 
-            <!-- Liens -->
-            <include layout="@layout/nav_menu_links" />
+            <!-- Liens du menu -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Lien : Groupe -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:background="@drawable/nav_item_background"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="onGroupClick">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/apropos"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="12dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="À propos du groupe"
+                        android:textColor="@color/nav_item_text_color"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Lien : App -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:background="@drawable/nav_item_background"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="onAppClick">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/apropos"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="12dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="À propos de l'application"
+                        android:textColor="@color/nav_item_text_color"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Lien : Admin -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:background="@drawable/nav_item_background"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="onAdminClick">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/admin"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="12dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Admin"
+                        android:textColor="@color/nav_item_text_color"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Lien : Partager -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:background="@drawable/nav_item_background"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="onShareClick">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/partage"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="12dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Partager"
+                        android:textColor="@color/nav_item_text_color"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
 
             <!-- Texte biblique -->
             <TextView
@@ -142,9 +250,19 @@
                 android:textSize="14sp"
                 android:textColor="#4E342E"
                 android:gravity="center"
+                android:textStyle="bold"
                 android:paddingTop="24dp"
-                android:paddingBottom="32dp"
+                android:paddingBottom="12dp"
                 android:lineSpacingExtra="4dp" />
+
+            <!-- Icône Bible -->
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/bible"
+                android:layout_gravity="center"
+                android:layout_marginBottom="24dp" />
         </LinearLayout>
     </ScrollView>
+
 </androidx.drawerlayout.widget.DrawerLayout>
