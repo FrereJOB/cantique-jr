@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="16dp"
-                android:gravity="space_between"
+                android:gravity="center_horizontal"
                 android:visibility="gone">
 
                 <!-- Icône audio indisponible -->
