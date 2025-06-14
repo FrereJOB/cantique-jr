@@ -27,21 +27,26 @@ class SongDetailActivity : AppCompatActivity() {
         val playButton = findViewById<Button>(R.id.playButton)
         val sheetButton = findViewById<Button>(R.id.sheetButton)
 
-        val audioIcon = findViewById<ImageView>(R.id.audioUnavailableIcon)
-        val pdfLayout = findViewById<LinearLayout>(R.id.pdfUnavailableLayout)
+        val audioAvailableIcon = findViewById<ImageView>(R.id.audioAvailableIcon)
+        val pdfAvailableIcon = findViewById<ImageView>(R.id.pdfAvailableIcon)
+        val audioUnavailableIcon = findViewById<ImageView>(R.id.audioUnavailableIcon)
+        val pdfUnavailableLayout = findViewById<LinearLayout>(R.id.pdfUnavailableLayout)
+        val unavailableIconsLayout = findViewById<LinearLayout>(R.id.unavailableIconsLayout)
 
-        // 🔥 Titre avec flammes
+        // 🔥 Affichage du titre avec flammes
         titleTextView.text = if (!titre.isNullOrBlank()) "🔥 $titre 🔥" else "🔥 Titre inconnu 🔥"
 
-        // Infos principales
+        // Texte pour auteur, catégorie et paroles
         categoryTextView.text = categorie ?: "Catégorie inconnue"
         authorTextView.text = auteur ?: "Auteur inconnu"
         lyricsTextView.text = paroles ?: "Paroles non disponibles"
 
-        // Affichage ou masquage du bouton audio
+        // Gérer les boutons et icônes disponibles ou non
         if (!audioUrl.isNullOrEmpty()) {
+            // Afficher bouton + icône
             playButton.visibility = View.VISIBLE
-            audioIcon.visibility = View.GONE
+            audioAvailableIcon.visibility = View.VISIBLE
+            audioUnavailableIcon.visibility = View.GONE
             playButton.setOnClickListener {
                 try {
                     startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(audioUrl)))
@@ -51,13 +56,14 @@ class SongDetailActivity : AppCompatActivity() {
             }
         } else {
             playButton.visibility = View.GONE
-            audioIcon.visibility = View.VISIBLE
+            audioAvailableIcon.visibility = View.GONE
+            audioUnavailableIcon.visibility = View.VISIBLE
         }
 
-        // Affichage ou masquage du bouton PDF
         if (!partitionPdfUrl.isNullOrEmpty()) {
             sheetButton.visibility = View.VISIBLE
-            pdfLayout.visibility = View.GONE
+            pdfAvailableIcon.visibility = View.VISIBLE
+            pdfUnavailableLayout.visibility = View.GONE
             sheetButton.setOnClickListener {
                 try {
                     startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(partitionPdfUrl)))
@@ -67,7 +73,15 @@ class SongDetailActivity : AppCompatActivity() {
             }
         } else {
             sheetButton.visibility = View.GONE
-            pdfLayout.visibility = View.VISIBLE
+            pdfAvailableIcon.visibility = View.GONE
+            pdfUnavailableLayout.visibility = View.VISIBLE
+        }
+
+        // Afficher ou masquer le bloc "non disponibles"
+        if (audioUrl.isNullOrEmpty() && partitionPdfUrl.isNullOrEmpty()) {
+            unavailableIconsLayout.visibility = View.VISIBLE
+        } else {
+            unavailableIconsLayout.visibility = View.GONE
         }
     }
 }
