@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Titre centré avec flammes -->
+            <!-- Titre avec flammes -->
             <TextView
                 android:id="@+id/titleTextView"
                 android:layout_width="match_parent"
@@ -76,7 +76,6 @@
                 android:text="Paroles du cantique..."
                 android:textColor="#965E3F"
                 android:textSize="16sp"
-                android:textStyle="bold"
                 android:layout_marginBottom="16dp"
                 android:shadowColor="#80000000"
                 android:shadowDx="1"
@@ -93,60 +92,55 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:gravity="end"
-                android:textAlignment="viewEnd"
                 android:layout_marginBottom="12dp"
                 android:shadowColor="#80000000"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="2" />
 
-            <!-- Ligne conditionnelle : audio indisponible (gauche), partition à venir (droite) -->
+            <!-- LIGNE DES ICÔNES EN CAS D’INDISPONIBILITÉ -->
             <LinearLayout
                 android:id="@+id/placeholderRow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="16dp"
-                android:gravity="center_vertical"
+                android:gravity="space_between"
                 android:visibility="gone">
 
-                <!-- Audio indisponible -->
+                <!-- Icône audio indisponible -->
                 <ImageView
-                    android:id="@+id/audioPlaceholder"
+                    android:id="@+id/audioUnavailableIcon"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_weight="1"
                     android:src="@drawable/audio"
-                    android:contentDescription="Audio manquant" />
+                    android:contentDescription="Audio non disponible" />
 
                 <!-- Partition à venir -->
                 <LinearLayout
+                    android:id="@+id/pdfUnavailableLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="end|center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="end|center_vertical">
 
                     <ImageView
-                        android:id="@+id/pdfPlaceholder"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/piano"
-                        android:contentDescription="Partition à venir"
-                        android:layout_marginEnd="4dp" />
+                        android:layout_marginEnd="4dp"
+                        android:contentDescription="Partition à venir" />
 
                     <TextView
-                        android:id="@+id/pdfTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="À venir"
                         android:textColor="#965E3F"
-                        android:textStyle="bold"
                         android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Bouton écouter -->
+            <!-- Boutons -->
             <Button
                 android:id="@+id/playButton"
                 android:layout_width="match_parent"
@@ -154,7 +148,6 @@
                 android:text="Écouter le chant"
                 android:layout_marginBottom="12dp" />
 
-            <!-- Bouton partition -->
             <Button
                 android:id="@+id/sheetButton"
                 android:layout_width="match_parent"
