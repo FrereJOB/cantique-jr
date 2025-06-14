@@ -31,6 +31,7 @@
                 android:id="@+id/titleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="🔥 Titre du Cantique 🔥"
                 android:textColor="#965E3F"
                 android:textSize="22sp"
                 android:textStyle="bold"
@@ -41,20 +42,33 @@
                 android:shadowDy="1"
                 android:shadowRadius="2" />
 
-            <!-- Catégorie alignée à gauche -->
-            <TextView
-                android:id="@+id/categoryTextView"
+            <!-- Catégorie avec icône -->
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Catégorie"
-                android:textColor="#965E3F"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="12dp"
-                android:shadowColor="#80000000"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="2" />
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/sol"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="Icône catégorie" />
+
+                <TextView
+                    android:id="@+id/categoryTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Catégorie"
+                    android:textColor="#965E3F"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:shadowColor="#80000000"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2" />
+            </LinearLayout>
 
             <!-- Paroles -->
             <TextView
@@ -64,14 +78,13 @@
                 android:text="Paroles du cantique..."
                 android:textColor="#965E3F"
                 android:textSize="16sp"
-                android:textStyle="bold"
                 android:layout_marginBottom="16dp"
                 android:shadowColor="#80000000"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="2" />
 
-            <!-- Auteur aligné à droite -->
+            <!-- Auteur -->
             <TextView
                 android:id="@+id/authorTextView"
                 android:layout_width="match_parent"
@@ -82,11 +95,61 @@
                 android:textStyle="bold"
                 android:gravity="end"
                 android:textAlignment="viewEnd"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="8dp"
                 android:shadowColor="#80000000"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="2" />
+
+            <!-- Ligne audio + partition à venir -->
+            <LinearLayout
+                android:id="@+id/availabilityLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="space_between"
+                android:layout_marginBottom="24dp">
+
+                <!-- Audio indisponible -->
+                <ImageView
+                    android:id="@+id/audioUnavailableIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/audio"
+                    android:visibility="gone"
+                    android:contentDescription="Audio indisponible" />
+
+                <!-- Spacer -->
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <!-- Partition indisponible -->
+                <LinearLayout
+                    android:id="@+id/pdfUnavailableLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="end"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/piano"
+                        android:layout_marginEnd="4dp"
+                        android:contentDescription="Partition à venir" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="À venir"
+                        android:textColor="#965E3F"
+                        android:textSize="14sp"
+                        android:textStyle="italic" />
+                </LinearLayout>
+            </LinearLayout>
 
             <!-- Bouton écouter -->
             <Button
