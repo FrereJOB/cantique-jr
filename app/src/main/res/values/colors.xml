@@ -15,6 +15,16 @@
     <color name="text_primary">#212121</color>
     <color name="semi_transparent_black">#80000000</color>
     <color name="nav_item_text">#592626</color> <!-- Couleur du menu -->
+ 
+   <!-- Couleur principale utilisée pour les liens cliquables -->
+    <color name="teal_700">#018786</color>
+
+ <!-- Couleur du texte des éléments de menu  -->
+    <color name="nav_item_text_color">#FFFFFF</color>
+ 
+ <!-- Autres couleurs classiques si besoin -->
+    
+    <color name="gray">#888888</color>
 
 
 </resources>
