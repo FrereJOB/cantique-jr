@@ -66,7 +66,7 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="4dp" />
 
-            <!-- Barre de recherche avec bouton intégré -->
+            <!-- Barre de recherche -->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -81,9 +81,6 @@
                     android:inputType="text"
                     android:padding="12dp"
                     android:background="@drawable/search_edittext_bg"
-                    android:layout_alignParentStart="true"
-                    android:layout_toStartOf="@+id/searchButton"
-                    android:layout_centerVertical="true"
                     android:layout_marginEnd="48dp" />
 
                 <ImageButton
@@ -119,9 +116,9 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <!-- Menu latéral -->
+    <!-- MENU LATERAL -->
     <ScrollView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@drawable/font_lateral"
@@ -137,125 +134,70 @@
             android:paddingStart="0dp"
             android:paddingEnd="0dp">
 
-            <!-- ✅ Image louange : marge bas ajoutée pour ne pas coller au texte -->
+            <!-- IMAGE LOUANGE -->
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/louange"
-                android:layout_marginBottom="24dp"
-                android:contentDescription="Louange" />
+                android:contentDescription="Louange"
+                android:layout_marginBottom="16dp" />
 
-            <!-- Liens -->
-            <!-- inchangé -->
+            <!-- LIENS DE MENU -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="12dp"
-                android:background="@drawable/nav_item_background"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="onGroupClick">
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/apropos"
-                    android:layout_marginEnd="12dp"
-                    android:layout_gravity="center_vertical" />
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp">
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="À propos du groupe"
-                    android:textColor="@color/nav_item_text_color"
-                    android:textSize="16sp" />
-            </LinearLayout>
+                    android:textSize="18sp"
+                    android:textColor="#FFFFFF"
+                    android:paddingVertical="12dp" />
 
-            <!-- autres liens identiques -->
-            <!-- ... -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="12dp"
-                android:background="@drawable/nav_item_background"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="onAppClick">
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/apropos"
-                    android:layout_marginEnd="12dp"
-                    android:layout_gravity="center_vertical" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="À propos de l'application"
-                    android:textColor="@color/nav_item_text_color"
-                    android:textSize="16sp" />
-            </LinearLayout>
+                    android:text="À propos de l’application"
+                    android:textSize="18sp"
+                    android:textColor="#FFFFFF"
+                    android:paddingVertical="12dp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="12dp"
-                android:background="@drawable/nav_item_background"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="onAdminClick">
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/admin"
-                    android:layout_marginEnd="12dp"
-                    android:layout_gravity="center_vertical" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Admin"
-                    android:textColor="@color/nav_item_text_color"
-                    android:textSize="16sp" />
-            </LinearLayout>
+                    android:textSize="18sp"
+                    android:textColor="#FFFFFF"
+                    android:paddingVertical="12dp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="12dp"
-                android:background="@drawable/nav_item_background"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="onShareClick">
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/partage"
-                    android:layout_marginEnd="12dp"
-                    android:layout_gravity="center_vertical" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Partager"
-                    android:textColor="@color/nav_item_text_color"
-                    android:textSize="16sp" />
+                    android:textSize="18sp"
+                    android:textColor="#FFFFFF"
+                    android:paddingVertical="12dp" />
             </LinearLayout>
 
-            <!-- Texte biblique -->
+            <!-- TEXTE BIBLIQUE -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Célébrez l'ÉTERNEL avec la harpe ; chantez ses louanges sur le luth à dix cordes ;\n\nChantez-lui un cantique nouveau ; pincez habilement de vos instruments avec un cri de joie.\n\nCar la parole de l'ÉTERNEL est droite, et toute son œuvre est avec vérité.\n\nPsaumes 33:1-5"
                 android:textSize="14sp"
-                android:textColor="#4E342E"
+                android:textColor="#FFE0B2"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:paddingTop="24dp"
                 android:paddingBottom="16dp"
-                android:lineSpacingExtra="4dp" />
+                android:lineSpacingExtra="4dp"
+                android:paddingHorizontal="16dp" />
 
-            <!-- Image Bible -->
+            <!-- IMAGE BIBLE -->
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
@@ -263,13 +205,13 @@
                 android:contentDescription="Icône Bible"
                 android:layout_marginTop="8dp" />
 
-            <!-- Version / Copyright -->
+            <!-- FOOTER -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Version 1.0\n© 2025 Jésus-Revient Ministère"
                 android:textSize="12sp"
-                android:textColor="#4E342E"
+                android:textColor="#FFCCBC"
                 android:gravity="center"
                 android:paddingTop="8dp"
                 android:paddingBottom="16dp"
@@ -277,4 +219,3 @@
         </LinearLayout>
     </ScrollView>
 </androidx.drawerlayout.widget.DrawerLayout>
-                
