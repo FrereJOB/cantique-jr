@@ -22,6 +22,10 @@
  <!-- Autres couleurs classiques si besoin -->
     
     <color name="gray">#888888</color>
+ <color name="or_fond">#FFF8E1</color>
+<color name="texte_principal">#3E2723</color>
+<color name="accent_dore">#FFD54F</color>
+ 
 
 
 </resources>
