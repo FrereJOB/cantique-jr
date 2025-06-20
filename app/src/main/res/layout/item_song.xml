@@ -11,6 +11,7 @@
     android:elevation="4dp"
     android:clickable="true"
     android:focusable="true"
+    app:cardCornerRadius="0dp"
     android:foreground="?android:attr/selectableItemBackground"
     android:backgroundTint="@android:color/transparent"
     app:cardBackgroundColor="@android:color/transparent">
