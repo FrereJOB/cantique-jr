@@ -7,10 +7,11 @@
     android:layout_marginRight="12dp"
     android:layout_marginTop="4dp"
     android:elevation="4dp"
+    android:clickable="true"
+    android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:backgroundTint="@android:color/transparent"
-    android:clickable="true"
-    android:focusable="true">
+    app:cardBackgroundColor="@android:color/transparent">
 
     <LinearLayout
         android:id="@+id/song_card_container"
@@ -18,47 +19,52 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="12dp"
-        android:background="@drawable/song_card_background">
+        android:background="@drawable/song_card_background"
+        android:gravity="center_vertical">
 
+        <!-- Titre du chant avec Cinzel -->
         <TextView
             android:id="@+id/song_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Titre du chant"
             android:textStyle="bold"
-            android:textSize="18sp"
-            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textColor="#3E2723"
             android:fontFamily="@font/cinzel"
             android:layout_marginBottom="4dp" />
 
+        <!-- Auteur avec Playfair -->
         <TextView
             android:id="@+id/song_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Auteur"
             android:textSize="14sp"
-            android:textColor="#333333"
+            android:textColor="#5D4037"
             android:fontFamily="@font/playfair_display"
             android:layout_marginBottom="4dp" />
 
+        <!-- Lien PDF avec Playfair -->
         <TextView
             android:id="@+id/song_pdf_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Voir partition PDF"
-            android:textColor="@color/teal_700"
-            android:fontFamily="@font/playfair_display"
+            android:textColor="#8D6E63"
             android:textStyle="italic"
+            android:fontFamily="@font/playfair_display"
             android:layout_marginBottom="2dp" />
 
+        <!-- Lien Audio avec Playfair -->
         <TextView
             android:id="@+id/song_audio_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Écouter Audio"
-            android:textColor="@color/teal_700"
-            android:fontFamily="@font/playfair_display"
-            android:textStyle="italic" />
+            android:textColor="#8D6E63"
+            android:textStyle="italic"
+            android:fontFamily="@font/playfair_display" />
 
     </LinearLayout>
 
