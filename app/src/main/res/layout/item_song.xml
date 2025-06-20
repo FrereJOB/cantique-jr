@@ -20,6 +20,7 @@
         android:background="@drawable/song_card_background"
         android:gravity="center_vertical">
 
+        <!-- Titre du chant avec Cinzel -->
         <TextView
             android:id="@+id/song_title"
             android:layout_width="wrap_content"
@@ -28,9 +29,10 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:textColor="#3E2723"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/cinzel"
             android:layout_marginBottom="6dp" />
 
+        <!-- Auteur avec Playfair -->
         <TextView
             android:id="@+id/song_author"
             android:layout_width="wrap_content"
@@ -38,8 +40,10 @@
             android:text="Auteur"
             android:textSize="14sp"
             android:textColor="#5D4037"
+            android:fontFamily="@font/playfair_display"
             android:layout_marginBottom="6dp" />
 
+        <!-- Lien PDF avec Playfair -->
         <TextView
             android:id="@+id/song_pdf_link"
             android:layout_width="wrap_content"
@@ -47,15 +51,18 @@
             android:text="Voir partition PDF"
             android:textColor="#8D6E63"
             android:textStyle="italic"
+            android:fontFamily="@font/playfair_display"
             android:layout_marginBottom="4dp" />
 
+        <!-- Lien Audio avec Playfair -->
         <TextView
             android:id="@+id/song_audio_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Écouter Audio"
             android:textColor="#8D6E63"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            android:fontFamily="@font/playfair_display" />
 
     </LinearLayout>
 
