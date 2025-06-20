@@ -13,45 +13,20 @@
         android:layout_height="match_parent">
 
         <!-- Image de fond -->
-<ImageView
-    android:id="@+id/background"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:src="@drawable/background_spirituel"
-    android:scaleType="centerCrop" />
+        <ImageView
+            android:id="@+id/background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/background_spirituel"
+            android:scaleType="centerCrop" />
 
-<!-- Voile doré semi-transparent par-dessus l’image -->
-<View
-    android:id="@+id/golden_overlay"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#CCFFD700" />
-        
-
-        <!-- Bouton ouvrir menu -->
-        <ImageButton
-            android:id="@+id/open_drawer"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_menu"
-            android:contentDescription="Ouvrir le menu" />
-
-        <!-- Bouton fermer menu -->
-        <ImageButton
-            android:id="@+id/close_drawer"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_close"
-            android:contentDescription="Fermer le menu"
-            android:visibility="gone" />
+        <!-- Voile doré or pur avec transparence -->
+        <View
+            android:id="@+id/golden_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#CCFFD700"
+            android:elevation="2dp" />
 
         <!-- Contenu principal -->
         <LinearLayout
@@ -60,8 +35,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center"
-            android:padding="24dp"
-            android:layout_below="@+id/open_drawer">
+            android:padding="24dp">
 
             <!-- Titre principal -->
             <TextView
@@ -124,6 +98,31 @@
                 android:fontFamily="@font/playfair_display"
                 android:layout_marginTop="16dp" />
         </LinearLayout>
+
+        <!-- Bouton ouvrir menu -->
+        <ImageButton
+            android:id="@+id/open_drawer"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="16dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_menu"
+            android:contentDescription="Ouvrir le menu" />
+
+        <!-- Bouton fermer menu -->
+        <ImageButton
+            android:id="@+id/close_drawer"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="16dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_close"
+            android:contentDescription="Fermer le menu"
+            android:visibility="gone" />
     </RelativeLayout>
 
     <!-- Menu latéral -->
@@ -150,7 +149,7 @@
                 android:contentDescription="Louange"
                 android:layout_marginBottom="16dp" />
 
-            <!-- Liens du menu avec Playfair -->
+            <!-- Liens du menu -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
