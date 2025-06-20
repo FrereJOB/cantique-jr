@@ -18,15 +18,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/background_spirituel"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:alpha="0.3"/>
 
         <!-- Voile doré or pur avec transparence -->
-        <View
+       <!-- <View
             android:id="@+id/golden_overlay"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#CCFFD700"
-            android:elevation="2dp" />
+            android:elevation="2dp" /> -->
 
         <!-- Contenu principal -->
         <LinearLayout
