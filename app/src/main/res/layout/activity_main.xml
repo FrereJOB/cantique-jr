@@ -13,13 +13,20 @@
         android:layout_height="match_parent">
 
         <!-- Image de fond -->
-        <ImageView
-            android:id="@+id/background"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/background_spirituel"
-            android:scaleType="centerCrop"
-            android:alpha="0.3" />
+<ImageView
+    android:id="@+id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:src="@drawable/background_spirituel"
+    android:scaleType="centerCrop" />
+
+<!-- Voile doré semi-transparent par-dessus l’image -->
+<View
+    android:id="@+id/golden_overlay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CCFFD700" />
+        
 
         <!-- Bouton ouvrir menu -->
         <ImageButton
