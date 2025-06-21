@@ -24,6 +24,14 @@
         android:padding="12dp"
         android:background="@drawable/song_card_background"
         android:gravity="center_vertical">
+        <!-- école devant le titre de chaque cantique -->
+        <ImageView
+                android:id="@+id/music_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_music_note"
+                android:contentDescription="Icône musique" />
 
         <!-- Titre du chant avec Cinzel -->
         <TextView
