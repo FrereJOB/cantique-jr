@@ -34,7 +34,7 @@ class SongDetailActivity : AppCompatActivity() {
         val audioUnavailableIcon = findViewById<ImageView>(R.id.audioUnavailableIcon)
         val pdfUnavailableLayout = findViewById<LinearLayout>(R.id.pdfUnavailableLayout)
         val unavailableIconsLayout = findViewById<LinearLayout>(R.id.unavailableIconsLayout)
-        val shareButton = findViewById<ImageButton>(R.id.share_button)
+     //   val shareButton = findViewById<ImageButton>(R.id.share_button)
         val downloadIcon = findViewById<ImageView>(R.id.download_icon)
 
         titleTextView.text = if (!titre.isNullOrBlank()) "🔥 $titre 🔥" else "🔥 Titre inconnu 🔥"
