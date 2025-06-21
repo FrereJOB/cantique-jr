@@ -90,7 +90,7 @@
                 android:layout_marginBottom="8dp" />
 
             <!-- Bouton partager -->
-            <RelativeLayout
+        <!--    <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -102,12 +102,12 @@
                     android:background="@android:color/transparent"
                     android:contentDescription="Partager le cantique"
                     android:layout_alignParentEnd="true" />
-            </RelativeLayout>
+            </RelativeLayout> -->
 
         </LinearLayout>
 
         <!-- Icône 📥 si téléchargé -->
-        <ImageView
+     <!--   <ImageView
             android:id="@+id/download_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
@@ -115,7 +115,7 @@
             android:layout_margin="8dp"
             android:src="@drawable/ic_download"
             android:visibility="gone"
-            android:contentDescription="Téléchargé" />
+            android:contentDescription="Téléchargé" /> -->
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
