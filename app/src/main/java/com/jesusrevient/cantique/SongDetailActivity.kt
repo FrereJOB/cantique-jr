@@ -118,22 +118,26 @@ scrollableLayout.setOnLongClickListener {
     }
 
     private fun showContextMenu(anchor: View, titre: String?, auteur: String?, paroles: String?) {
-        val popup = PopupMenu(this, anchor)
-        popup.menuInflater.inflate(R.menu.context_song_menu, popup.menu)
-        popup.setOnMenuItemClickListener { item: MenuItem ->
-            when (item.itemId) {
-                R.id.menu_partager -> {
-                    val texte = "Titre: $titre\nAuteur: $auteur\n\n$paroles"
-                    val intent = Intent(Intent.ACTION_SEND).apply {
-                        type = "text/plain"
-                        putExtra(Intent.EXTRA_TEXT, texte)
-                    }
-                    startActivity(Intent.createChooser(intent, "Partager ce cantique via"))
-                    true
+    val wrapper = ContextThemeWrapper(this, R.style.PopupMenuTransparent)
+    val popupAnchor = findViewById<View>(R.id.popup_anchor) // Vue centrale invisible
+
+    val popup = PopupMenu(wrapper, popupAnchor)
+    popup.menuInflater.inflate(R.menu.context_song_menu, popup.menu)
+    popup.setOnMenuItemClickListener { item: MenuItem ->
+        when (item.itemId) {
+            R.id.menu_partager -> {
+                val texte = "Titre: $titre\nAuteur: $auteur\n\n$paroles"
+                val intent = Intent(Intent.ACTION_SEND).apply {
+                    type = "text/plain"
+                    putExtra(Intent.EXTRA_TEXT, texte)
                 }
-                else -> false
+                startActivity(Intent.createChooser(intent, "Partager ce cantique via"))
+                true
             }
+            else -> false
         }
-        popup.show()
     }
+    popup.show()
+}
+
 }
