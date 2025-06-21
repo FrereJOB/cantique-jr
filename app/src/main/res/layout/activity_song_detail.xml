@@ -43,34 +43,66 @@
                 android:shadowDy="1"
                 android:shadowRadius="2" />
 
-            <!-- Catégorie -->
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <!-- Catégorie + boutons alignés à droite -->
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginBottom="12dp">
 
-                <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:src="@drawable/sol"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="8dp" />
-
-                <TextView
-                    android:id="@+id/categoryTextView"
+                <!-- Icône sol + texte catégorie -->
+                <LinearLayout
+                    android:id="@+id/categoryLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Catégorie"
-                    android:textColor="#965E3F"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/cinzel"
-                    android:shadowColor="#80000000"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="2" />
-            </LinearLayout>
+                    android:orientation="horizontal"
+                    android:layout_alignParentStart="true"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/sol"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:id="@+id/categoryTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Catégorie"
+                        android:textColor="#965E3F"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/cinzel"
+                        android:shadowColor="#80000000"
+                        android:shadowDx="1"
+                        android:shadowDy="1"
+                        android:shadowRadius="2" />
+                </LinearLayout>
+
+                <!-- Icône de téléchargement -->
+                <ImageView
+                    android:id="@+id/download_icon"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_download"
+                    android:contentDescription="Téléchargé"
+                    android:visibility="gone" />
+
+                <!-- Bouton partager -->
+                <ImageButton
+                    android:id="@+id/share_button"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_toStartOf="@id/download_icon"
+                    android:layout_marginEnd="8dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_menu_share"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Partager le cantique" />
+            </RelativeLayout>
 
             <!-- Paroles -->
             <TextView
@@ -106,7 +138,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="2" />
 
-            <!-- Icônes DISPONIBLES (au-dessus des boutons) -->
+            <!-- Icônes DISPONIBLES -->
             <LinearLayout
                 android:id="@+id/availableIconsLayout"
                 android:layout_width="match_parent"
