@@ -123,6 +123,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_menu_share"
+                android:layout_width="36dp"
+                        android:layout_height="36dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="Partager"
                 android:layout_marginBottom="8dp" />
@@ -218,4 +220,11 @@
 
         </LinearLayout>
     </ScrollView>
+    <View
+    android:id="@+id/popup_anchor"
+    android:layout_width="1dp"
+    android:layout_height="1dp"
+    android:layout_centerInParent="true"
+    android:visibility="invisible" />
+    
 </RelativeLayout>
