@@ -108,6 +108,25 @@
                 android:shadowDy="1"
                 android:shadowRadius="2" />
 
+            <!-- Icône de téléchargement locale -->
+            <ImageView
+                android:id="@+id/download_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_download"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone" />
+
+            <!-- Bouton de partage -->
+            <ImageButton
+                android:id="@+id/share_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_menu_share"
+                android:background="@android:color/transparent"
+                android:contentDescription="Partager"
+                android:layout_marginBottom="8dp" />
+
             <!-- Icônes DISPONIBLES -->
             <LinearLayout
                 android:id="@+id/availableIconsLayout"
