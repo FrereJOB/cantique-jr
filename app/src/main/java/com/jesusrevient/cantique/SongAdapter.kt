@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.jesusrevient.cantique.models.Song
-import java.io.File
 
 class SongAdapter(
     private var songs: List<Song>,
@@ -22,7 +21,6 @@ class SongAdapter(
         val authorText: TextView = itemView.findViewById(R.id.song_author)
         val pdfLinkText: TextView = itemView.findViewById(R.id.song_pdf_link)
         val audioLinkText: TextView = itemView.findViewById(R.id.song_audio_link)
-        val downloadIcon: ImageView = itemView.findViewById(R.id.download_icon)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
@@ -38,13 +36,6 @@ class SongAdapter(
         holder.authorText.text = "Auteur : ${song.auteur}"
         holder.pdfLinkText.text = "Voir partition PDF"
         holder.audioLinkText.text = "Écouter Audio"
-
-        val numero = song.numero.toString()
-        if (isSongDownloadedLocally(context, numero)) {
-            holder.downloadIcon.visibility = View.VISIBLE
-        } else {
-            holder.downloadIcon.visibility = View.GONE
-        }
 
         holder.titleText.setOnClickListener {
             val intent = Intent(context, SongDetailActivity::class.java).apply {
@@ -89,13 +80,5 @@ class SongAdapter(
         songs = newList
         notifyDataSetChanged()
         emptyTextView.visibility = if (songs.isEmpty()) View.VISIBLE else View.GONE
-    }
-
-    private fun isSongDownloadedLocally(context: Context, numero: String): Boolean {
-        val dir = context.getExternalFilesDir(null)
-        val textFile = File(dir, "$numero.txt")
-        val audioFile = File(dir, "$numero.mp3")
-        val pdfFile = File(dir, "$numero.pdf")
-        return textFile.exists() || audioFile.exists() || pdfFile.exists()
     }
 }
