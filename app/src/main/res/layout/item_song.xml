@@ -96,7 +96,7 @@
 
                 <ImageButton
                     android:id="@+id/share_button"
-                    android:layout_width="24dpt"
+                    android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_menu_share"
                     android:background="@android:color/transparent"
