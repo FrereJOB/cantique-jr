@@ -108,7 +108,7 @@
 
         <!-- Icône 📥 si téléchargé -->
         <ImageView
-            android:id="@+id/downloaded_icon"
+            android:id="@+id/ic_downloaded"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_alignParentEnd="true"
