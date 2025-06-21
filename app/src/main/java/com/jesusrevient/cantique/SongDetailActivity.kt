@@ -98,7 +98,6 @@ class SongDetailActivity : AppCompatActivity() {
             unavailableIconsLayout.visibility = View.GONE
         }
 
-        // Ajout du clic prolongé sur toute la page pour afficher menu de partage
         val scrollableLayout = findViewById<LinearLayout>(R.id.scrollableLayout)
         scrollableLayout.setOnLongClickListener {
             showContextMenu(it, titre, auteur, paroles)
