@@ -96,8 +96,8 @@
 
                 <ImageButton
                     android:id="@+id/share_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="24dpt"
+                    android:layout_height="24dp"
                     android:src="@drawable/ic_menu_share"
                     android:background="@android:color/transparent"
                     android:contentDescription="Partager le cantique"
