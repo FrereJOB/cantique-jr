@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
-    android:layout_marginLeft="12dp"
-    android:layout_marginRight="12dp"
-    android:layout_marginTop="4dp"
+    android:layout_marginHorizontal="12dp"
     app:cardElevation="0dp"
     android:clickable="true"
     android:focusable="true"
@@ -16,67 +14,102 @@
     android:backgroundTint="@android:color/transparent"
     app:cardBackgroundColor="@android:color/transparent">
 
-    <LinearLayout
-        android:id="@+id/song_card_container"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="12dp"
-        android:background="@drawable/song_card_background"
-        android:gravity="center_vertical">
-        <!-- école devant le titre de chaque cantique -->
+        android:layout_height="wrap_content">
+
+        <!-- Conteneur principal -->
+        <LinearLayout
+            android:id="@+id/song_card_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:background="@drawable/song_card_background"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="start|center_vertical"
+                android:layout_marginBottom="4dp">
+
+                <!-- Icône musique -->
+                <ImageView
+                    android:id="@+id/music_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_music_note"
+                    android:contentDescription="Icône musique" />
+
+                <!-- Titre du chant -->
+                <TextView
+                    android:id="@+id/song_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Titre du chant"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="#3E2723"
+                    android:fontFamily="@font/cinzel" />
+            </LinearLayout>
+
+            <!-- Auteur -->
+            <TextView
+                android:id="@+id/song_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Auteur"
+                android:textSize="14sp"
+                android:textColor="#5D4037"
+                android:fontFamily="@font/playfair_display"
+                android:layout_marginBottom="4dp" />
+
+            <!-- Lien PDF -->
+            <TextView
+                android:id="@+id/song_pdf_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Voir partition PDF"
+                android:textColor="#8D6E63"
+                android:textStyle="italic"
+                android:fontFamily="@font/playfair_display"
+                android:layout_marginBottom="2dp" />
+
+            <!-- Lien Audio -->
+            <TextView
+                android:id="@+id/song_audio_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Écouter Audio"
+                android:textColor="#8D6E63"
+                android:textStyle="italic"
+                android:fontFamily="@font/playfair_display"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Bouton partager -->
+            <ImageButton
+                android:id="@+id/share_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_share"
+                android:background="@android:color/transparent"
+                android:contentDescription="Partager le cantique"
+                android:layout_gravity="end" />
+        </LinearLayout>
+
+        <!-- Icône 📥 si téléchargé -->
         <ImageView
-                android:id="@+id/music_icon"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_music_note"
-                android:contentDescription="Icône musique" />
-
-        <!-- Titre du chant avec Cinzel -->
-        <TextView
-            android:id="@+id/song_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Titre du chant"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:textColor="#3E2723"
-            android:fontFamily="@font/cinzel"
-            android:layout_marginBottom="4dp" />
-
-        <!-- Auteur avec Playfair -->
-        <TextView
-            android:id="@+id/song_author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Auteur"
-            android:textSize="14sp"
-            android:textColor="#5D4037"
-            android:fontFamily="@font/playfair_display"
-            android:layout_marginBottom="4dp" />
-
-        <!-- Lien PDF avec Playfair -->
-        <TextView
-            android:id="@+id/song_pdf_link"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Voir partition PDF"
-            android:textColor="#8D6E63"
-            android:textStyle="italic"
-            android:fontFamily="@font/playfair_display"
-            android:layout_marginBottom="2dp" />
-
-        <!-- Lien Audio avec Playfair -->
-        <TextView
-            android:id="@+id/song_audio_link"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Écouter Audio"
-            android:textColor="#8D6E63"
-            android:textStyle="italic"
-            android:fontFamily="@font/playfair_display" />
-
-    </LinearLayout>
+            android:id="@+id/downloaded_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_download_done"
+            android:visibility="gone"
+            android:contentDescription="Téléchargé" />
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
