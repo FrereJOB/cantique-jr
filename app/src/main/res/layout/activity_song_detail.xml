@@ -118,14 +118,14 @@
                 android:visibility="gone" />
 
             <!-- Bouton de partage -->
-            <ImageButton
+          <!--  <ImageButton
                 android:id="@+id/share_button"
                 android:src="@drawable/ic_menu_share"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="Partager"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="8dp" /> -->
 
             <!-- Icônes DISPONIBLES -->
             <LinearLayout
