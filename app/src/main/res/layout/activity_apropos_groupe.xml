@@ -33,6 +33,7 @@
                 android:text="@string/groupe_description"
                 android:textColor="@color/text_primary"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 android:fontFamily="@font/cinzel"
                 android:lineSpacingExtra="4dp"
                 android:paddingBottom="12dp" />
