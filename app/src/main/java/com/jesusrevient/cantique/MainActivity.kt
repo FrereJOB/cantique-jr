@@ -2,12 +2,11 @@ package com.jesusrevient.cantique
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.ImageButton
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -23,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: SongAdapter
     private lateinit var songList: MutableList<Song>
     private lateinit var fullSongList: MutableList<Song>
-    private lateinit var searchAutoComplete: AutoCompleteTextView
+    private lateinit var autoComplete: AutoCompleteTextView
     private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         drawerLayout = findViewById(R.id.drawer_layout)
+
         val openDrawerButton: ImageButton = findViewById(R.id.open_drawer)
         val closeDrawerButton: ImageButton = findViewById(R.id.close_drawer)
 
@@ -54,27 +54,26 @@ class MainActivity : AppCompatActivity() {
         adapter = SongAdapter(songList, emptyTextView)
         recyclerView.adapter = adapter
 
-        searchAutoComplete = findViewById(R.id.searchAutoComplete)
-        setupSearchView()
+        autoComplete = findViewById(R.id.searchEditText)
+        val searchButton = findViewById<ImageButton>(R.id.searchButton)
+
+        autoComplete.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                val query = s.toString().trim()
+                filterSongs(query)
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+
+        searchButton.setOnClickListener {
+            val query = autoComplete.text.toString().trim()
+            filterSongs(query)
+        }
 
         fetchSongs()
-    }
-
-    private fun setupSearchView() {
-        // Adapter for suggestions will be set when songs are loaded
-        searchAutoComplete.setOnItemClickListener { parent, _, position, _ ->
-            val selectedTitle = parent.getItemAtPosition(position) as String
-            searchAutoComplete.setText(selectedTitle)
-            filterSongs(selectedTitle)
-        }
-        // Listen text changes for live filtering
-        searchAutoComplete.addTextChangedListener(SimpleTextWatcher { text ->
-            filterSongs(text)
-        })
-        // Optionally handle search button press
-        findViewById<ImageButton>(R.id.searchButton).setOnClickListener {
-            filterSongs(searchAutoComplete.text.toString())
-        }
     }
 
     private fun fetchSongs() {
@@ -83,45 +82,46 @@ class MainActivity : AppCompatActivity() {
             .addOnSuccessListener { documents ->
                 songList.clear()
                 fullSongList.clear()
+                val titleSuggestions = mutableListOf<String>()
+
                 for (document in documents) {
                     try {
                         val song = document.toObject(Song::class.java)
                         songList.add(song)
                         fullSongList.add(song)
+                        titleSuggestions.add(song.titre)
                     } catch (e: Exception) {
                         Log.e("MainActivity", "Erreur de désérialisation : ${e.message}")
                     }
                 }
+
                 adapter.updateList(songList)
-                setupAutoCompleteSuggestions(fullSongList)
+
+                // Suggestions pour AutoCompleteTextView
+                val autoCompleteAdapter = ArrayAdapter(
+                    this,
+                    android.R.layout.simple_dropdown_item_1line,
+                    titleSuggestions.distinct()
+                )
+                autoComplete.setAdapter(autoCompleteAdapter)
             }
             .addOnFailureListener { exception ->
                 Log.e("MainActivity", "Erreur lors du chargement des cantiques", exception)
             }
     }
 
-    private fun setupAutoCompleteSuggestions(songs: List<Song>) {
-        val titles = songs.map { it.titre }
-        val arrayAdapter = ArrayAdapter(this,
-            android.R.layout.simple_dropdown_item_1line,
-            titles)
-        searchAutoComplete.setAdapter(arrayAdapter)
-    }
-
     private fun filterSongs(query: String) {
-        val trimmed = query.trim()
-        val filtered = if (trimmed.isEmpty()) {
-            fullSongList
-        } else {
-            fullSongList.filter { song ->
-                song.titre.contains(trimmed, ignoreCase = true)
-                        || song.paroles.contains(trimmed, ignoreCase = true)
-            }
+        val lowerCaseQuery = query.lowercase()
+        val filteredList = fullSongList.filter { song ->
+            song.titre.lowercase().contains(lowerCaseQuery) ||
+            song.auteur.lowercase().contains(lowerCaseQuery) ||
+            song.paroles?.lowercase()?.contains(lowerCaseQuery) == true ||
+            song.numero.toString().contains(lowerCaseQuery) ||
+            song.categorie.lowercase().contains(lowerCaseQuery)
         }
-        adapter.updateList(filtered)
+        adapter.updateList(filteredList)
     }
 
-    // Navigation drawer clicks
     fun onGroupClick(view: View) {
         startActivity(Intent(this, AProposGroupeActivity::class.java))
         drawerLayout.closeDrawer(GravityCompat.START)
