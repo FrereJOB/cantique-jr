@@ -163,8 +163,8 @@
                 android:focusable="true"
                 android:onClick="onGroupClick">
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
                     android:src="@drawable/apropos"
                     android:layout_marginEnd="12dp"
                     android:layout_gravity="center_vertical" />
@@ -188,8 +188,8 @@
                 android:focusable="true"
                 android:onClick="onAppClick">
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
                     android:src="@drawable/android"
                     android:layout_marginEnd="12dp"
                     android:layout_gravity="center_vertical" />
