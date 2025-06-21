@@ -54,6 +54,7 @@ class SongDetailActivity : AppCompatActivity() {
         val numero = titre?.substringBefore('.')?.trim()
         if (!numero.isNullOrEmpty() && isSongDownloadedLocally(numero)) {
             downloadIcon.visibility = View.VISIBLE
+            downloadIcon.setImageResource(R.drawable.ic_download) // important
         } else {
             downloadIcon.visibility = View.GONE
         }
