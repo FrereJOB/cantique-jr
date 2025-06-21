@@ -190,7 +190,7 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/apropos"
+                    android:src="@drawable/android"
                     android:layout_marginEnd="12dp"
                     android:layout_gravity="center_vertical" />
                 <TextView
