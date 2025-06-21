@@ -79,29 +79,28 @@
                         android:shadowRadius="2" />
                 </LinearLayout>
 
-                <!-- Icône de téléchargement -->
-                <ImageView
-                    android:id="@+id/download_icon"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="4dp"
-                    android:src="@drawable/ic_download"
-                    android:contentDescription="Téléchargé"
-                    android:visibility="gone" />
-
                 <!-- Bouton partager -->
                 <ImageButton
                     android:id="@+id/share_button"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:layout_toStartOf="@id/download_icon"
-                    android:layout_marginEnd="8dp"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:src="@drawable/ic_menu_share"
                     android:background="@android:color/transparent"
                     android:contentDescription="Partager le cantique" />
+
+                <!-- Icône de téléchargement -->
+                <ImageView
+                    android:id="@+id/download_icon"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_toStartOf="@id/share_button"
+                    android:layout_marginEnd="8dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_download"
+                    android:contentDescription="Téléchargé"
+                    android:visibility="gone" />
             </RelativeLayout>
 
             <!-- Paroles -->
