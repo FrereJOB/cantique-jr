@@ -22,7 +22,7 @@ class SongAdapter(
         val authorText: TextView = itemView.findViewById(R.id.song_author)
         val pdfLinkText: TextView = itemView.findViewById(R.id.song_pdf_link)
         val audioLinkText: TextView = itemView.findViewById(R.id.song_audio_link)
-        val downloadIcon: ImageView = itemView.findViewById(R.id.dowload_icon)
+        val downloadIcon: ImageView = itemView.findViewById(R.id.download_icon)
         val shareButton: ImageButton = itemView.findViewById(R.id.share_button)
     }
 
