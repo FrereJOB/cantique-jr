@@ -1,201 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".SongDetailActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SongDetailActivity">
 
-    <!-- Image de fond -->
-    <ImageView
-        android:id="@+id/background"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/background_spirituel"
-        android:scaleType="centerCrop"
-        android:alpha="0.3" />
+    <!-- Image de fond -->
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background_spirituel"
+        android:scaleType="centerCrop"
+        android:alpha="0.3" />
 
-    <!-- Contenu principal -->
-    <ScrollView
-        android:id="@+id/main_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="24dp">
+    <!-- Contenu principal -->
+    <ScrollView
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="24dp">
 
-        <LinearLayout
-            android:id="@+id/scrollableLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/scrollableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <!-- Titre -->
-            <TextView
-                android:id="@+id/titleTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="🔥 Titre du Cantique 🔥"
-                android:textColor="#965E3F"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:fontFamily="@font/cinzel"
-                android:gravity="center"
-                android:layout_marginBottom="4dp"
-                android:shadowColor="#80000000"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="2" />
+            <!-- Titre -->
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🔥 Titre du Cantique 🔥"
+                android:textColor="#965E3F"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/cinzel"
+                android:gravity="center"
+                android:layout_marginBottom="4dp"
+                android:shadowColor="#80000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2" />
 
-            <!-- Catégorie avec icône clé de sol -->
-            <LinearLayout
-                android:id="@+id/categoryLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="12dp"
-                android:gravity="center_vertical">
+            <!-- Catégorie avec icône clé de sol -->
+            <LinearLayout
+                android:id="@+id/categoryLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp"
+                android:gravity="center_vertical">
 
-                <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:src="@drawable/sol"
-                    android:layout_marginEnd="8dp" />
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/sol"
+                    android:layout_marginEnd="8dp" />
 
-                <TextView
-                    android:id="@+id/categoryTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Catégorie"
-                    android:textColor="#965E3F"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/cinzel"
-                    android:shadowColor="#80000000"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="2" />
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/categoryTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Catégorie"
+                    android:textColor="#965E3F"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/cinzel"
+                    android:shadowColor="#80000000"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2" />
+            </LinearLayout>
 
-            <!-- Paroles -->
-            <TextView
-                android:id="@+id/lyricsTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Paroles du cantique..."
-                android:textColor="#965E3F"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:fontFamily="@font/playfair_display"
-                android:layout_marginBottom="16dp"
-                android:shadowColor="#80000000"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="2" />
+            <!-- Paroles -->
+            <TextView
+                android:id="@+id/lyricsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Paroles du cantique..."
+                android:textColor="#965E3F"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/playfair_display"
+                android:layout_marginBottom="16dp"
+                android:shadowColor="#80000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2" />
 
-            <!-- Auteur -->
-            <TextView
-                android:id="@+id/authorTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Auteur inconnu"
-                android:textColor="#965E3F"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:fontFamily="@font/cinzel"
-                android:gravity="end"
-                android:textAlignment="viewEnd"
-                android:layout_marginBottom="12dp"
-                android:shadowColor="#80000000"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="2" />
+            <!-- Auteur -->
+            <TextView
+                android:id="@+id/authorTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Auteur inconnu"
+                android:textColor="#965E3F"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/cinzel"
+                android:gravity="end"
+                android:textAlignment="viewEnd"
+                android:layout_marginBottom="12dp"
+                android:shadowColor="#80000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2" />
 
-            <!-- Icônes DISPONIBLES -->
-            <LinearLayout
-                android:id="@+id/availableIconsLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginBottom="16dp"
-                android:visibility="gone">
+            <!-- Icônes DISPONIBLES -->
+            <LinearLayout
+                android:id="@+id/availableIconsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone">
 
-                <ImageView
-                    android:id="@+id/audioAvailableIcon"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:src="@drawable/audio"
-                    android:layout_marginEnd="8dp" />
+                <ImageView
+                    android:id="@+id/audioAvailableIcon"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/audio"
+                    android:layout_marginEnd="8dp" />
 
-                <ImageView
-                    android:id="@+id/pdfAvailableIcon"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:src="@drawable/piano" />
-            </LinearLayout>
+                <ImageView
+                    android:id="@+id/pdfAvailableIcon"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/piano" />
+            </LinearLayout>
 
-            <!-- Icônes NON DISPONIBLES -->
-            <LinearLayout
-                android:id="@+id/unavailableIconsLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="24dp"
-                android:gravity="center_vertical">
+            <!-- Icônes NON DISPONIBLES -->
+            <LinearLayout
+                android:id="@+id/unavailableIconsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="24dp"
+                android:gravity="center_vertical">
 
-                <LinearLayout
-                    android:id="@+id/audioUnavailableLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="start"
-                    android:orientation="horizontal">
+                <LinearLayout
+                    android:id="@+id/audioUnavailableLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/audioUnavailableIcon"
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:src="@drawable/audio" />
-                </LinearLayout>
+                    <ImageView
+                        android:id="@+id/audioUnavailableIcon"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/audio" />
+                </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/pdfUnavailableLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:orientation="horizontal">
+                <LinearLayout
+                    android:id="@+id/pdfUnavailableLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/pdfUnavailableIcon"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:src="@drawable/piano"
-                        android:layout_marginEnd="4dp" />
+                    <ImageView
+                        android:id="@+id/pdfUnavailableIcon"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/piano"
+                        android:layout_marginEnd="4dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="À venir"
-                        android:textColor="#965E3F"
-                        android:fontFamily="@font/cinzel"
-                        android:textSize="14sp"
-                        android:textStyle="italic" />
-                </LinearLayout>
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="À venir"
+                        android:textColor="#965E3F"
+                        android:fontFamily="@font/cinzel"
+                        android:textSize="14sp"
+                        android:textStyle="italic" />
+                </LinearLayout>
+            </LinearLayout>
 
-            <!-- Bouton écouter -->
-            <Button
-                android:id="@+id/playButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Écouter le chant"
-                android:layout_marginBottom="12dp" />
+            <!-- Bouton écouter -->
+            <Button
+                android:id="@+id/playButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Écouter le chant"
+                android:layout_marginBottom="12dp" />
 
-            <!-- Bouton partition -->
-            <Button
-                android:id="@+id/sheetButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Voir la partition" />
-        </LinearLayout>
-    </ScrollView>
+            <!-- Bouton partition -->
+            <Button
+                android:id="@+id/sheetButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Voir la partition" />
+
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
