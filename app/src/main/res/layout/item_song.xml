@@ -90,14 +90,20 @@
                 android:layout_marginBottom="8dp" />
 
             <!-- Bouton partager -->
-            <ImageButton
-                android:id="@+id/share_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_menu_share"
-                android:background="@android:color/transparent"
-                android:contentDescription="Partager le cantique"
-                android:layout_gravity="end" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/share_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_menu_share"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Partager le cantique"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+
         </LinearLayout>
 
         <!-- Icône 📥 si téléchargé -->
@@ -107,7 +113,7 @@
             android:layout_height="24dp"
             android:layout_alignParentEnd="true"
             android:layout_margin="8dp"
-            android:src="@drawable/ic_download_done"
+            android:src="@drawable/ic_download"
             android:visibility="gone"
             android:contentDescription="Téléchargé" />
     </RelativeLayout>
