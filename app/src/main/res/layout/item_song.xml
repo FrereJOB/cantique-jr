@@ -88,34 +88,7 @@
                 android:textStyle="italic"
                 android:fontFamily="@font/playfair_display"
                 android:layout_marginBottom="8dp" />
-
-            <!-- Bouton partager -->
-        <!--    <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:id="@+id/share_button"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_menu_share"
-                    android:background="@android:color/transparent"
-                    android:contentDescription="Partager le cantique"
-                    android:layout_alignParentEnd="true" />
-            </RelativeLayout> -->
-
         </LinearLayout>
-
-        <!-- Icône 📥 si téléchargé -->
-     <!--   <ImageView
-            android:id="@+id/download_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="8dp"
-            android:src="@drawable/ic_download"
-            android:visibility="gone"
-            android:contentDescription="Téléchargé" /> -->
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
