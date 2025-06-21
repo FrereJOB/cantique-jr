@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import java.io.File
 
 class SongDetailActivity : AppCompatActivity() {
 
@@ -26,24 +27,36 @@ class SongDetailActivity : AppCompatActivity() {
         val lyricsTextView = findViewById<TextView>(R.id.lyricsTextView)
         val playButton = findViewById<Button>(R.id.playButton)
         val sheetButton = findViewById<Button>(R.id.sheetButton)
-
         val audioAvailableIcon = findViewById<ImageView>(R.id.audioAvailableIcon)
         val pdfAvailableIcon = findViewById<ImageView>(R.id.pdfAvailableIcon)
         val audioUnavailableIcon = findViewById<ImageView>(R.id.audioUnavailableIcon)
         val pdfUnavailableLayout = findViewById<LinearLayout>(R.id.pdfUnavailableLayout)
         val unavailableIconsLayout = findViewById<LinearLayout>(R.id.unavailableIconsLayout)
+        val shareButton = findViewById<ImageButton>(R.id.share_button)
+        val downloadIcon = findViewById<ImageView>(R.id.download_icon)
 
-        // 🔥 Affichage du titre avec flammes
         titleTextView.text = if (!titre.isNullOrBlank()) "🔥 $titre 🔥" else "🔥 Titre inconnu 🔥"
-
-        // Texte pour auteur, catégorie et paroles
         categoryTextView.text = categorie ?: "Catégorie inconnue"
         authorTextView.text = auteur ?: "Auteur inconnu"
         lyricsTextView.text = paroles ?: "Paroles non disponibles"
 
-        // Gérer les boutons et icônes disponibles ou non
+        shareButton.setOnClickListener {
+            val texte = "Titre: $titre\nAuteur: $auteur\n\n$paroles"
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "text/plain"
+            intent.putExtra(Intent.EXTRA_TEXT, texte)
+            startActivity(Intent.createChooser(intent, "Partager ce cantique via"))
+        }
+
+        // Vérifie si le fichier a été téléchargé
+        val numero = titre?.substringBefore('.')?.trim()
+        if (!numero.isNullOrEmpty() && isSongDownloadedLocally(numero)) {
+            downloadIcon.visibility = View.VISIBLE
+        } else {
+            downloadIcon.visibility = View.GONE
+        }
+
         if (!audioUrl.isNullOrEmpty()) {
-            // Afficher bouton + icône
             playButton.visibility = View.VISIBLE
             audioAvailableIcon.visibility = View.VISIBLE
             audioUnavailableIcon.visibility = View.GONE
@@ -77,11 +90,18 @@ class SongDetailActivity : AppCompatActivity() {
             pdfUnavailableLayout.visibility = View.VISIBLE
         }
 
-        // Afficher ou masquer le bloc "non disponibles"
         if (audioUrl.isNullOrEmpty() && partitionPdfUrl.isNullOrEmpty()) {
             unavailableIconsLayout.visibility = View.VISIBLE
         } else {
             unavailableIconsLayout.visibility = View.GONE
         }
+    }
+
+    private fun isSongDownloadedLocally(numero: String): Boolean {
+        val dir = getExternalFilesDir(null)
+        val textFile = File(dir, "$numero.txt")
+        val audioFile = File(dir, "$numero.mp3")
+        val pdfFile = File(dir, "$numero.pdf")
+        return textFile.exists() || audioFile.exists() || pdfFile.exists()
     }
 }
