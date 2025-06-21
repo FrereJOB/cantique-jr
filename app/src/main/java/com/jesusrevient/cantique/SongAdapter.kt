@@ -1,115 +1,98 @@
 package com.jesusrevient.cantique
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Bundle
-import android.view.ContextMenu
-import android.view.MenuItem
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
+import com.jesusrevient.cantique.models.Song
 import java.io.File
 
-class SongDetailActivity : AppCompatActivity() {
+class SongAdapter(
+    private var songs: List<Song>,
+    private val emptyTextView: TextView
+) : RecyclerView.Adapter<SongAdapter.SongViewHolder>() {
 
-    private lateinit var titre: String
-    private var auteur: String? = null
-    private var paroles: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_song_detail)
-
-        titre = intent.getStringExtra("titre") ?: "Titre inconnu"
-        auteur = intent.getStringExtra("auteur") ?: "Auteur inconnu"
-        paroles = intent.getStringExtra("paroles") ?: "Paroles non disponibles"
-        val categorie = intent.getStringExtra("categorie")
-        val audioUrl = intent.getStringExtra("audioUrl")
-        val partitionPdfUrl = intent.getStringExtra("partitionPdfUrl")
-
-        val titleTextView = findViewById<TextView>(R.id.titleTextView)
-        val authorTextView = findViewById<TextView>(R.id.authorTextView)
-        val categoryTextView = findViewById<TextView>(R.id.categoryTextView)
-        val lyricsTextView = findViewById<TextView>(R.id.lyricsTextView)
-        val playButton = findViewById<Button>(R.id.playButton)
-        val sheetButton = findViewById<Button>(R.id.sheetButton)
-        val audioAvailableIcon = findViewById<ImageView>(R.id.audioAvailableIcon)
-        val pdfAvailableIcon = findViewById<ImageView>(R.id.pdfAvailableIcon)
-        val audioUnavailableIcon = findViewById<ImageView>(R.id.audioUnavailableIcon)
-        val pdfUnavailableLayout = findViewById<LinearLayout>(R.id.pdfUnavailableLayout)
-        val unavailableIconsLayout = findViewById<LinearLayout>(R.id.unavailableIconsLayout)
-        val downloadIcon = findViewById<ImageView>(R.id.download_icon)
-        val rootLayout = findViewById<RelativeLayout>(R.id.detail_root)
-
-        titleTextView.text = "🔥 $titre 🔥"
-        authorTextView.text = auteur
-        categoryTextView.text = categorie ?: "Catégorie inconnue"
-        lyricsTextView.text = paroles
-
-        // Clic prolongé sur toute la page
-        registerForContextMenu(rootLayout)
-        rootLayout.setOnLongClickListener {
-            openContextMenu(rootLayout)
-            true
-        }
-
-        if (!audioUrl.isNullOrEmpty()) {
-            playButton.visibility = View.VISIBLE
-            audioAvailableIcon.visibility = View.VISIBLE
-            audioUnavailableIcon.visibility = View.GONE
-            playButton.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(audioUrl)))
-            }
-        } else {
-            playButton.visibility = View.GONE
-            audioAvailableIcon.visibility = View.GONE
-            audioUnavailableIcon.visibility = View.VISIBLE
-        }
-
-        if (!partitionPdfUrl.isNullOrEmpty()) {
-            sheetButton.visibility = View.VISIBLE
-            pdfAvailableIcon.visibility = View.VISIBLE
-            pdfUnavailableLayout.visibility = View.GONE
-            sheetButton.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(partitionPdfUrl)))
-            }
-        } else {
-            sheetButton.visibility = View.GONE
-            pdfAvailableIcon.visibility = View.GONE
-            pdfUnavailableLayout.visibility = View.VISIBLE
-        }
-
-        unavailableIconsLayout.visibility = if (audioUrl.isNullOrEmpty() && partitionPdfUrl.isNullOrEmpty()) View.VISIBLE else View.GONE
-
-        val numero = titre.substringBefore('.').trim()
-        if (isSongDownloadedLocally(numero)) {
-            downloadIcon.visibility = View.VISIBLE
-        }
+    class SongViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val cardContainer: View = itemView.findViewById(R.id.song_card_container)
+        val titleText: TextView = itemView.findViewById(R.id.song_title)
+        val authorText: TextView = itemView.findViewById(R.id.song_author)
+        val pdfLinkText: TextView = itemView.findViewById(R.id.song_pdf_link)
+        val audioLinkText: TextView = itemView.findViewById(R.id.song_audio_link)
+        val downloadIcon: ImageView = itemView.findViewById(R.id.download_icon)
     }
 
-    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
-        super.onCreateContextMenu(menu, v, menuInfo)
-        menu?.setHeaderTitle("Options")
-        menu?.add(0, 1, 0, "Partager ce cantique")
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_song, parent, false)
+        return SongViewHolder(view)
     }
 
-    override fun onContextItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            1 -> {
-                val texte = "Titre: $titre\nAuteur: $auteur\n\n$paroles"
-                val intent = Intent(Intent.ACTION_SEND).apply {
-                    type = "text/plain"
-                    putExtra(Intent.EXTRA_TEXT, texte)
+    override fun onBindViewHolder(holder: SongViewHolder, position: Int) {
+        val song = songs[position]
+        val context = holder.itemView.context
+
+        holder.titleText.text = "${song.numero}. ${song.titre}"
+        holder.authorText.text = "Auteur : ${song.auteur}"
+        holder.pdfLinkText.text = "Voir partition PDF"
+        holder.audioLinkText.text = "Écouter Audio"
+
+        val numero = song.numero.toString()
+        if (isSongDownloadedLocally(context, numero)) {
+            holder.downloadIcon.visibility = View.VISIBLE
+        } else {
+            holder.downloadIcon.visibility = View.GONE
+        }
+
+        holder.titleText.setOnClickListener {
+            val intent = Intent(context, SongDetailActivity::class.java).apply {
+                putExtra("titre", song.titre)
+                putExtra("auteur", song.auteur)
+                putExtra("paroles", song.paroles)
+                putExtra("categorie", song.categorie)
+                putExtra("audioUrl", song.audioUrl)
+                putExtra("partitionPdfUrl", song.partitionPdfUrl)
+            }
+            context.startActivity(intent)
+        }
+
+        if (!song.partitionPdfUrl.isNullOrEmpty()) {
+            holder.pdfLinkText.visibility = View.VISIBLE
+            holder.pdfLinkText.setOnClickListener {
+                val intent = Intent(context, PdfViewerActivity::class.java).apply {
+                    putExtra("pdfUrl", song.partitionPdfUrl)
                 }
-                startActivity(Intent.createChooser(intent, "Partager ce cantique via"))
-                true
+                context.startActivity(intent)
             }
-            else -> super.onContextItemSelected(item)
+        } else {
+            holder.pdfLinkText.visibility = View.GONE
+        }
+
+        if (!song.audioUrl.isNullOrEmpty()) {
+            holder.audioLinkText.visibility = View.VISIBLE
+            holder.audioLinkText.setOnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW).apply {
+                    setDataAndType(Uri.parse(song.audioUrl), "audio/*")
+                }
+                context.startActivity(intent)
+            }
+        } else {
+            holder.audioLinkText.visibility = View.GONE
         }
     }
 
-    private fun isSongDownloadedLocally(numero: String): Boolean {
-        val dir = getExternalFilesDir(null)
+    override fun getItemCount(): Int = songs.size
+
+    fun updateList(newList: List<Song>) {
+        songs = newList
+        notifyDataSetChanged()
+        emptyTextView.visibility = if (songs.isEmpty()) View.VISIBLE else View.GONE
+    }
+
+    private fun isSongDownloadedLocally(context: Context, numero: String): Boolean {
+        val dir = context.getExternalFilesDir(null)
         val textFile = File(dir, "$numero.txt")
         val audioFile = File(dir, "$numero.mp3")
         val pdfFile = File(dir, "$numero.pdf")
