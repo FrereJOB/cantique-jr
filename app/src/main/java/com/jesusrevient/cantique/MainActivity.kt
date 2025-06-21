@@ -3,13 +3,11 @@ package com.jesusrevient.cantique
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -25,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: SongAdapter
     private lateinit var songList: MutableList<Song>
     private lateinit var fullSongList: MutableList<Song>
+    private lateinit var searchAutoComplete: AutoCompleteTextView
     private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +31,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         drawerLayout = findViewById(R.id.drawer_layout)
-
         val openDrawerButton: ImageButton = findViewById(R.id.open_drawer)
         val closeDrawerButton: ImageButton = findViewById(R.id.close_drawer)
 
@@ -56,20 +54,26 @@ class MainActivity : AppCompatActivity() {
         adapter = SongAdapter(songList, emptyTextView)
         recyclerView.adapter = adapter
 
+        searchAutoComplete = findViewById(R.id.searchAutoComplete)
+        setupSearchView()
+
         fetchSongs()
+    }
 
-        val searchEditText = findViewById<EditText>(R.id.searchEditText)
-        val searchButton = findViewById<ImageButton>(R.id.searchButton)
-
-        searchButton.setOnClickListener {
-            val query = searchEditText.text.toString().trim().lowercase()
-            val filteredList = fullSongList.filter { song ->
-                song.titre.lowercase().contains(query) ||
-                song.auteur.lowercase().contains(query) ||
-                song.numero.toString().contains(query) ||
-                song.categorie.lowercase().contains(query)
-            }
-            adapter.updateList(filteredList)
+    private fun setupSearchView() {
+        // Adapter for suggestions will be set when songs are loaded
+        searchAutoComplete.setOnItemClickListener { parent, _, position, _ ->
+            val selectedTitle = parent.getItemAtPosition(position) as String
+            searchAutoComplete.setText(selectedTitle)
+            filterSongs(selectedTitle)
+        }
+        // Listen text changes for live filtering
+        searchAutoComplete.addTextChangedListener(SimpleTextWatcher { text ->
+            filterSongs(text)
+        })
+        // Optionally handle search button press
+        findViewById<ImageButton>(R.id.searchButton).setOnClickListener {
+            filterSongs(searchAutoComplete.text.toString())
         }
     }
 
@@ -89,12 +93,35 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 adapter.updateList(songList)
+                setupAutoCompleteSuggestions(fullSongList)
             }
             .addOnFailureListener { exception ->
                 Log.e("MainActivity", "Erreur lors du chargement des cantiques", exception)
             }
     }
 
+    private fun setupAutoCompleteSuggestions(songs: List<Song>) {
+        val titles = songs.map { it.titre }
+        val arrayAdapter = ArrayAdapter(this,
+            android.R.layout.simple_dropdown_item_1line,
+            titles)
+        searchAutoComplete.setAdapter(arrayAdapter)
+    }
+
+    private fun filterSongs(query: String) {
+        val trimmed = query.trim()
+        val filtered = if (trimmed.isEmpty()) {
+            fullSongList
+        } else {
+            fullSongList.filter { song ->
+                song.titre.contains(trimmed, ignoreCase = true)
+                        || song.paroles.contains(trimmed, ignoreCase = true)
+            }
+        }
+        adapter.updateList(filtered)
+    }
+
+    // Navigation drawer clicks
     fun onGroupClick(view: View) {
         startActivity(Intent(this, AProposGroupeActivity::class.java))
         drawerLayout.closeDrawer(GravityCompat.START)
