@@ -1,14 +1,15 @@
 package com.jesusrevient.cantique
 
-import android.net.Uri
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.cardview.widget.CardView
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.jesusrevient.cantique.models.Song
+import java.io.File
 
 class SongAdapter(
     private var songs: List<Song>,
@@ -21,27 +22,38 @@ class SongAdapter(
         val authorText: TextView = itemView.findViewById(R.id.song_author)
         val pdfLinkText: TextView = itemView.findViewById(R.id.song_pdf_link)
         val audioLinkText: TextView = itemView.findViewById(R.id.song_audio_link)
+        val downloadIcon: ImageView = itemView.findViewById(R.id.download_icon)
+        val shareButton: ImageButton = itemView.findViewById(R.id.share_button)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_song, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_song, parent, false)
         return SongViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: SongViewHolder, position: Int) {
         val song = songs[position]
+        val context = holder.itemView.context
+
         holder.titleText.text = "${song.numero}. ${song.titre}"
         holder.authorText.text = "Auteur : ${song.auteur}"
         holder.pdfLinkText.text = "Voir partition PDF"
         holder.audioLinkText.text = "Écouter Audio"
 
-        val context = holder.itemView.context
+        // Icône de téléchargement visible si fichiers locaux présents
+        val isDownloaded = isSongDownloadedLocally(context, song.numero.toString())
+        holder.downloadIcon.visibility = if (isDownloaded) View.VISIBLE else View.GONE
 
-        // 🌗 Appliquer un fond semi-transparent
-        holder.cardContainer.setBackgroundResource(R.drawable.song_card_background)
+        // Action partager
+        holder.shareButton.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "text/plain"
+            val texte = "Titre: ${song.titre}\nAuteur: ${song.auteur}\n\n${song.paroles}"
+            intent.putExtra(Intent.EXTRA_TEXT, texte)
+            context.startActivity(Intent.createChooser(intent, "Partager ce cantique via"))
+        }
 
-        // Ouvrir la fiche détail
+        // Ouvrir fiche détail
         holder.titleText.setOnClickListener {
             val intent = Intent(context, SongDetailActivity::class.java).apply {
                 putExtra("titre", song.titre)
@@ -85,5 +97,13 @@ class SongAdapter(
         songs = newList
         notifyDataSetChanged()
         emptyTextView.visibility = if (songs.isEmpty()) View.VISIBLE else View.GONE
+    }
+
+    private fun isSongDownloadedLocally(context: Context, numero: String): Boolean {
+        val dir = context.getExternalFilesDir(null)
+        val textFile = File(dir, "$numero.txt")
+        val audioFile = File(dir, "$numero.mp3")
+        val pdfFile = File(dir, "$numero.pdf")
+        return textFile.exists() || audioFile.exists() || pdfFile.exists()
     }
 }
