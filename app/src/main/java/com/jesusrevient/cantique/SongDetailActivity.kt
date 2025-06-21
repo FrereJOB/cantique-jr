@@ -100,10 +100,13 @@ class SongDetailActivity : AppCompatActivity() {
         }
 
         val scrollableLayout = findViewById<LinearLayout>(R.id.scrollableLayout)
-        scrollableLayout.setOnLongClickListener {
-            showContextMenu(it, titre, auteur, paroles)
-            true
-        }
+val popupAnchor = findViewById<View>(R.id.popup_anchor)
+
+scrollableLayout.setOnLongClickListener {
+    showContextMenu(popupAnchor, titre, auteur, paroles)
+    true
+}
+
     }
 
     private fun isSongDownloadedLocally(numero: String): Boolean {
