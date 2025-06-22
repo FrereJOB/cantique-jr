@@ -8,7 +8,9 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
+import android.view.ContextThemeWrapper
 import java.io.File
+
 
 class SongDetailActivity : AppCompatActivity() {
 
@@ -34,7 +36,7 @@ class SongDetailActivity : AppCompatActivity() {
         val audioUnavailableIcon = findViewById<ImageView>(R.id.audioUnavailableIcon)
         val pdfUnavailableLayout = findViewById<LinearLayout>(R.id.pdfUnavailableLayout)
         val unavailableIconsLayout = findViewById<LinearLayout>(R.id.unavailableIconsLayout)
-     //   val shareButton = findViewById<ImageButton>(R.id.share_button)
+
         val downloadIcon = findViewById<ImageView>(R.id.download_icon)
 
         titleTextView.text = if (!titre.isNullOrBlank()) "🔥 $titre 🔥" else "🔥 Titre inconnu 🔥"
