@@ -44,13 +44,6 @@ class SongDetailActivity : AppCompatActivity() {
         authorTextView.text = auteur ?: "Auteur inconnu"
         lyricsTextView.text = paroles ?: "Paroles non disponibles"
 
-        shareButton?.setOnClickListener {
-            val texte = "Titre: $titre\nAuteur: $auteur\n\n$paroles"
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.type = "text/plain"
-            intent.putExtra(Intent.EXTRA_TEXT, texte)
-            startActivity(Intent.createChooser(intent, "Partager ce cantique via"))
-        }
 
         // Vérifie si le fichier a été téléchargé
         val numero = titre?.substringBefore('.')?.trim()
