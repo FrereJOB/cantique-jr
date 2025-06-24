@@ -11,9 +11,9 @@ class RecueilSelectionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recueil_selection)
 
-        val imageCantiqueJR = findViewById<ImageView>(R.id.imageCantiqueJR)
-        val imageVoiesEternel = findViewById<ImageView>(R.id.imageVoiesEternel)
-        val imageChantsVictoire = findViewById<ImageView>(R.id.imageChantsVictoire)
+        val imageCantiqueJR = findViewById<ImageView>(R.id.cantiqueJR)
+        val imageVoiesEternel = findViewById<ImageView>(R.id.lesVoiesDeEternel)
+        val imageChantsVictoire = findViewById<ImageView>(R.id.lesChantsDeVictoire)
 
         val intentVersMain = Intent(this, MainActivity::class.java)
 
