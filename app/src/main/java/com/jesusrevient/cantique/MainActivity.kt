@@ -24,11 +24,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fullSongList: MutableList<Song>
     private lateinit var autoComplete: AutoCompleteTextView
     private val db = FirebaseFirestore.getInstance()
+    private lateinit var collectionName: String  // nom dynamique du recueil
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Récupérer le nom de la collection à partir de l'Intent
+        collectionName = intent.getStringExtra("collection") ?: "cantiques" // par défaut
+
+        // Initialiser les composants
         drawerLayout = findViewById(R.id.drawer_layout)
 
         val openDrawerButton: ImageButton = findViewById(R.id.open_drawer)
@@ -64,7 +69,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
@@ -77,7 +81,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fetchSongs() {
-        db.collection("cantiques")
+        db.collection(collectionName)
             .get()
             .addOnSuccessListener { documents ->
                 songList.clear()
@@ -97,7 +101,6 @@ class MainActivity : AppCompatActivity() {
 
                 adapter.updateList(songList)
 
-                // Suggestions pour AutoCompleteTextView
                 val autoCompleteAdapter = ArrayAdapter(
                     this,
                     android.R.layout.simple_dropdown_item_1line,
