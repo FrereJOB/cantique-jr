@@ -71,6 +71,22 @@
                 android:layout_height="wrap_content"
                 android:text="Choisir une partition PDF" />
 
+            <!-- Choix de la collection -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Choisir la collection"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"
+                android:textColor="#000000" />
+
+            <Spinner
+                android:id="@+id/spinnerCollection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" />
+
             <Button
                 android:id="@+id/buttonAjouter"
                 android:layout_width="match_parent"
