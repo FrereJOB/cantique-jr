@@ -110,6 +110,8 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
+                songList.sortBy { it.numero }
+                fullSongList.sortBy { it.numero }
                 adapter.updateList(songList)
 
                 val autoCompleteAdapter = ArrayAdapter(
