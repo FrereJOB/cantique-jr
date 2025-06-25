@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.*
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.util.*
@@ -30,79 +31,83 @@ class AjouterCantiqueActivity : AppCompatActivity() {
 
     private val storage = FirebaseStorage.getInstance()
     private val firestore = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()
 
     private val REQUEST_AUDIO = 100
     private val REQUEST_PDF = 200
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        try {
-            super.onCreate(savedInstanceState)
-            setContentView(R.layout.activity_ajouter_cantique)
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_ajouter_cantique)
 
-            editTitre = findViewById(R.id.editTitre)
-            editAuteur = findViewById(R.id.editAuteur)
-            editCategorie = findViewById(R.id.editCategorie)
-            editNumero = findViewById(R.id.editNumero)
-            editParoles = findViewById(R.id.editParoles)
-            buttonChooseAudio = findViewById(R.id.buttonChooseAudio)
-            buttonChoosePdf = findViewById(R.id.buttonChoosePdf)
-            buttonAjouter = findViewById(R.id.buttonAjouter)
-            spinnerCollection = findViewById(R.id.spinnerCollection)
+        // Rediriger si non connecté
+        val currentUser = auth.currentUser
+        if (currentUser == null) {
+            Toast.makeText(this, "Veuillez vous connecter", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+            return
+        }
 
-            // Initialiser la liste déroulante
-            val collections = arrayOf("cantiques", "voies_eternel", "chants_victoire")
-            val adapterSpinner = ArrayAdapter(this, android.R.layout.simple_spinner_item, collections)
-            adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinnerCollection.adapter = adapterSpinner
+        // Initialisation des vues
+        editTitre = findViewById(R.id.editTitre)
+        editAuteur = findViewById(R.id.editAuteur)
+        editCategorie = findViewById(R.id.editCategorie)
+        editNumero = findViewById(R.id.editNumero)
+        editParoles = findViewById(R.id.editParoles)
+        buttonChooseAudio = findViewById(R.id.buttonChooseAudio)
+        buttonChoosePdf = findViewById(R.id.buttonChoosePdf)
+        buttonAjouter = findViewById(R.id.buttonAjouter)
+        spinnerCollection = findViewById(R.id.spinnerCollection)
 
-            spinnerCollection.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                    selectedCollection = collections[position]
-                }
+        // Configuration du Spinner
+        val collections = arrayOf("cantiques", "voies_eternel", "chants_victoire")
+        val adapterSpinner = ArrayAdapter(this, android.R.layout.simple_spinner_item, collections)
+        adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerCollection.adapter = adapterSpinner
 
-                override fun onNothingSelected(parent: AdapterView<*>) {
-                    selectedCollection = "cantiques"
-                }
+        spinnerCollection.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                selectedCollection = collections[position]
             }
 
-            buttonChooseAudio.setOnClickListener {
-                val intent = Intent(Intent.ACTION_GET_CONTENT)
-                intent.type = "audio/*"
-                startActivityForResult(intent, REQUEST_AUDIO)
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                selectedCollection = "cantiques"
+            }
+        }
+
+        buttonChooseAudio.setOnClickListener {
+            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.type = "audio/*"
+            startActivityForResult(intent, REQUEST_AUDIO)
+        }
+
+        buttonChoosePdf.setOnClickListener {
+            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.type = "application/pdf"
+            startActivityForResult(intent, REQUEST_PDF)
+        }
+
+        buttonAjouter.setOnClickListener {
+            val titre = editTitre.text.toString().trim()
+            val auteur = editAuteur.text.toString().trim()
+            val categorie = editCategorie.text.toString().trim()
+            val numeroStr = editNumero.text.toString().trim()
+            val paroles = editParoles.text.toString().trim()
+
+            if (titre.isBlank() || auteur.isBlank() || categorie.isBlank() ||
+                numeroStr.isBlank() || paroles.isBlank()) {
+                Toast.makeText(this, "Tous les champs (sauf audio et PDF) sont requis", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
 
-            buttonChoosePdf.setOnClickListener {
-                val intent = Intent(Intent.ACTION_GET_CONTENT)
-                intent.type = "application/pdf"
-                startActivityForResult(intent, REQUEST_PDF)
+            val numero = numeroStr.toIntOrNull()
+            if (numero == null) {
+                Toast.makeText(this, "Le numéro doit être un entier valide", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
 
-            buttonAjouter.setOnClickListener {
-                val titre = editTitre.text.toString().trim()
-                val auteur = editAuteur.text.toString().trim()
-                val categorie = editCategorie.text.toString().trim()
-                val numeroStr = editNumero.text.toString().trim()
-                val paroles = editParoles.text.toString().trim()
-
-                if (titre.isBlank() || auteur.isBlank() || categorie.isBlank() ||
-                    numeroStr.isBlank() || paroles.isBlank()
-                ) {
-                    Toast.makeText(this, "Tous les champs (sauf audio et PDF) sont requis", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
-
-                val numero = numeroStr.toIntOrNull()
-                if (numero == null) {
-                    Toast.makeText(this, "Le numéro doit être un entier valide", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
-
-                uploadFilesAndSave(titre, auteur, categorie, numero, paroles)
-            }
-
-        } catch (e: Exception) {
-            Toast.makeText(this, "Erreur dans AjouterCantique: " + e.message, Toast.LENGTH_LONG).show()
-            e.printStackTrace()
+            uploadFilesAndSave(titre, auteur, categorie, numero, paroles)
         }
     }
 
@@ -167,14 +172,21 @@ class AjouterCantiqueActivity : AppCompatActivity() {
     }
 
     private fun saveToFirestore(chant: Map<String, Any>) {
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user == null) {
+            Toast.makeText(this, "Vous devez être connecté pour ajouter un cantique", Toast.LENGTH_LONG).show()
+            return
+        }
+
         firestore.collection(selectedCollection)
             .add(chant)
             .addOnSuccessListener {
                 Toast.makeText(this, "Cantique ajouté avec succès", Toast.LENGTH_SHORT).show()
                 finish()
             }
-            .addOnFailureListener {
-                Toast.makeText(this, "Erreur lors de l'ajout du cantique", Toast.LENGTH_LONG).show()
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Erreur: ${e.message}", Toast.LENGTH_LONG).show()
+                e.printStackTrace()
             }
     }
 
