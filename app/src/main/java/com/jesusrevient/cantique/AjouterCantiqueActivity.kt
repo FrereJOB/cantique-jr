@@ -20,6 +20,9 @@ class AjouterCantiqueActivity : AppCompatActivity() {
     private lateinit var buttonChooseAudio: Button
     private lateinit var buttonChoosePdf: Button
     private lateinit var buttonAjouter: Button
+    private lateinit var spinnerCollection: Spinner
+
+    private var selectedCollection: String = "cantiques"
 
     private var audioUri: Uri? = null
     private var pdfUri: Uri? = null
@@ -43,6 +46,23 @@ class AjouterCantiqueActivity : AppCompatActivity() {
             buttonChooseAudio = findViewById(R.id.buttonChooseAudio)
             buttonChoosePdf = findViewById(R.id.buttonChoosePdf)
             buttonAjouter = findViewById(R.id.buttonAjouter)
+            spinnerCollection = findViewById(R.id.spinnerCollection)
+
+            // Initialiser la liste déroulante
+            val collections = arrayOf("cantiques", "voies_eternel", "chants_victoire")
+            val adapterSpinner = ArrayAdapter(this, android.R.layout.simple_spinner_item, collections)
+            adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinnerCollection.adapter = adapterSpinner
+
+            spinnerCollection.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                    selectedCollection = collections[position]
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                    selectedCollection = "cantiques"
+                }
+            }
 
             buttonChooseAudio.setOnClickListener {
                 val intent = Intent(Intent.ACTION_GET_CONTENT)
@@ -146,7 +166,7 @@ class AjouterCantiqueActivity : AppCompatActivity() {
     }
 
     private fun saveToFirestore(chant: Map<String, Any>) {
-        firestore.collection("cantiques")
+        firestore.collection(selectedCollection)
             .add(chant)
             .addOnSuccessListener {
                 Toast.makeText(this, "Cantique ajouté avec succès", Toast.LENGTH_SHORT).show()
