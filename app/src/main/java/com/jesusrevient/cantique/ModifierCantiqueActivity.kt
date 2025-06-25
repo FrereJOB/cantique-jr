@@ -21,10 +21,12 @@ class ModifierCantiqueActivity : AppCompatActivity() {
     private lateinit var btnEnregistrer: Button
     private lateinit var audioButton: Button
     private lateinit var pdfButton: Button
+    private lateinit var spinnerCollection: Spinner
 
     private val db = FirebaseFirestore.getInstance()
     private val storage = FirebaseStorage.getInstance()
 
+    private var selectedCollection = "cantiques"
     private var songId: String? = null
     private var audioUri: Uri? = null
     private var pdfUri: Uri? = null
@@ -38,6 +40,7 @@ class ModifierCantiqueActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_modifier_cantique)
 
+        // Initialisation des vues
         numeroInput = findViewById(R.id.editTextNumero)
         btnRechercher = findViewById(R.id.btnRechercher)
         titreInput = findViewById(R.id.editTextTitre)
@@ -47,6 +50,20 @@ class ModifierCantiqueActivity : AppCompatActivity() {
         btnEnregistrer = findViewById(R.id.btnEnregistrer)
         audioButton = findViewById(R.id.btnAudio)
         pdfButton = findViewById(R.id.btnPdf)
+        spinnerCollection = findViewById(R.id.spinnerCollection)
+
+        // Configuration du Spinner
+        val collections = listOf("cantiques", "voies_eternel", "chants_victoire")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, collections)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerCollection.adapter = adapter
+        spinnerCollection.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                selectedCollection = collections[position]
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
 
         btnRechercher.setOnClickListener {
             val numero = numeroInput.text.toString().trim()
@@ -86,13 +103,13 @@ class ModifierCantiqueActivity : AppCompatActivity() {
 
     private fun rechercherCantique(numero: String) {
         val numeroInt = numero.toIntOrNull()
-if (numeroInt == null) {
-    Toast.makeText(this, "Numéro invalide", Toast.LENGTH_SHORT).show()
-    return
-}
+        if (numeroInt == null) {
+            Toast.makeText(this, "Numéro invalide", Toast.LENGTH_SHORT).show()
+            return
+        }
 
-db.collection("cantiques")
-    .whereEqualTo("numero", numeroInt)
+        db.collection(selectedCollection)
+            .whereEqualTo("numero", numeroInt)
             .get()
             .addOnSuccessListener { documents ->
                 if (!documents.isEmpty) {
@@ -173,7 +190,7 @@ db.collection("cantiques")
     }
 
     private fun enregistrerModifications(id: String, updates: Map<String, Any>) {
-        db.collection("cantiques").document(id)
+        db.collection(selectedCollection).document(id)
             .update(updates)
             .addOnSuccessListener {
                 Toast.makeText(this, "Cantique modifié avec succès", Toast.LENGTH_SHORT).show()
