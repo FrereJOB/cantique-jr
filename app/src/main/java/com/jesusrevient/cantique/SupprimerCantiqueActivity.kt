@@ -14,7 +14,7 @@ class SupprimerCantiqueActivity : AppCompatActivity() {
     private lateinit var spinnerCollection: Spinner
 
     private val db = FirebaseFirestore.getInstance()
-    private var selectedCollection = "cantiques"  // valeur par défaut
+    private var selectedCollection = "cantiques"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,36 +24,38 @@ class SupprimerCantiqueActivity : AppCompatActivity() {
         btnSupprimer = findViewById(R.id.btnSupprimer)
         spinnerCollection = findViewById(R.id.spinnerCollection)
 
-        // Initialiser le Spinner avec les noms des collections
+        // Initialiser les options de collection
         val collections = listOf("cantiques", "voies_eternel", "chants_victoire")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, collections)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerCollection.adapter = adapter
 
         spinnerCollection.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long
+            ) {
                 selectedCollection = collections[position]
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>) {}
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
         btnSupprimer.setOnClickListener {
-            val numero = numeroInput.text.toString().trim()
+            val numeroStr = numeroInput.text.toString().trim()
 
-            if (numero.isEmpty()) {
+            if (numeroStr.isEmpty()) {
                 Toast.makeText(this, "Veuillez entrer le numéro du cantique.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            val numeroInt = numero.toIntOrNull()
-            if (numeroInt == null) {
-                Toast.makeText(this, "Le numéro doit être un entier valide.", Toast.LENGTH_SHORT).show()
+            val numero = numeroStr.toIntOrNull()
+            if (numero == null) {
+                Toast.makeText(this, "Numéro invalide", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             db.collection(selectedCollection)
-                .whereEqualTo("numero", numeroInt)
+                .whereEqualTo("numero", numero)
                 .get()
                 .addOnSuccessListener { documents ->
                     if (!documents.isEmpty) {
