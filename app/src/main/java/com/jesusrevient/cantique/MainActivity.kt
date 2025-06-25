@@ -34,6 +34,14 @@ class MainActivity : AppCompatActivity() {
         collectionName = intent.getStringExtra("collection") ?: "cantiques"
         Log.d("MainActivity", "Collection reçue : $collectionName")
 
+        // 🔵 Met à jour dynamiquement le titre du recueil
+        val recueilTextView = findViewById<TextView>(R.id.recueilTextView)
+        recueilTextView.text = when (collectionName) {
+            "voies_eternel" -> "Les Voies de l'Éternel"
+            "chants_victoire" -> "Les Chants de Victoire"
+            else -> "Cantiques Jésus-Revient"
+        }
+
         // Initialiser les composants
         drawerLayout = findViewById(R.id.drawer_layout)
 
