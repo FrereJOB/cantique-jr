@@ -41,7 +41,7 @@
             <!-- Bouton 1 : Cantique JR -->
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="130dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/rounded_border"
@@ -53,6 +53,8 @@
                     android:layout_height="match_parent"
                     android:src="@drawable/cantiquejr"
                     android:scaleType="centerCrop"
+                    android:clipToOutline="true"
+                    android:outlineProvider="background" 
                     android:background="@android:color/transparent"
                     android:contentDescription="Cantique JR"
                     android:clickable="true"
@@ -62,7 +64,7 @@
             <!-- Bouton 2 : Les Voies de l'Éternel -->
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="130dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/rounded_border"
@@ -74,6 +76,8 @@
                     android:layout_height="match_parent"
                     android:src="@drawable/lesvoiesdeeternel"
                     android:scaleType="centerCrop"
+                    android:clipToOutline="true"
+                    android:outlineProvider="background"
                     android:background="@android:color/transparent"
                     android:contentDescription="Voies de l'Éternel"
                     android:clickable="true"
@@ -83,7 +87,7 @@
             <!-- Bouton 3 : Les Chants de Victoire -->
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="130dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/rounded_border"
@@ -95,6 +99,8 @@
                     android:layout_height="match_parent"
                     android:src="@drawable/leschantsdevictoire"
                     android:scaleType="centerCrop"
+                    android:clipToOutline="true"
+                    android:outlineProvider="background"     
                     android:background="@android:color/transparent"
                     android:contentDescription="Chants de Victoire"
                     android:clickable="true"
