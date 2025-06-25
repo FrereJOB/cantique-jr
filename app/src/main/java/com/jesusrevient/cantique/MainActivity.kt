@@ -24,26 +24,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fullSongList: MutableList<Song>
     private lateinit var autoComplete: AutoCompleteTextView
     private val db = FirebaseFirestore.getInstance()
-    private lateinit var collectionName: String
-    private lateinit var recueilTextView: TextView
+    private lateinit var collectionName: String  // nom dynamique du recueil
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Nom de la collection passée depuis RecueilSelectionActivity
+        // Récupérer le nom de la collection à partir de l'Intent
         collectionName = intent.getStringExtra("collection") ?: "cantiques"
+        Log.d("MainActivity", "Collection reçue : $collectionName")
 
         // Initialiser les composants
         drawerLayout = findViewById(R.id.drawer_layout)
-        recueilTextView = findViewById(R.id.recueilTextView)
-
-        // Affichage du titre du recueil selon la collection
-        recueilTextView.text = when (collectionName) {
-            "voies_eternel" -> "Les Voix de l'Éternel"
-            "chants_victoire" -> "Les Chants de Victoire"
-            else -> "Cantiques Jésus-Revient"
-        }
 
         val openDrawerButton: ImageButton = findViewById(R.id.open_drawer)
         val closeDrawerButton: ImageButton = findViewById(R.id.close_drawer)
@@ -73,8 +65,10 @@ class MainActivity : AppCompatActivity() {
 
         autoComplete.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                filterSongs(s.toString().trim())
+                val query = s.toString().trim()
+                filterSongs(query)
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
@@ -88,6 +82,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fetchSongs() {
+        Log.d("MainActivity", "Chargement de la collection Firestore : $collectionName")
+
         db.collection(collectionName)
             .get()
             .addOnSuccessListener { documents ->
@@ -114,9 +110,15 @@ class MainActivity : AppCompatActivity() {
                     titleSuggestions.distinct()
                 )
                 autoComplete.setAdapter(autoCompleteAdapter)
+
+                if (songList.isEmpty()) {
+                    Log.w("MainActivity", "Aucun chant trouvé ou erreur de désérialisation. Collection: $collectionName")
+                    Toast.makeText(this, "Aucun cantique trouvé dans ce recueil.", Toast.LENGTH_LONG).show()
+                }
             }
             .addOnFailureListener { exception ->
-                Log.e("MainActivity", "Erreur Firestore", exception)
+                Log.e("MainActivity", "Erreur lors du chargement des cantiques", exception)
+                Toast.makeText(this, "Échec du chargement : ${exception.message}", Toast.LENGTH_LONG).show()
             }
     }
 
@@ -132,7 +134,6 @@ class MainActivity : AppCompatActivity() {
         adapter.updateList(filteredList)
     }
 
-    // Menu latéral
     fun onGroupClick(view: View) {
         startActivity(Intent(this, AProposGroupeActivity::class.java))
         drawerLayout.closeDrawer(GravityCompat.START)
