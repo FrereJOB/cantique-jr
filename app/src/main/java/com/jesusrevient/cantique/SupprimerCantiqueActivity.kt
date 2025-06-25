@@ -11,7 +11,10 @@ class SupprimerCantiqueActivity : AppCompatActivity() {
 
     private lateinit var numeroInput: EditText
     private lateinit var btnSupprimer: Button
+    private lateinit var spinnerCollection: Spinner
+
     private val db = FirebaseFirestore.getInstance()
+    private var selectedCollection = "cantiques"  // valeur par défaut
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +22,21 @@ class SupprimerCantiqueActivity : AppCompatActivity() {
 
         numeroInput = findViewById(R.id.editTextNumeroSupprimer)
         btnSupprimer = findViewById(R.id.btnSupprimer)
+        spinnerCollection = findViewById(R.id.spinnerCollection)
+
+        // Initialiser le Spinner avec les noms des collections
+        val collections = listOf("cantiques", "voies_eternel", "chants_victoire")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, collections)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerCollection.adapter = adapter
+
+        spinnerCollection.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                selectedCollection = collections[position]
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
 
         btnSupprimer.setOnClickListener {
             val numero = numeroInput.text.toString().trim()
@@ -28,8 +46,14 @@ class SupprimerCantiqueActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            db.collection("cantiques")
-                .whereEqualTo("numero", numero)
+            val numeroInt = numero.toIntOrNull()
+            if (numeroInt == null) {
+                Toast.makeText(this, "Le numéro doit être un entier valide.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            db.collection(selectedCollection)
+                .whereEqualTo("numero", numeroInt)
                 .get()
                 .addOnSuccessListener { documents ->
                     if (!documents.isEmpty) {
@@ -41,7 +65,7 @@ class SupprimerCantiqueActivity : AppCompatActivity() {
                             .setTitle("Confirmer la suppression")
                             .setMessage("Voulez-vous vraiment supprimer \"$titre\" (N° $numero) ?")
                             .setPositiveButton("Oui") { _, _ ->
-                                db.collection("cantiques").document(docId).delete()
+                                db.collection(selectedCollection).document(docId).delete()
                                     .addOnSuccessListener {
                                         Toast.makeText(this, "Cantique supprimé avec succès.", Toast.LENGTH_SHORT).show()
                                         numeroInput.text.clear()
