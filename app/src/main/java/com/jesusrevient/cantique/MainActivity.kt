@@ -24,17 +24,26 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fullSongList: MutableList<Song>
     private lateinit var autoComplete: AutoCompleteTextView
     private val db = FirebaseFirestore.getInstance()
-    private lateinit var collectionName: String  // nom dynamique du recueil
+    private lateinit var collectionName: String
+    private lateinit var recueilTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Récupérer le nom de la collection à partir de l'Intent
-        collectionName = intent.getStringExtra("collection") ?: "cantiques" // par défaut
+        // Nom de la collection passée depuis RecueilSelectionActivity
+        collectionName = intent.getStringExtra("collection") ?: "cantiques"
 
         // Initialiser les composants
         drawerLayout = findViewById(R.id.drawer_layout)
+        recueilTextView = findViewById(R.id.recueilTextView)
+
+        // Affichage du titre du recueil selon la collection
+        recueilTextView.text = when (collectionName) {
+            "voies_eternel" -> "Les Voix de l'Éternel"
+            "chants_victoire" -> "Les Chants de Victoire"
+            else -> "Cantiques Jésus-Revient"
+        }
 
         val openDrawerButton: ImageButton = findViewById(R.id.open_drawer)
         val closeDrawerButton: ImageButton = findViewById(R.id.close_drawer)
@@ -64,10 +73,8 @@ class MainActivity : AppCompatActivity() {
 
         autoComplete.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                val query = s.toString().trim()
-                filterSongs(query)
+                filterSongs(s.toString().trim())
             }
-
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
@@ -109,7 +116,7 @@ class MainActivity : AppCompatActivity() {
                 autoComplete.setAdapter(autoCompleteAdapter)
             }
             .addOnFailureListener { exception ->
-                Log.e("MainActivity", "Erreur lors du chargement des cantiques", exception)
+                Log.e("MainActivity", "Erreur Firestore", exception)
             }
     }
 
@@ -125,6 +132,7 @@ class MainActivity : AppCompatActivity() {
         adapter.updateList(filteredList)
     }
 
+    // Menu latéral
     fun onGroupClick(view: View) {
         startActivity(Intent(this, AProposGroupeActivity::class.java))
         drawerLayout.closeDrawer(GravityCompat.START)
