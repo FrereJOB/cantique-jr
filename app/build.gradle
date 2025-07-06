@@ -54,6 +54,9 @@ dependencies {
     // Firebase Auth (pour gestion des administrateurs)
     implementation 'com.google.firebase:firebase-auth-ktx'
 
+    // Firebase Cloud Messaging
+    implementation 'com.google.firebase:firebase-messaging-ktx'
+
     // Android PDF Viewer
     implementation 'com.github.mhiew:android-pdf-viewer:3.2.0-beta.1'
 
