@@ -11,42 +11,91 @@
         android:scaleType="centerCrop"
         android:alpha="0.3" />
 
-    <!-- Contenu principal conservé tel quel -->
-    <LinearLayout
+    <!-- Contenu principal conservé tel quel + ajout notifications -->
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="24dp"
-        android:gravity="center_horizontal">
+        android:padding="24dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tableau de bord Admin"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="#6D4C41"
-            android:layout_marginBottom="32dp" />
-
-        <Button
-            android:id="@+id/btnAjouterCantique"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ajouter un cantique"
-            android:layout_marginBottom="16dp" />
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
-        <Button
-            android:id="@+id/btnModifierCantique"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Modifier un cantique"
-            android:layout_marginBottom="16dp" />
+            <!-- Titre du dashboard -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tableau de bord Admin"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#6D4C41"
+                android:layout_marginBottom="32dp" />
 
-        <Button
-            android:id="@+id/btnSupprimerCantique"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Supprimer un cantique"
-            android:layout_marginBottom="16dp" />
-    </LinearLayout>
+            <!-- Boutons admin existants -->
+            <Button
+                android:id="@+id/btnAjouterCantique"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ajouter un cantique"
+                android:layout_marginBottom="16dp" />
+
+            <Button
+                android:id="@+id/btnModifierCantique"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Modifier un cantique"
+                android:layout_marginBottom="16dp" />
+
+            <Button
+                android:id="@+id/btnSupprimerCantique"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Supprimer un cantique"
+                android:layout_marginBottom="32dp" />
+
+            <!-- 🚀 SECTION NOTIFICATIONS -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Envoyer une notification"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#4E342E"
+                android:layout_marginBottom="16dp" />
+
+            <EditText
+                android:id="@+id/editNotificationTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Titre de la notification"
+                android:background="@android:drawable/editbox_background"
+                android:padding="12dp"
+                android:layout_marginBottom="12dp" />
+
+            <EditText
+                android:id="@+id/editNotificationBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Message de la notification"
+                android:background="@android:drawable/editbox_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:minLines="3"
+                android:maxLines="5"
+                android:gravity="top|start" />
+
+            <Button
+                android:id="@+id/btnEnvoyerNotification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Envoyer la notification"
+                android:backgroundTint="#4CAF50"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="8dp"
+                android:elevation="4dp" />
+
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>
