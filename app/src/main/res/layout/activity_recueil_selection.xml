@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Image de fond transparente -->
+    <!-- Image de fond -->
     <ImageView
         android:id="@+id/background"
         android:layout_width="match_parent"
@@ -25,6 +25,38 @@
             android:gravity="center_vertical"
             android:layout_gravity="center_vertical">
 
+            <!-- Ligne horizontale : image + texte biblique -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/bible"
+                    android:contentDescription="Icône Bible" />
+
+                <TextView
+                    android:id="@+id/verseText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Psaume 61:8\nAlors je chanterai sans cesse ton nom,\nEn accomplissant chaque jour mes voeux."
+                    android:textSize="14sp"
+                    android:textColor="#000000"
+                    android:fontFamily="@font/playfair_display"
+                    android:textStyle="italic"
+                    android:gravity="start"
+                    android:lineSpacingExtra="1dp"
+                    android:alpha="0"
+                    android:animateLayoutChanges="true" />
+            </LinearLayout>
+
             <!-- Titre -->
             <TextView
                 android:id="@+id/selectTitle"
@@ -35,10 +67,10 @@
                 android:textStyle="bold"
                 android:fontFamily="@font/cinzel"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="32dp"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:layout_marginTop="8dp" />
 
-            <!-- Bouton 1 : Cantique JR -->
+            <!-- Bouton 1 -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
@@ -46,7 +78,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/rounded_border"
                 android:padding="2dp"
-                android:elevation="8dp"
+                android:elevation="16dp"
                 android:clipToOutline="true"
                 android:outlineProvider="background"
                 android:foreground="@drawable/button_ripple">
@@ -65,7 +97,7 @@
                     android:focusable="true" />
             </FrameLayout>
 
-            <!-- Bouton 2 : Les Voies de l'Éternel -->
+            <!-- Bouton 2 -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
@@ -73,7 +105,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/rounded_border"
                 android:padding="2dp"
-                android:elevation="8dp"
+                android:elevation="16dp"
                 android:clipToOutline="true"
                 android:outlineProvider="background"
                 android:foreground="@drawable/button_ripple">
@@ -92,7 +124,7 @@
                     android:focusable="true" />
             </FrameLayout>
 
-            <!-- Bouton 3 : Les Chants de Victoire -->
+            <!-- Bouton 3 -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
@@ -100,7 +132,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/rounded_border"
                 android:padding="2dp"
-                android:elevation="8dp"
+                android:elevation="16dp"
                 android:clipToOutline="true"
                 android:outlineProvider="background"
                 android:foreground="@drawable/button_ripple">
@@ -118,7 +150,6 @@
                     android:clickable="true"
                     android:focusable="true" />
             </FrameLayout>
-
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
