@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
@@ -18,11 +19,16 @@ class RecueilSelectionActivity : AppCompatActivity() {
         val imageVoiesEternel = findViewById<ImageView>(R.id.imageVoiesEternel)
         val imageChantsVictoire = findViewById<ImageView>(R.id.imageChantsVictoire)
 
-        // Appliquer une animation douce à l'apparition
+        // Animation douce
         val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
+
         imageCantiqueJR.startAnimation(fadeIn)
         imageVoiesEternel.startAnimation(fadeIn)
         imageChantsVictoire.startAnimation(fadeIn)
+
+        // Animation du texte biblique (si présent)
+        val verseText = findViewById<TextView>(R.id.verseText)
+        verseText?.startAnimation(fadeIn)
 
         imageCantiqueJR.setOnClickListener {
             ouvrirRecueil("cantiques", "Recueil Cantique JR sélectionné")
