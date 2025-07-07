@@ -91,7 +91,3 @@ class SupprimerCantiqueActivity : AppCompatActivity() {
         }
     }
 }
-}
-        }
-    }
-}
