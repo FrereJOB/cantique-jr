@@ -60,7 +60,8 @@ class AjouterCantiqueActivity : AppCompatActivity() {
 
         // Configuration du spinner
         val collections = arrayOf("cantiques", "voies_eternel", "chants_victoire")
-        val adapterSpinner = ArrayAdapter(this, android.R.layout.simple_spinner_item, collections)
+        val adapterSpinner = ArrayAdapter(this, R.layout.custom_spinner_item, collections)
+        
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerCollection.adapter = adapterSpinner
         spinnerCollection.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
