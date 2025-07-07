@@ -27,7 +27,7 @@ class SupprimerCantiqueActivity : AppCompatActivity() {
 
         // Initialiser les options de collection
         val collections = listOf("cantiques", "voies_eternel", "chants_victoire")
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, collections)
+        val adapter = ArrayAdapter(this, R.layout.custom_spinner_item, collections)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerCollection.adapter = adapter
 
@@ -88,6 +88,10 @@ class SupprimerCantiqueActivity : AppCompatActivity() {
                 .addOnFailureListener {
                     Toast.makeText(this, "Erreur lors de la recherche.", Toast.LENGTH_SHORT).show()
                 }
+        }
+    }
+}
+}
         }
     }
 }
