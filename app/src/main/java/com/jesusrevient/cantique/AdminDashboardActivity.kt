@@ -10,11 +10,13 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
+import com.jesusrevient.cantique.BuildConfig
+
 
 class AdminDashboardActivity : AppCompatActivity() {
 
     // Remplace par ta clé serveur FCM (Legacy key)
-    private val FCM_SERVER_KEY = "TA_CLE_SERVEUR_FCM_ICI"
+    private val FCM_SERVER_KEY = BuildConfig.FCM_SERVER_KEY
     private val FCM_API_URL = "https://fcm.googleapis.com/fcm/send"
 
     override fun onCreate(savedInstanceState: Bundle?) {
