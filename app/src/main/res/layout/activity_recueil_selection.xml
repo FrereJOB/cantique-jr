@@ -35,8 +35,8 @@
                 android:layout_marginBottom="8dp">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/bible"
                     android:layout_marginEnd="8dp"
                     android:contentDescription="Icône Bible" />
