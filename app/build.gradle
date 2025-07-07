@@ -1,3 +1,6 @@
+// Lire la clé FCM depuis local.properties (à la racine du projet)
+def fcmKey = project.hasProperty("FCM_SERVER_KEY") ? project.FCM_SERVER_KEY : ""
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
@@ -14,6 +17,9 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
+
+        // Injecte la clé dans BuildConfig
+        buildConfigField "String", "FCM_SERVER_KEY", "\"${fcmKey}\""
     }
 
     compileOptions {
@@ -51,13 +57,13 @@ dependencies {
     // Firebase Storage
     implementation 'com.google.firebase:firebase-storage-ktx'
 
-    // Firebase Auth (pour gestion des administrateurs)
+    // Firebase Auth
     implementation 'com.google.firebase:firebase-auth-ktx'
 
     // Firebase Cloud Messaging
     implementation 'com.google.firebase:firebase-messaging-ktx'
 
-    // Android PDF Viewer
+    // PDF Viewer
     implementation 'com.github.mhiew:android-pdf-viewer:3.2.0-beta.1'
 
     // Glide (facultatif)
