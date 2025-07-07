@@ -13,6 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.messaging.FirebaseMessaging
 import com.jesusrevient.cantique.models.Song
 
 class MainActivity : AppCompatActivity() {
@@ -29,6 +30,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // ✅ Abonnement au topic "all" pour recevoir les notifications
+        FirebaseMessaging.getInstance().subscribeToTopic("all")
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("FCM", "Abonné au topic 'all'")
+                } else {
+                    Log.e("FCM", "Erreur d'abonnement au topic 'all'", task.exception)
+                }
+            }
 
         // Récupérer le nom de la collection à partir de l'Intent
         collectionName = intent.getStringExtra("collection") ?: "cantiques"
