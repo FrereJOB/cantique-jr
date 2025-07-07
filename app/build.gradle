@@ -1,6 +1,3 @@
-// Lire la clé FCM depuis local.properties (à la racine du projet)
-def fcmKey = project.hasProperty("FCM_SERVER_KEY") ? project.FCM_SERVER_KEY : ""
-
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
@@ -18,7 +15,8 @@ android {
         versionCode 1
         versionName "1.0"
 
-        // Injecte la clé dans BuildConfig
+        // 🔥 Solution : mettre le code ici
+        def fcmKey = project.hasProperty("FCM_SERVER_KEY") ? project.FCM_SERVER_KEY : ""
         buildConfigField "String", "FCM_SERVER_KEY", "\"${fcmKey}\""
     }
 
