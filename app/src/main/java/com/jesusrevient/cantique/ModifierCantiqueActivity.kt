@@ -53,9 +53,9 @@ class ModifierCantiqueActivity : AppCompatActivity() {
         pdfButton = findViewById(R.id.btnPdf)
         spinnerCollection = findViewById(R.id.spinnerCollection)
 
-        // Configuration du Spinner
+        // ✅ Configuration du Spinner avec style personnalisé
         val collections = listOf("cantiques", "voies_eternel", "chants_victoire")
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, collections)
+        val adapter = ArrayAdapter(this, R.layout.custom_spinner_item, collections)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerCollection.adapter = adapter
         spinnerCollection.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
