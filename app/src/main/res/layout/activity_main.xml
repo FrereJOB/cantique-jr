@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:text="Cantiques Jésus-Revient"
                 android:textColor="#3E2723"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/cinzel"
                 android:layout_marginBottom="8dp"
