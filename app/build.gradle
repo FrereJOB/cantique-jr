@@ -35,6 +35,11 @@ android {
     buildFeatures {
         viewBinding true
     }
+    buildFeatures {
+    buildConfig true  // 🔥 ACTIVE BuildConfig (c’est désactivé par défaut dans Gradle 8+)
+    viewBinding true
+    }
+    
 }
 
 kotlin {
