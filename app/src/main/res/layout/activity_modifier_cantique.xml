@@ -27,7 +27,8 @@
                 android:id="@+id/spinnerCollection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp" />
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/spinner_background"/>
 
             <EditText
                 android:id="@+id/editTextNumero"
