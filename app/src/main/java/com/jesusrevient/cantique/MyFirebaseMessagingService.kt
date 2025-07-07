@@ -9,6 +9,8 @@ import android.media.RingtoneManager
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
@@ -24,7 +26,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         super.onMessageReceived(remoteMessage)
         Log.d("FCM", "Message reçu : ${remoteMessage.data}")
 
-        // Afficher la notification
         val title = remoteMessage.notification?.title ?: "Nouveau message"
         val message = remoteMessage.notification?.body ?: "Tu as reçu une notification"
         sendNotification(title, message)
@@ -44,17 +45,18 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.mipmap.ic_launcher)
-        // icône de notification
+            .setSmallIcon(R.drawable.ic_notification_white) // ✅ icône transparent blanc
             .setContentTitle(title)
             .setContentText(message)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(message)) // ✅ style amélioré
+            .setPriority(NotificationCompat.PRIORITY_HIGH) // ✅ priorité haute
+            .setColor(ContextCompat.getColor(this, R.color.colorPrimary)) // ✅ couleur personnalisée
             .setAutoCancel(true)
             .setSound(defaultSoundUri)
             .setContentIntent(pendingIntent)
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        // Android O et + : création du canal
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 channelId,
