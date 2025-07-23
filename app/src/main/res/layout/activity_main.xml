@@ -30,35 +30,43 @@
             android:gravity="center"
             android:padding="24dp">
 
-            <!-- NOM DU RECUEIL (ajouté ici) -->
-            <TextView
-                android:id="@+id/recueilTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cantiques Jésus-Revient"
-                android:textColor="#3E2723"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:fontFamily="@font/cinzel"
-                android:layout_marginBottom="8dp"
-                android:gravity="center"/>
+            <!-- Bannière supérieure -->
+            <RelativeLayout
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#FFD700"
+                android:gravity="center_vertical">
 
-            <!-- Titre principal -->
-         <!--   <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cantiques Spirituels"
-                android:textColor="#3E2723"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:fontFamily="@font/cinzel"
-                android:layout_marginBottom="4dp" /> -->
+                <!-- Bouton ouvrir menu à gauche -->
+                <ImageButton
+                    android:id="@+id/open_drawer"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_menu"
+                    android:contentDescription="Ouvrir le menu" />
+
+                <!-- Titre centré -->
+                <TextView
+                    android:id="@+id/recueilTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Cantiques Jésus-Revient"
+                    android:textColor="#3E2723"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/cinzel" />
+            </RelativeLayout>
 
             <!-- Barre de recherche -->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
 
                 <AutoCompleteTextView
@@ -105,18 +113,6 @@
                 android:fontFamily="@font/playfair_display"
                 android:layout_marginTop="16dp" />
         </LinearLayout>
-
-        <!-- Bouton ouvrir menu -->
-        <ImageButton
-            android:id="@+id/open_drawer"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_menu"
-            android:contentDescription="Ouvrir le menu" />
 
         <!-- Bouton fermer menu -->
         <ImageButton
@@ -258,19 +254,18 @@
             </LinearLayout>
 
             <!-- Texte biblique -->
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Célébrez l'ÉTERNEL avec la harpe ; chantez ses louanges sur le luth à dix cordes ;\nChantez-lui un cantique nouveau ; pincez habilement de vos instruments avec un cri de joie.\nCar la parole de l'ÉTERNEL est droite, et toute son œuvre est avec vérité.\nPsaumes 33:1-5"
-    android:textSize="14sp"
-    android:textColor="#000000"
-    android:textStyle="italic"
-    android:fontFamily="@font/playfair_display"
-    android:gravity="center"
-    android:paddingTop="24dp"
-    android:paddingBottom="8dp"
-    android:lineSpacingExtra="1mm" />
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Célébrez l'ÉTERNEL avec la harpe ; chantez ses louanges sur le luth à dix cordes ;\nChantez-lui un cantique nouveau ; pincez habilement de vos instruments avec un cri de joie.\nCar la parole de l'ÉTERNEL est droite, et toute son œuvre est avec vérité.\nPsaumes 33:1-5"
+                android:textSize="14sp"
+                android:textColor="#000000"
+                android:textStyle="italic"
+                android:fontFamily="@font/playfair_display"
+                android:gravity="center"
+                android:paddingTop="24dp"
+                android:paddingBottom="8dp"
+                android:lineSpacingExtra="1mm" />
 
             <!-- Image Bible -->
             <ImageView
@@ -296,3 +291,4 @@
         </LinearLayout>
     </ScrollView>
 </androidx.drawerlayout.widget.DrawerLayout>
+    
