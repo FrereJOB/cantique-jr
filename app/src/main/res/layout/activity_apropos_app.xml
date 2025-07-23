@@ -11,10 +11,42 @@
         android:scaleType="centerCrop"
         android:alpha="0.3" />
 
+    <!-- Bannière -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#FFD700"
+        android:layout_gravity="top">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_centerVertical="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_arrow_back"
+            android:contentDescription="Retour"
+            android:scaleType="centerInside"
+            android:padding="4dp" />
+
+        <TextView
+            android:id="@+id/banner_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="À propos de l'application"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#3E2723"
+            android:fontFamily="@font/cinzel" />
+    </RelativeLayout>
+
     <!-- Contenu scrollable -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
         android:fillViewport="true">
 
         <LinearLayout
@@ -57,7 +89,7 @@
                 android:text="Cantique Jésus-Revient est une application Android dédiée à la gestion et à la diffusion des cantiques chrétiens produits par le groupe Jésus-Revient..."
                 android:textSize="16sp"
                 android:textColor="?android:textColorSecondary"
-                android:fontFamily="@font/playfair_display" 
+                android:fontFamily="@font/playfair_display"
                 android:lineSpacingExtra="6dp"
                 android:paddingBottom="16dp" />
 
@@ -111,7 +143,6 @@
                 android:textColor="#1E3A8A"
                 android:paddingBottom="4dp" />
 
-            <!-- Structure Firestore avec HorizontalScrollView -->
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -119,19 +150,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text='{
-  titre,
-  auteur,
-  numero,
-  categorie,
-  audioUrl,
-  partitionPdfUrl,
-  dateAjout,
-  paroles
-}'
+                    android:text='{\n titre,\n auteur,\n numero,\n categorie,\n audioUrl,\n partitionPdfUrl,\n dateAjout,\n paroles\n}'
                     android:typeface="monospace"
                     android:textSize="14sp"
-                    android:fontFamily="@font/playfair_display" 
+                    android:fontFamily="@font/playfair_display"
                     android:textColor="?android:textColorPrimary"
                     android:background="@drawable/rounded_background"
                     android:padding="10dp"
@@ -149,7 +171,6 @@
                 android:lineSpacingExtra="6dp"
                 android:paddingBottom="16dp" />
 
-            <!-- Footer -->
             <TextView
                 android:id="@+id/footer"
                 android:layout_width="match_parent"
@@ -166,3 +187,4 @@
         </LinearLayout>
     </ScrollView>
 </FrameLayout>
+                
