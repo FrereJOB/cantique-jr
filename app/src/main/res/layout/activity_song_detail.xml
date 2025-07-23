@@ -14,6 +14,18 @@
         android:scaleType="centerCrop"
         android:alpha="0.3" />
 
+    <!-- Bouton retour à l'extrême gauche (sans décaler le titre centré) -->
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_arrow_back"
+        android:contentDescription="Retour" />
+
     <!-- Contenu principal -->
     <ScrollView
         android:id="@+id/main_content"
@@ -27,7 +39,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Titre -->
+            <!-- Titre (centré) -->
             <TextView
                 android:id="@+id/titleTextView"
                 android:layout_width="match_parent"
@@ -117,16 +129,6 @@
                 android:layout_marginBottom="8dp"
                 android:visibility="gone" />
 
-            <!-- Bouton de partage -->
-          <!--  <ImageButton
-                android:id="@+id/share_button"
-                android:src="@drawable/ic_menu_share"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="Partager"
-                android:layout_marginBottom="8dp" /> -->
-
             <!-- Icônes DISPONIBLES -->
             <LinearLayout
                 android:id="@+id/availableIconsLayout"
@@ -215,14 +217,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Voir la partition" />
-
         </LinearLayout>
     </ScrollView>
+
     <View
-    android:id="@+id/popup_anchor"
-    android:layout_width="1dp"
-    android:layout_height="1dp"
-    android:layout_centerInParent="true"
-    android:visibility="invisible" />
-    
+        android:id="@+id/popup_anchor"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
+
 </RelativeLayout>
