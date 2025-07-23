@@ -11,7 +11,6 @@ import androidx.appcompat.widget.PopupMenu
 import android.view.ContextThemeWrapper
 import java.io.File
 
-
 class SongDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,20 +35,24 @@ class SongDetailActivity : AppCompatActivity() {
         val audioUnavailableIcon = findViewById<ImageView>(R.id.audioUnavailableIcon)
         val pdfUnavailableLayout = findViewById<LinearLayout>(R.id.pdfUnavailableLayout)
         val unavailableIconsLayout = findViewById<LinearLayout>(R.id.unavailableIconsLayout)
-
         val downloadIcon = findViewById<ImageView>(R.id.download_icon)
+
+        // Bouton de retour
+        val backButton = findViewById<ImageButton>(R.id.back_button)
+        backButton.setOnClickListener {
+            finish()
+        }
 
         titleTextView.text = if (!titre.isNullOrBlank()) "🔥 $titre 🔥" else "🔥 Titre inconnu 🔥"
         categoryTextView.text = categorie ?: "Catégorie inconnue"
         authorTextView.text = auteur ?: "Auteur inconnu"
         lyricsTextView.text = paroles ?: "Paroles non disponibles"
 
-
         // Vérifie si le fichier a été téléchargé
         val numero = titre?.substringBefore('.')?.trim()
         if (!numero.isNullOrEmpty() && isSongDownloadedLocally(numero)) {
             downloadIcon.visibility = View.VISIBLE
-            downloadIcon.setImageResource(R.drawable.ic_download) // important
+            downloadIcon.setImageResource(R.drawable.ic_download)
         } else {
             downloadIcon.visibility = View.GONE
         }
@@ -95,13 +98,12 @@ class SongDetailActivity : AppCompatActivity() {
         }
 
         val scrollableLayout = findViewById<LinearLayout>(R.id.scrollableLayout)
-val popupAnchor = findViewById<View>(R.id.popup_anchor)
+        val popupAnchor = findViewById<View>(R.id.popup_anchor)
 
-scrollableLayout.setOnLongClickListener {
-    showContextMenu(popupAnchor, titre, auteur, paroles)
-    true
-}
-
+        scrollableLayout.setOnLongClickListener {
+            showContextMenu(popupAnchor, titre, auteur, paroles)
+            true
+        }
     }
 
     private fun isSongDownloadedLocally(numero: String): Boolean {
@@ -113,26 +115,25 @@ scrollableLayout.setOnLongClickListener {
     }
 
     private fun showContextMenu(anchor: View, titre: String?, auteur: String?, paroles: String?) {
-    val wrapper = ContextThemeWrapper(this, R.style.PopupMenuTransparent)
-    val popupAnchor = findViewById<View>(R.id.popup_anchor) // Vue centrale invisible
+        val wrapper = ContextThemeWrapper(this, R.style.PopupMenuTransparent)
+        val popupAnchor = findViewById<View>(R.id.popup_anchor)
 
-    val popup = PopupMenu(wrapper, popupAnchor)
-    popup.menuInflater.inflate(R.menu.context_song_menu, popup.menu)
-    popup.setOnMenuItemClickListener { item: MenuItem ->
-        when (item.itemId) {
-            R.id.menu_partager -> {
-                val texte = "Titre: $titre\nAuteur: $auteur\n\n$paroles"
-                val intent = Intent(Intent.ACTION_SEND).apply {
-                    type = "text/plain"
-                    putExtra(Intent.EXTRA_TEXT, texte)
+        val popup = PopupMenu(wrapper, popupAnchor)
+        popup.menuInflater.inflate(R.menu.context_song_menu, popup.menu)
+        popup.setOnMenuItemClickListener { item: MenuItem ->
+            when (item.itemId) {
+                R.id.menu_partager -> {
+                    val texte = "Titre: $titre\nAuteur: $auteur\n\n$paroles"
+                    val intent = Intent(Intent.ACTION_SEND).apply {
+                        type = "text/plain"
+                        putExtra(Intent.EXTRA_TEXT, texte)
+                    }
+                    startActivity(Intent.createChooser(intent, "Partager ce cantique via"))
+                    true
                 }
-                startActivity(Intent.createChooser(intent, "Partager ce cantique via"))
-                true
+                else -> false
             }
-            else -> false
         }
+        popup.show()
     }
-    popup.show()
-}
-
 }
