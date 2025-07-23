@@ -14,23 +14,51 @@
         android:scaleType="centerCrop"
         android:alpha="0.3" />
 
-    <!-- Bouton retour à l'extrême gauche (sans décaler le titre centré) -->
-    <ImageButton
-        android:id="@+id/back_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="12dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_arrow_back"
-        android:contentDescription="Retour" />
+    <!-- Bannière supérieure -->
+    <RelativeLayout
+        android:id="@+id/song_banner"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#FFD700"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical">
+
+        <!-- Bouton retour -->
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="12dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_arrow_back"
+            android:contentDescription="Retour" />
+
+        <!-- Titre au centre -->
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="🔥 Titre du Cantique 🔥"
+            android:textColor="#965E3F"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/cinzel"
+            android:gravity="center"
+            android:shadowColor="#80000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2" />
+    </RelativeLayout>
 
     <!-- Contenu principal -->
     <ScrollView
         android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/song_banner"
         android:padding="24dp">
 
         <LinearLayout
@@ -38,23 +66,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <!-- Titre (centré) -->
-            <TextView
-                android:id="@+id/titleTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="🔥 Titre du Cantique 🔥"
-                android:textColor="#965E3F"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:fontFamily="@font/cinzel"
-                android:gravity="center"
-                android:layout_marginBottom="4dp"
-                android:shadowColor="#80000000"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="2" />
 
             <!-- Catégorie avec icône clé de sol -->
             <LinearLayout
