@@ -25,5 +25,10 @@ class AProposAppActivity : AppCompatActivity() {
             
             Que le Seigneur vous bénisse richement !
         """.trimIndent()
+
+        // Activation du bouton retour
+        findViewById<android.widget.ImageButton>(R.id.back_button)?.setOnClickListener {
+            finish()
+        }
     }
 }
