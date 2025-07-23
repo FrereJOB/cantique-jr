@@ -41,6 +41,11 @@ class ModifierCantiqueActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_modifier_cantique)
 
+        // ✅ Bouton retour dans la bannière
+        findViewById<ImageButton>(R.id.back_button)?.setOnClickListener {
+            finish()
+        }
+
         // Initialisation des vues
         numeroInput = findViewById(R.id.editTextNumero)
         btnRechercher = findViewById(R.id.btnRechercher)
