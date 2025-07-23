@@ -1,49 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".AProposGroupeActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AProposGroupeActivity">
 
-    <!-- Image d’arrière-plan transparente -->
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/background_spirituel"
-        android:scaleType="centerCrop"
-        android:alpha="0.3" />
+    <!-- Image d’arrière-plan -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background_spirituel"
+        android:scaleType="centerCrop"
+        android:alpha="0.3" />
 
-    <!-- Contenu scrollable -->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+    <!-- ✅ Bannière fixe en haut -->
+    <LinearLayout
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:background="#CCFFFFFF"
+        android:gravity="center_vertical">
 
-        <LinearLayout
-            android:id="@+id/aboutLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_back_arrow"
+            android:scaleType="centerInside"
+            android:contentDescription="Retour" />
 
-            <TextView
-                android:id="@+id/descriptionTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/groupe_description"
-                android:textColor="@color/text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:fontFamily="@font/cinzel"
-                android:lineSpacingExtra="4dp"
-                android:paddingBottom="12dp" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="À propos du groupe"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:gravity="center" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/socialLinksRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:scrollbars="vertical" />
-        </LinearLayout>
-    </ScrollView>
+        <!-- Espace invisible à droite pour équilibrer -->
+        <View
+            android:layout_width="48dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <!-- ✅ Contenu scrollable avec padding top pour éviter chevauchement -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="56dp"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/aboutLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/descriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/groupe_description"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/cinzel"
+                android:lineSpacingExtra="4dp"
+                android:paddingBottom="12dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/socialLinksRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:scrollbars="vertical" />
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>
