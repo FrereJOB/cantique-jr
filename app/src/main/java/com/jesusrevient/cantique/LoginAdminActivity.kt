@@ -1,94 +1,42 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".LoginAdminActivity">
+package com.jesusrevient.cantique
 
-    <!-- Image d’arrière-plan transparente -->
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/background_spirituel"
-        android:scaleType="centerCrop"
-        android:alpha="0.3" />
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
-    <!-- Bannière fixe en haut -->
-    <LinearLayout
-        android:id="@+id/banner"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:orientation="horizontal"
-        android:background="#CCFFFFFF"
-        android:gravity="center_vertical">
+class LoginAdminActivity : AppCompatActivity() {
 
-        <ImageButton
-            android:id="@+id/back_button"
-            android:layout_width="48dp"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_back_arrow"
-            android:scaleType="centerInside"
-            android:contentDescription="Retour" />
+    // Identifiants admin en dur (à améliorer avec Firebase Auth plus tard)
+    private val adminEmail = "admin@example.com"
+    private val adminPassword = "motdepasse123"
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Connexion admin"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:gravity="center" />
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_login_admin)
 
-        <!-- Espace pour équilibrer le texte centré -->
-        <View
-            android:layout_width="48dp"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+        // Fonction du bouton retour dans la bannière
+        findViewById<ImageButton>(R.id.back_button).setOnClickListener {
+            finish() // Ferme l'activité actuelle pour revenir à la précédente
+        }
 
-    <!-- Contenu principal avec paddingTop pour éviter le chevauchement -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:padding="32dp"
-        android:paddingTop="88dp"> <!-- 56dp bannière + 32dp marge -->
+        val emailInput = findViewById<EditText>(R.id.emailInput)
+        val passwordInput = findViewById<EditText>(R.id.passwordInput)
+        val loginButton = findViewById<Button>(R.id.loginButton)
 
-        <!-- Logo admin centré -->
-        <ImageView
-            android:id="@+id/adminLogo"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/admin"
-            android:contentDescription="Logo administrateur"
-            android:layout_marginBottom="24dp"
-            android:layout_gravity="center" />
+        loginButton.setOnClickListener {
+            val email = emailInput.text.toString().trim()
+            val password = passwordInput.text.toString().trim()
 
-        <EditText
-            android:id="@+id/emailInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email admin"
-            android:inputType="textEmailAddress"
-            android:backgroundTint="@color/colorPrimary"
-            android:layout_marginBottom="12dp" />
-
-        <EditText
-            android:id="@+id/passwordInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Mot de passe admin"
-            android:inputType="textPassword"
-            android:backgroundTint="@color/colorPrimary" />
-
-        <Button
-            android:id="@+id/loginButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Se connecter"
-            android:layout_marginTop="16dp" />
-    </LinearLayout>
-</FrameLayout>
-    
+            if (email == adminEmail && password == adminPassword) {
+                startActivity(Intent(this, AdminDashboardActivity::class.java))
+                finish()
+            } else {
+                Toast.makeText(this, "Identifiants incorrects", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+}
