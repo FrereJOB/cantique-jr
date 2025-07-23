@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import okhttp3.MediaType.Companion.toMediaType
@@ -11,7 +12,6 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 import com.jesusrevient.cantique.BuildConfig
-
 
 class AdminDashboardActivity : AppCompatActivity() {
 
@@ -22,6 +22,11 @@ class AdminDashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_dashboard)
+
+        // 🔙 Activation du bouton retour
+        findViewById<ImageButton>(R.id.back_button)?.setOnClickListener {
+            finish()
+        }
 
         // Boutons existants
         val btnAjouter = findViewById<Button>(R.id.btnAjouterCantique)
@@ -40,7 +45,7 @@ class AdminDashboardActivity : AppCompatActivity() {
             startActivity(Intent(this, SupprimerCantiqueActivity::class.java))
         }
 
-        // Nouveaux champs pour notification
+        // Champs pour la notification
         val editTitle = findViewById<EditText>(R.id.editNotificationTitle)
         val editBody = findViewById<EditText>(R.id.editNotificationBody)
         val btnEnvoyer = findViewById<Button>(R.id.btnEnvoyerNotification)
@@ -58,7 +63,6 @@ class AdminDashboardActivity : AppCompatActivity() {
     }
 
     private fun sendFcmNotification(title: String, message: String) {
-        // Construction du JSON
         val json = """
             {
               "to": "/topics/all", 
@@ -83,7 +87,6 @@ class AdminDashboardActivity : AppCompatActivity() {
             .post(bodyRequest)
             .build()
 
-        // Exécution asynchrone
         client.newCall(request).enqueue(object : okhttp3.Callback {
             override fun onFailure(call: okhttp3.Call, e: java.io.IOException) {
                 runOnUiThread {
