@@ -11,10 +11,45 @@
         android:scaleType="centerCrop"
         android:alpha="0.3" />
 
-    <!-- ScrollView contenant le contenu -->
+    <!-- ✅ Bannière fixe en haut -->
+    <LinearLayout
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:background="#CCFFFFFF"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_back_arrow"
+            android:scaleType="centerInside"
+            android:contentDescription="Retour" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="MODIFIER UN CANTIQUE"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:gravity="center" />
+
+        <!-- Espace invisible pour équilibrer -->
+        <View
+            android:layout_width="48dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <!-- ✅ ScrollView avec padding top pour laisser la bannière visible -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="56dp"
         android:padding="16dp">
 
         <LinearLayout
@@ -22,13 +57,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- 🔵 Liste déroulante des collections -->
             <Spinner
                 android:id="@+id/spinnerCollection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                android:background="@drawable/spinner_background"/>
+                android:background="@drawable/spinner_background" />
 
             <EditText
                 android:id="@+id/editTextNumero"
@@ -96,7 +130,6 @@
                 android:layout_marginTop="16dp"
                 android:backgroundTint="#A67C52"
                 android:textColor="#FFFFFF" />
-
         </LinearLayout>
     </ScrollView>
 </FrameLayout>
