@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".AdminDashboardActivity">
 
     <!-- Image d’arrière-plan -->
     <ImageView
@@ -11,10 +13,43 @@
         android:scaleType="centerCrop"
         android:alpha="0.3" />
 
-    <!-- Contenu principal conservé tel quel + ajout notifications -->
+    <!-- Bannière avec bouton retour et titre -->
+    <LinearLayout
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#FFD700"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="8dp"
+        android:elevation="4dp">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_arrow_back"
+            android:contentDescription="Retour" />
+
+        <TextView
+            android:id="@+id/banner_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Tableau de bord Admin"
+            android:textColor="#4E342E"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/cinzel"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <!-- Contenu principal -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
         android:padding="24dp">
 
         <LinearLayout
@@ -22,16 +57,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center_horizontal">
-
-            <!-- Titre du dashboard -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tableau de bord Admin"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="#6D4C41"
-                android:layout_marginBottom="32dp" />
 
             <!-- Boutons admin existants -->
             <Button
