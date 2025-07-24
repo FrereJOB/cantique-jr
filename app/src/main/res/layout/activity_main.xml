@@ -119,7 +119,7 @@
                 android:layout_marginTop="16dp" />
         </LinearLayout>
 
-        <!-- Bouton fermer menu (inchangé) -->
+        <!-- Bouton fermer menu (inchangé) 
         <ImageButton
             android:id="@+id/close_drawer"
             android:layout_width="40dp"
@@ -130,7 +130,7 @@
             android:background="@android:color/transparent"
             android:src="@drawable/ic_close"
             android:contentDescription="Fermer le menu"
-            android:visibility="gone" />
+            android:visibility="gone" /> -->
     </RelativeLayout>
 
     <!-- Menu latéral (inchangé) -->
