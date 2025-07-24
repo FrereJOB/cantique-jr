@@ -26,6 +26,18 @@
 <color name="texte_principal">#3E2723</color>
 <color name="accent_dore">#FFD54F</color>
  
+<color name="marron_glace">#8B5A2B</color> <!-- Marron de base -->
+<color name="marron_glace_effect">#E8D4B5</color> <!-- Reflet glacé -->
+
+<!-- Version avec superposition jaune or transparent -->
+<color name="marron_glace_or">#CCD4A418</color> <!-- Jaune or transparent (80% opacity) -->
+
+<!-- Style combiné pour un effet glacé -->
+<style name="GlazedMarronGoldStyle">
+    <item name="android:background">@drawable/glazed_marron_gold_background</item>
+    <item name="android:textColor">#FFFFFFFF</item> <!-- Texte blanc pour contraste -->
+</style>
+ 
 
 
 </resources>
