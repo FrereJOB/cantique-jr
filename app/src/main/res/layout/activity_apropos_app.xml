@@ -166,7 +166,16 @@
                     android:padding="10dp"
                     android:layout_marginBottom="24dp" />
             </HorizontalScrollView>
-
+                 <TextView
+                android:id="@+id/textInfoApp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="15sp"
+                android:textColor="?android:textColorSecondary"
+                android:lineSpacingExtra="6dp"
+                android:paddingBottom="16dp" />
+            
             <!-- Footer -->
             <!-- android:background="@drawable/rounded_background" -->
             <TextView
