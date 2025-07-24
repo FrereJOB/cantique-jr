@@ -190,7 +190,7 @@
                 android:fontFamily="@font/cinzel"
                 android:textColor="#FFD700"
                 android:gravity="center"
-                android:background="@drawable/glazed_marron_gold_background"
+                android:background="@drawable/code_block_background"
                 android:padding="14dp"
                 android:layout_marginTop="8dp" />
         </LinearLayout>
