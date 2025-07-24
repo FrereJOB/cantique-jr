@@ -99,8 +99,8 @@
     android:background="@drawable/rounded_transparent_edittext"
     android:padding="12dp"
     android:layout_marginBottom="12dp"
-    android:textColor="#000000" <!-- Texte noir -->
-    android:hintTextColor="#60000000" /> <!-- Gris foncé pour le hint -->
+    android:textColor="#000000" 
+    android:hintTextColor="#60000000" />
 
 <EditText
     android:id="@+id/editNotificationBody"
