@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:orientation="horizontal"
-        android:background="@drawable/glazed_marron_gold_background""
+        android:background="@drawable/glazed_marron_gold_background"
         android:gravity="center_vertical">
 
         <ImageButton
