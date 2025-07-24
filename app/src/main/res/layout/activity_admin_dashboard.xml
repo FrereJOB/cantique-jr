@@ -92,25 +92,29 @@
                 android:layout_marginBottom="16dp" />
 
             <EditText
-                android:id="@+id/editNotificationTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Titre de la notification"
-                android:background="@android:drawable/editbox_background"
-                android:padding="12dp"
-                android:layout_marginBottom="12dp" />
+    android:id="@+id/editNotificationTitle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Titre de la notification"
+    android:background="@drawable/rounded_transparent_edittext"
+    android:padding="12dp"
+    android:layout_marginBottom="12dp"
+    android:textColor="#000000" <!-- Texte noir -->
+    android:hintTextColor="#60000000" /> <!-- Gris foncé pour le hint -->
 
-            <EditText
-                android:id="@+id/editNotificationBody"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Message de la notification"
-                android:background="@android:drawable/editbox_background"
-                android:padding="12dp"
-                android:layout_marginBottom="16dp"
-                android:minLines="3"
-                android:maxLines="5"
-                android:gravity="top|start" />
+<EditText
+    android:id="@+id/editNotificationBody"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Message de la notification"
+    android:background="@drawable/rounded_transparent_edittext"
+    android:padding="12dp"
+    android:layout_marginBottom="16dp"
+    android:minLines="3"
+    android:maxLines="5"
+    android:gravity="top|start"
+    android:textColor="#000000"
+    android:hintTextColor="#60000000" />
 
             <Button
                 android:id="@+id/btnEnvoyerNotification"
