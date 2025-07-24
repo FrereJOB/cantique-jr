@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,79 +10,110 @@
     <!-- Image de fond -->
     <ImageView
         android:id="@+id/background"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:src="@drawable/background_spirituel"
         android:scaleType="centerCrop"
-        android:alpha="0.3" />
+        android:alpha="0.3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Bannière supérieure -->
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/song_banner"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="60dp"
         android:background="@drawable/glazed_marron_gold_background"
-        android:layout_alignParentTop="true"
-        android:gravity="center_vertical">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <!-- Bouton retour -->
         <ImageButton
             android:id="@+id/back_button"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
             android:layout_marginStart="12dp"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_arrow_back"
-            android:contentDescription="Retour" />
+            android:contentDescription="Retour"
+            android:elevation="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Titre au centre -->
         <TextView
             android:id="@+id/titleTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:text="🔥 Titre du Cantique 🔥"
             android:textColor="#965E3F"
             android:textSize="22sp"
             android:textStyle="bold"
             android:fontFamily="@font/cinzel"
             android:gravity="center"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:shadowColor="#80000000"
             android:shadowDx="1"
             android:shadowDy="1"
-            android:shadowRadius="2" />
-    </RelativeLayout>
+            android:shadowRadius="2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+            app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Guidelines pour centrer le titre tout en laissant de l'espace pour le bouton -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="60dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="60dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Contenu principal -->
     <ScrollView
         android:id="@+id/main_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/song_banner"
-        android:padding="24dp">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/song_banner">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/scrollableLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <!-- Catégorie avec icône clé de sol -->
             <LinearLayout
                 android:id="@+id/categoryLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginBottom="12dp"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:src="@drawable/sol"
-                    android:layout_marginEnd="8dp" />
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/sol" />
 
                 <TextView
                     android:id="@+id/categoryTextView"
@@ -100,62 +133,73 @@
             <!-- Paroles -->
             <TextView
                 android:id="@+id/lyricsTextView"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:text="Paroles du cantique..."
                 android:textColor="#965E3F"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/playfair_display"
-                android:layout_marginBottom="16dp"
                 android:shadowColor="#80000000"
                 android:shadowDx="1"
                 android:shadowDy="1"
-                android:shadowRadius="2" />
+                android:shadowRadius="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/categoryLayout" />
 
             <!-- Auteur -->
             <TextView
                 android:id="@+id/authorTextView"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
                 android:text="Auteur inconnu"
+                android:textAlignment="viewEnd"
                 android:textColor="#965E3F"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/cinzel"
                 android:gravity="end"
-                android:textAlignment="viewEnd"
-                android:layout_marginBottom="12dp"
                 android:shadowColor="#80000000"
                 android:shadowDx="1"
                 android:shadowDy="1"
-                android:shadowRadius="2" />
+                android:shadowRadius="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lyricsTextView" />
 
             <!-- Icône de téléchargement locale -->
             <ImageView
                 android:id="@+id/download_icon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_download"
                 android:layout_marginBottom="8dp"
-                android:visibility="gone" />
+                android:src="@drawable/ic_download"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/authorTextView" />
 
             <!-- Icônes DISPONIBLES -->
             <LinearLayout
                 android:id="@+id/availableIconsLayout"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
                 android:layout_marginBottom="16dp"
-                android:visibility="gone">
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/download_icon">
 
                 <ImageView
                     android:id="@+id/audioAvailableIcon"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:src="@drawable/audio"
-                    android:layout_marginEnd="8dp" />
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/audio" />
 
                 <ImageView
                     android:id="@+id/pdfAvailableIcon"
@@ -167,11 +211,14 @@
             <!-- Icônes NON DISPONIBLES -->
             <LinearLayout
                 android:id="@+id/unavailableIconsLayout"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginBottom="24dp"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/availableIconsLayout">
 
                 <LinearLayout
                     android:id="@+id/audioUnavailableLayout"
@@ -200,8 +247,8 @@
                         android:id="@+id/pdfUnavailableIcon"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/piano"
-                        android:layout_marginEnd="4dp" />
+                        android:layout_marginEnd="4dp"
+                        android:src="@drawable/piano" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -217,25 +264,33 @@
             <!-- Bouton écouter -->
             <Button
                 android:id="@+id/playButton"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
                 android:text="Écouter le chant"
-                android:layout_marginBottom="12dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/unavailableIconsLayout" />
 
             <!-- Bouton partition -->
             <Button
                 android:id="@+id/sheetButton"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Voir la partition" />
-        </LinearLayout>
+                android:text="Voir la partition"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/playButton" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
     <View
         android:id="@+id/popup_anchor"
         android:layout_width="1dp"
         android:layout_height="1dp"
-        android:layout_centerInParent="true"
-        android:visibility="invisible" />
-
-</RelativeLayout>
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
