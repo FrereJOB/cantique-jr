@@ -25,13 +25,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fullSongList: MutableList<Song>
     private lateinit var autoComplete: AutoCompleteTextView
     private val db = FirebaseFirestore.getInstance()
-    private lateinit var collectionName: String  // nom dynamique du recueil
+    private lateinit var collectionName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // ✅ Abonnement au topic "all" pour recevoir les notifications
         FirebaseMessaging.getInstance().subscribeToTopic("all")
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -41,11 +40,9 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-        // Récupérer le nom de la collection à partir de l'Intent
         collectionName = intent.getStringExtra("collection") ?: "cantiques"
         Log.d("MainActivity", "Collection reçue : $collectionName")
 
-        // 🔵 Met à jour dynamiquement le titre du recueil
         val recueilTextView = findViewById<TextView>(R.id.recueilTextView)
         recueilTextView.text = when (collectionName) {
             "voies_eternel" -> "Les Voies de l'Éternel"
@@ -53,22 +50,11 @@ class MainActivity : AppCompatActivity() {
             else -> "Cantiques Jésus-Revient"
         }
 
-        // Initialiser les composants
         drawerLayout = findViewById(R.id.drawer_layout)
-
         val openDrawerButton: ImageButton = findViewById(R.id.open_drawer)
-        val closeDrawerButton: ImageButton = findViewById(R.id.close_drawer)
 
         openDrawerButton.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
-            closeDrawerButton.visibility = View.VISIBLE
-            openDrawerButton.visibility = View.GONE
-        }
-
-        closeDrawerButton.setOnClickListener {
-            drawerLayout.closeDrawer(GravityCompat.START)
-            closeDrawerButton.visibility = View.GONE
-            openDrawerButton.visibility = View.VISIBLE
         }
 
         recyclerView = findViewById(R.id.songs_list)
