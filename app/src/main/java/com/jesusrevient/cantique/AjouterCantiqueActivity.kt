@@ -105,7 +105,11 @@ class AjouterCantiqueActivity : AppCompatActivity() {
         }
 
         // ✅ Bouton de retour
-        val btnBack = findViewById<ImageButton>(R.id.btnBack)
+        val btnBack = findViewById<ImageButton>(R.id.buttonBack)
+btnBack?.setOnClickListener {
+    finish()
+}
+
         btnBack.setOnClickListener {
             finish()
         }
