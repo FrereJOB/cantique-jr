@@ -155,16 +155,19 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text='{\n titre,\n auteur,\n numero,\n categorie,\n audioUrl,\n partitionPdfUrl,\n dateAjout,\n paroles\n}'
-                    android:typeface="monospace"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/playfair_display"
-                    android:textColor="?android:textColorPrimary"
-                    android:background="@drawable/rounded_background"
-                    android:padding="10dp"
-                    android:layout_marginBottom="24dp" />
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text='{\n titre,\n auteur,\n numero,\n categorie,\n audioUrl,\n partitionPdfUrl,\n dateAjout,\n paroles\n}'
+    android:typeface="monospace"
+    android:textSize="14sp"
+    android:fontFamily="@font/playfair_display"
+    android:textColor="#3E2723"  
+    android:textColorHint="#616161"
+    android:padding="16dp"
+    android:layout_marginBottom="24dp"
+    android:background="@drawable/code_block_background"
+    android:elevation="4dp"
+    android:lineSpacingExtra="4sp"/>
             </HorizontalScrollView>
                  <TextView
                 android:id="@+id/textInfoApp"
