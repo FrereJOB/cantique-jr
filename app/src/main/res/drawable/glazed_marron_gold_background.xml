@@ -8,7 +8,7 @@
     </item>
     
     <!-- Reflet glacé (dégradé) -->
-    <item android:top="0dp" android:bottom="50%">
+    <item android:top="0dp" android:bottom="50%dp">
         <shape android:shape="rectangle">
             <gradient
                 android:startColor="#33FFFFFF"
