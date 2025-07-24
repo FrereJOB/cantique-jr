@@ -18,7 +18,7 @@
         android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="#FFD700"
+        android:background="@drawable/glazed_marron_gold_background"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:paddingStart="8dp"
