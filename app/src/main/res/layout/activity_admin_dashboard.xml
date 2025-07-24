@@ -64,6 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Ajouter un cantique"
+                android:backgroundTint="#9E6F3A"
                 android:layout_marginBottom="16dp" />
 
             <Button
@@ -71,6 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Modifier un cantique"
+                android:backgroundTint="#9E6F3A"
                 android:layout_marginBottom="16dp" />
 
             <Button
@@ -78,6 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Supprimer un cantique"
+                android:backgroundTint="#9E6F3A"
                 android:layout_marginBottom="32dp" />
 
             <!-- 🚀 SECTION NOTIFICATIONS -->
