@@ -1,0 +1,26 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Base marron -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/marron_glace"/>
+            <corners android:radius="8dp"/> <!-- Arrondis optionnels -->
+        </shape>
+    </item>
+    
+    <!-- Reflet glacé (dégradé) -->
+    <item android:top="0dp" android:bottom="50%">
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#33FFFFFF"
+                android:endColor="#00FFFFFF"
+                android:angle="90"/>
+        </shape>
+    </item>
+    
+    <!-- Surcouche jaune or transparent -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/marron_glace_or"/>
+        </shape>
+    </item>
+</layer-list>
