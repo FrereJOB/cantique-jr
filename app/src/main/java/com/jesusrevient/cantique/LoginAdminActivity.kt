@@ -7,36 +7,45 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginAdminActivity : AppCompatActivity() {
 
-    // Identifiants admin en dur (à améliorer avec Firebase Auth plus tard)
-    private val adminEmail = "admin@example.com"
-    private val adminPassword = "motdepasse123"
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_admin)
 
-        // Fonction du bouton retour dans la bannière
-        findViewById<ImageButton>(R.id.back_button).setOnClickListener {
-            finish() // Ferme l'activité actuelle pour revenir à la précédente
-        }
+        auth = FirebaseAuth.getInstance()
 
         val emailInput = findViewById<EditText>(R.id.emailInput)
         val passwordInput = findViewById<EditText>(R.id.passwordInput)
         val loginButton = findViewById<Button>(R.id.loginButton)
 
+        // ✅ Fonction du bouton retour dans la bannière
+        val backButton = findViewById<ImageButton>(R.id.back_button)
+        backButton.setOnClickListener {
+            finish() // Ferme LoginAdminActivity et retourne à l'activité précédente
+        }
+
         loginButton.setOnClickListener {
             val email = emailInput.text.toString().trim()
-            val password = passwordInput.text.toString().trim()
+            val password = passwordInput.text.toString()
 
-            if (email == adminEmail && password == adminPassword) {
-                startActivity(Intent(this, AdminDashboardActivity::class.java))
-                finish()
-            } else {
-                Toast.makeText(this, "Identifiants incorrects", Toast.LENGTH_SHORT).show()
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Email et mot de passe requis", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
+
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnSuccessListener {
+                    startActivity(Intent(this, AdminDashboardActivity::class.java))
+                    finish()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Échec connexion: ${it.message}", Toast.LENGTH_LONG).show()
+                }
         }
     }
 }
