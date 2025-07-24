@@ -11,7 +11,7 @@
         android:scaleType="centerCrop"
         android:alpha="0.3" />
 
-    <!-- ✅ Bannière fixe en haut -->
+    <!-- Bannière fixe en haut -->
     <LinearLayout
         android:id="@+id/banner"
         android:layout_width="match_parent"
@@ -45,11 +45,11 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 
-    <!-- ✅ ScrollView avec padding top pour laisser la bannière visible -->
+    <!-- ScrollView avec marginTop = hauteur de la bannière -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="56dp"
+        android:layout_marginTop="56dp"
         android:padding="16dp">
 
         <LinearLayout
@@ -64,6 +64,7 @@
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/spinner_background" />
 
+            <!-- Contenu inchangé -->
             <EditText
                 android:id="@+id/editTextNumero"
                 android:layout_width="match_parent"
