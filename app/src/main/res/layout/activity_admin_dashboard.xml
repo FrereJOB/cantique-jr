@@ -86,6 +86,7 @@
                 android:layout_height="wrap_content"
                 android:text="Envoyer une notification"
                 android:textSize="20sp"
+                android:fontFamily="@font/cinzel"
                 android:textStyle="bold"
                 android:textColor="#4E342E"
                 android:layout_marginBottom="16dp" />
