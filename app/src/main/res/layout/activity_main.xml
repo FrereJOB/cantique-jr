@@ -27,21 +27,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:gravity="center"
-            android:padding="24dp">
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="24dp">
 
-            <!-- Bannière supérieure (modifiée avec marges négatives) -->
+            <!-- Bannière supérieure corrigée -->
             <RelativeLayout
                 android:id="@+id/banner"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/glazed_marron_gold_background"
-                android:gravity="center_vertical"
-                android:layout_marginTop="-24dp"
-                android:layout_marginLeft="-24dp"
-                android:layout_marginRight="-24dp"
-                android:layout_marginStart="-24dp"
-                android:layout_marginEnd="-24dp">
+                android:gravity="center_vertical">
 
                 <!-- Bouton ouvrir menu à gauche -->
                 <ImageButton
@@ -57,8 +54,10 @@
                 <!-- Titre centré -->
                 <TextView
                     android:id="@+id/recueilTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/open_drawer"
+                    android:layout_toStartOf="@id/open_drawer"
                     android:layout_centerInParent="true"
                     android:text="Cantiques Jésus-Revient"
                     android:textColor="#3E2723"
@@ -67,12 +66,14 @@
                     android:fontFamily="@font/cinzel" />
             </RelativeLayout>
 
-            <!-- Barre de recherche (inchangée) -->
+            <!-- Barre de recherche -->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp">
 
                 <AutoCompleteTextView
                     android:id="@+id/searchEditText"
@@ -98,13 +99,15 @@
                     android:contentDescription="Rechercher" />
             </RelativeLayout>
 
-            <!-- Liste des chants (inchangée) -->
+            <!-- Liste des chants -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/songs_list"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="8dp"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"/>
 
             <TextView
                 android:id="@+id/emptyTextView"
@@ -116,8 +119,26 @@
                 android:gravity="center"
                 android:visibility="gone"
                 android:fontFamily="@font/playfair_display"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="16dp"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"/>
         </LinearLayout>
+
+        <!-- Bouton fermer menu -->
+        <ImageButton
+            android:id="@+id/close_drawer"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="16dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_close"
+            android:contentDescription="Fermer le menu"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <!-- Menu latéral -->
 
         <!-- Bouton fermer menu (inchangé) 
         <ImageButton
@@ -131,7 +152,6 @@
             android:src="@drawable/ic_close"
             android:contentDescription="Fermer le menu"
             android:visibility="gone" /> -->
-    </RelativeLayout>
 
     <!-- Menu latéral (inchangé) -->
     <ScrollView
