@@ -1,193 +1,134 @@
-package com.jesusrevient.cantique
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-import android.app.Activity
-import android.content.Intent
-import android.net.Uri
-import android.os.Bundle
-import android.widget.*
-import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
-import java.util.*
+    <!-- Image d’arrière-plan -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background_spirituel"
+        android:scaleType="centerCrop"
+        android:alpha="0.3" />
 
-class AjouterCantiqueActivity : AppCompatActivity() {
+    <!-- Bannière fixe -->
+    <LinearLayout
+        android:id="@+id/headerBanner"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:background="#FFD700"
+        android:gravity="center_vertical"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:elevation="4dp"
+        android:layout_gravity="top">
 
-    private lateinit var editTitre: EditText
-    private lateinit var editAuteur: EditText
-    private lateinit var editCategorie: EditText
-    private lateinit var editNumero: EditText
-    private lateinit var editParoles: EditText
-    private lateinit var buttonChooseAudio: Button
-    private lateinit var buttonChoosePdf: Button
-    private lateinit var buttonAjouter: Button
-    private lateinit var spinnerCollection: Spinner
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_arrow_back"
+            android:contentDescription="Retour" />
 
-    private var selectedCollection: String = "cantiques"
-    private var audioUri: Uri? = null
-    private var pdfUri: Uri? = null
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Ajouter un cantique"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:gravity="center" />
+    </LinearLayout>
 
-    private val storage = FirebaseStorage.getInstance()
-    private val firestore = FirebaseFirestore.getInstance()
-    private val auth = FirebaseAuth.getInstance()
+    <!-- ScrollView contenant le contenu -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
+        android:padding="16dp">
 
-    private val REQUEST_AUDIO = 100
-    private val REQUEST_PDF = 200
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ajouter_cantique)
+            <EditText
+                android:id="@+id/editTitre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Titre"
+                android:inputType="text" />
 
-        // Vérifier si l'utilisateur est connecté
-        if (auth.currentUser == null) {
-            Toast.makeText(this, "Veuillez vous connecter", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, LoginAdminActivity::class.java))
-            finish()
-            return
-        }
+            <EditText
+                android:id="@+id/editAuteur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Auteur"
+                android:inputType="text" />
 
-        // Initialisation des vues
-        editTitre = findViewById(R.id.editTitre)
-        editAuteur = findViewById(R.id.editAuteur)
-        editCategorie = findViewById(R.id.editCategorie)
-        editNumero = findViewById(R.id.editNumero)
-        editParoles = findViewById(R.id.editParoles)
-        buttonChooseAudio = findViewById(R.id.buttonChooseAudio)
-        buttonChoosePdf = findViewById(R.id.buttonChoosePdf)
-        buttonAjouter = findViewById(R.id.buttonAjouter)
-        spinnerCollection = findViewById(R.id.spinnerCollection)
+            <EditText
+                android:id="@+id/editCategorie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Catégorie"
+                android:inputType="text" />
 
-        // Configuration du spinner
-        val collections = arrayOf("cantiques", "voies_eternel", "chants_victoire")
-        val adapterSpinner = ArrayAdapter(this, R.layout.custom_spinner_item, collections)
-        
-        adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerCollection.adapter = adapterSpinner
-        spinnerCollection.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                selectedCollection = collections[position]
-            }
+            <EditText
+                android:id="@+id/editNumero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Numéro"
+                android:inputType="number" />
 
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                selectedCollection = "cantiques"
-            }
-        }
+            <EditText
+                android:id="@+id/editParoles"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:hint="Paroles"
+                android:inputType="textMultiLine"
+                android:gravity="top"
+                android:scrollbars="vertical" />
 
-        buttonChooseAudio.setOnClickListener {
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.type = "audio/*"
-            startActivityForResult(intent, REQUEST_AUDIO)
-        }
+            <Button
+                android:id="@+id/buttonChooseAudio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Choisir un fichier audio" />
 
-        buttonChoosePdf.setOnClickListener {
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.type = "application/pdf"
-            startActivityForResult(intent, REQUEST_PDF)
-        }
+            <Button
+                android:id="@+id/buttonChoosePdf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Choisir une partition PDF" />
 
-        buttonAjouter.setOnClickListener {
-            val titre = editTitre.text.toString().trim()
-            val auteur = editAuteur.text.toString().trim()
-            val categorie = editCategorie.text.toString().trim()
-            val numeroStr = editNumero.text.toString().trim()
-            val paroles = editParoles.text.toString().trim()
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Choisir la collection"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"
+                android:textColor="#000000" />
 
-            if (titre.isBlank() || auteur.isBlank() || categorie.isBlank() || numeroStr.isBlank() || paroles.isBlank()) {
-                Toast.makeText(this, "Tous les champs (sauf audio et PDF) sont requis", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
+            <Spinner
+                android:id="@+id/spinnerCollection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/spinner_background" />
 
-            val numero = numeroStr.toIntOrNull()
-            if (numero == null) {
-                Toast.makeText(this, "Le numéro doit être un entier valide", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            uploadFilesAndSave(titre, auteur, categorie, numero, paroles)
-        }
-    }
-
-    private fun uploadFilesAndSave(
-        titre: String,
-        auteur: String,
-        categorie: String,
-        numero: Int,
-        paroles: String
-    ) {
-        val chant = mutableMapOf<String, Any>(
-            "titre" to titre,
-            "auteur" to auteur,
-            "categorie" to categorie,
-            "numero" to numero,
-            "paroles" to paroles,
-            "dateAjout" to Date()
-        )
-
-        val storageRef = storage.reference
-        val uploadTasks = mutableListOf<com.google.android.gms.tasks.Task<Uri>>()
-
-        if (audioUri != null) {
-            val audioRef = storageRef.child("audios/${UUID.randomUUID()}.mp3")
-            val uploadAudioTask = audioRef.putFile(audioUri!!)
-                .continueWithTask { task ->
-                    if (!task.isSuccessful) throw task.exception ?: Exception("Erreur upload audio")
-                    audioRef.downloadUrl
-                }.addOnSuccessListener { uri ->
-                    chant["audioUrl"] = uri.toString()
-                }.addOnFailureListener {
-                    Toast.makeText(this, "Échec upload audio", Toast.LENGTH_SHORT).show()
-                }
-            uploadTasks.add(uploadAudioTask)
-        }
-
-        if (pdfUri != null) {
-            val pdfRef = storageRef.child("pdfs/${UUID.randomUUID()}.pdf")
-            val uploadPdfTask = pdfRef.putFile(pdfUri!!)
-                .continueWithTask { task ->
-                    if (!task.isSuccessful) throw task.exception ?: Exception("Erreur upload PDF")
-                    pdfRef.downloadUrl
-                }.addOnSuccessListener { uri ->
-                    chant["pdfUrl"] = uri.toString()
-                }.addOnFailureListener {
-                    Toast.makeText(this, "Échec upload PDF", Toast.LENGTH_SHORT).show()
-                }
-            uploadTasks.add(uploadPdfTask)
-        }
-
-        if (uploadTasks.isNotEmpty()) {
-            com.google.android.gms.tasks.Tasks.whenAllComplete(uploadTasks)
-                .addOnSuccessListener {
-                    saveToFirestore(chant)
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, "Erreur lors de l'envoi des fichiers", Toast.LENGTH_LONG).show()
-                }
-        } else {
-            saveToFirestore(chant)
-        }
-    }
-
-    private fun saveToFirestore(chant: Map<String, Any>) {
-        firestore.collection(selectedCollection)
-            .add(chant)
-            .addOnSuccessListener {
-                Toast.makeText(this, "Cantique ajouté avec succès", Toast.LENGTH_SHORT).show()
-                finish()
-            }
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "Erreur: ${e.message}", Toast.LENGTH_LONG).show()
-                e.printStackTrace()
-            }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && data != null) {
-            when (requestCode) {
-                REQUEST_AUDIO -> audioUri = data.data
-                REQUEST_PDF -> pdfUri = data.data
-            }
-        }
-    }
-}
+            <Button
+                android:id="@+id/buttonAjouter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ajouter le cantique"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#A67C52"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>
+    
