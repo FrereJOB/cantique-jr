@@ -25,6 +25,12 @@ class SupprimerCantiqueActivity : AppCompatActivity() {
         btnSupprimer = findViewById(R.id.btnSupprimer)
         spinnerCollection = findViewById(R.id.spinnerCollection)
 
+        // ✅ Gestion du bouton retour
+        val btnBack = findViewById<ImageButton>(R.id.btnBack)
+        btnBack.setOnClickListener {
+            finish() // revient simplement à l'activité précédente
+        }
+
         // Initialiser les options de collection
         val collections = listOf("cantiques", "voies_eternel", "chants_victoire")
         val adapter = ArrayAdapter(this, R.layout.custom_spinner_item, collections)
