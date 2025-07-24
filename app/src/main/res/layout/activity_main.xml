@@ -30,13 +30,18 @@
             android:gravity="center"
             android:padding="24dp">
 
-            <!-- Bannière supérieure -->
+            <!-- Bannière supérieure (modifiée avec marges négatives) -->
             <RelativeLayout
                 android:id="@+id/banner"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="#FFD700"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:layout_marginTop="-24dp"
+                android:layout_marginLeft="-24dp"
+                android:layout_marginRight="-24dp"
+                android:layout_marginStart="-24dp"
+                android:layout_marginEnd="-24dp">
 
                 <!-- Bouton ouvrir menu à gauche -->
                 <ImageButton
@@ -62,7 +67,7 @@
                     android:fontFamily="@font/cinzel" />
             </RelativeLayout>
 
-            <!-- Barre de recherche -->
+            <!-- Barre de recherche (inchangée) -->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -93,7 +98,7 @@
                     android:contentDescription="Rechercher" />
             </RelativeLayout>
 
-            <!-- Liste des chants -->
+            <!-- Liste des chants (inchangée) -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/songs_list"
                 android:layout_width="match_parent"
@@ -114,7 +119,7 @@
                 android:layout_marginTop="16dp" />
         </LinearLayout>
 
-        <!-- Bouton fermer menu -->
+        <!-- Bouton fermer menu (inchangé) -->
         <ImageButton
             android:id="@+id/close_drawer"
             android:layout_width="40dp"
@@ -128,7 +133,7 @@
             android:visibility="gone" />
     </RelativeLayout>
 
-    <!-- Menu latéral -->
+    <!-- Menu latéral (inchangé) -->
     <ScrollView
         android:layout_width="280dp"
         android:layout_height="match_parent"
@@ -291,4 +296,3 @@
         </LinearLayout>
     </ScrollView>
 </androidx.drawerlayout.widget.DrawerLayout>
-    
