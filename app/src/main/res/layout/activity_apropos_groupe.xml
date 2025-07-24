@@ -27,7 +27,7 @@
             android:layout_width="48dp"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_back_arrow"
+            android:src="@drawable/ic_arrow_back"
             android:scaleType="centerInside"
             android:contentDescription="Retour" />
 
