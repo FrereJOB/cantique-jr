@@ -15,7 +15,6 @@
     <RelativeLayout
         android:background="@drawable/glazed_marron_gold_background"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
         android:background="#FFD700"
         android:layout_gravity="top">
 
