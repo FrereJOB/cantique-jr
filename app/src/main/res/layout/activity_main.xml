@@ -35,7 +35,7 @@
                 android:id="@+id/banner"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:background="#FFD700"
+                android:background="@drawable/glazed_marron_gold_background"
                 android:gravity="center_vertical"
                 android:layout_marginTop="-24dp"
                 android:layout_marginLeft="-24dp"
