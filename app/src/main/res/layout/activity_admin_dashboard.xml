@@ -121,7 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Envoyer la notification"
-                android:backgroundTint="#4CAF50"
+                android:backgroundTint="#9E6F3A"
                 android:textColor="#FFFFFF"
                 android:layout_marginTop="8dp"
                 android:elevation="4dp" />
