@@ -168,6 +168,7 @@
             </HorizontalScrollView>
 
             <!-- Footer -->
+            <!-- android:background="@drawable/rounded_background" -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -178,7 +179,6 @@
                 android:textColor="#FFD700"
                 android:gravity="center"
                 android:background="@drawable/glazed_marron_gold_background"
-               <!-- android:background="@drawable/rounded_background" -->
                 android:padding="14dp"
                 android:layout_marginTop="8dp" />
         </LinearLayout>
