@@ -11,91 +11,130 @@
         android:scaleType="centerCrop"
         android:alpha="0.3" />
 
-    <!-- ScrollView contenant le contenu d'origine -->
-    <ScrollView
+    <!-- Contenu principal avec bannière + formulaire -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <!-- ✅ BANNIÈRE -->
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="56dp"
+            android:background="@drawable/glazed_marron_gold_background">
 
-            <EditText
-                android:id="@+id/editTitre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Titre"
-                android:inputType="text" />
+            <!-- Bouton retour -->
+            <ImageButton
+                android:id="@+id/buttonBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/baseline_arrow_back_24"
+                android:contentDescription="Retour"
+                android:tint="@android:color/white" />
 
-            <EditText
-                android:id="@+id/editAuteur"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Auteur"
-                android:inputType="text" />
-
-            <EditText
-                android:id="@+id/editCategorie"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Catégorie"
-                android:inputType="text" />
-
-            <EditText
-                android:id="@+id/editNumero"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Numéro"
-                android:inputType="number" />
-
-            <EditText
-                android:id="@+id/editParoles"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:hint="Paroles"
-                android:inputType="textMultiLine"
-                android:gravity="top"
-                android:scrollbars="vertical" />
-
-            <Button
-                android:id="@+id/buttonChooseAudio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Choisir un fichier audio" />
-
-            <Button
-                android:id="@+id/buttonChoosePdf"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Choisir une partition PDF" />
-
-            <!-- Choix de la collection -->
+            <!-- Titre centré -->
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/textTitreBanniere"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Choisir la collection"
-                android:textSize="16sp"
-                android:layout_marginTop="16dp"
+                android:layout_centerInParent="true"
+                android:text="Ajouter un cantique"
                 android:textStyle="bold"
-                android:textColor="#000000" />
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+        </RelativeLayout>
 
-            <Spinner
-                android:id="@+id/spinnerCollection"
+        <!-- ✅ FORMULAIRE -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp" 
-                android:background="@drawable/spinner_background"/>
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/buttonAjouter"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ajouter le cantique"
-                android:layout_marginTop="16dp"
-                android:backgroundTint="#A67C52"
-                android:textColor="#FFFFFF" />
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/editTitre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Titre"
+                    android:inputType="text" />
+
+                <EditText
+                    android:id="@+id/editAuteur"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Auteur"
+                    android:inputType="text" />
+
+                <EditText
+                    android:id="@+id/editCategorie"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Catégorie"
+                    android:inputType="text" />
+
+                <EditText
+                    android:id="@+id/editNumero"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Numéro"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/editParoles"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:hint="Paroles"
+                    android:inputType="textMultiLine"
+                    android:gravity="top"
+                    android:scrollbars="vertical" />
+
+                <Button
+                    android:id="@+id/buttonChooseAudio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Choisir un fichier audio" />
+
+                <Button
+                    android:id="@+id/buttonChoosePdf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Choisir une partition PDF" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Choisir la collection"
+                    android:textSize="16sp"
+                    android:layout_marginTop="16dp"
+                    android:textStyle="bold"
+                    android:textColor="#000000" />
+
+                <Spinner
+                    android:id="@+id/spinnerCollection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/spinner_background" />
+
+                <Button
+                    android:id="@+id/buttonAjouter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ajouter le cantique"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="#A67C52"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</FrameLayout>
+yout>
     </ScrollView>
 </FrameLayout>
