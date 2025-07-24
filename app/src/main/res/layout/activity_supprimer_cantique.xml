@@ -75,6 +75,7 @@
                 android:id="@+id/btnSupprimer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#9E6F3A"
                 android:text="Supprimer" />
         </LinearLayout>
     </ScrollView>
