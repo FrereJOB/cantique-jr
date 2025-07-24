@@ -15,7 +15,9 @@
     <RelativeLayout
         android:background="@drawable/glazed_marron_gold_background"
         android:layout_width="match_parent"
-        android:layout_gravity="top">
+        android:layout_gravity="top"
+        android:layout_height="wrap_content"
+        >
 
         <ImageButton
             android:id="@+id/back_button"
