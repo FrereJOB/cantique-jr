@@ -88,6 +88,7 @@
             android:id="@+id/loginButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="#9E6F3A"
             android:text="Se connecter"
             android:layout_marginTop="16dp" />
     </LinearLayout>
