@@ -97,7 +97,7 @@ class SongDetailActivity : AppCompatActivity() {
             unavailableIconsLayout.visibility = View.GONE
         }
 
-        val scrollableLayout = findViewById<LinearLayout>(R.id.scrollableLayout)
+        val scrollableLayout = findViewById<ConstraintLayout>(R.id.scrollableLayout)
         val popupAnchor = findViewById<View>(R.id.popup_anchor)
 
         scrollableLayout.setOnLongClickListener {
