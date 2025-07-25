@@ -87,7 +87,7 @@
         android:layout_marginEnd="48dp"
         android:fontFamily="@font/playfair_display"
         android:textColor="#ab640e"
-        android:hintTextColor="#ab640e"
+        android:textColorHint="#ab640e"
         android:completionThreshold="1"/>
 
     <!-- Bouton de recherche -->
