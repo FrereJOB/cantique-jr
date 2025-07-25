@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:text="Cantique Jésus-Revient est une application Android dédiée à la gestion et à la diffusion des cantiques chrétiens produits par le groupe Jésus-Revient..."
                 android:textSize="16sp"
-                android:textColor="?android:textColorSecondary"
+                android:textColor="#00f7ff"
                 android:fontFamily="@font/playfair_display"
                 android:lineSpacingExtra="6dp"
                 android:paddingBottom="16dp" />
@@ -115,7 +115,7 @@
                 android:text="• Catalogue de cantiques\n• Lecture audio\n• Partitions PDF\n• Mode hors ligne\n• Menu latéral : À propos, Partage, Admin"
                 android:textSize="15sp"
                 android:fontFamily="@font/cinzel"
-                android:textColor="?android:textColorSecondary"
+                android:textColor="#00f7ff"
                 android:lineSpacingExtra="6dp"
                 android:paddingBottom="16dp" />
 
@@ -136,7 +136,7 @@
                 android:text="• Connexion sécurisée\n• Gestion complète des cantiques\n• Tableau de bord simple"
                 android:textSize="15sp"
                 android:fontFamily="@font/cinzel"
-                android:textColor="?android:textColorSecondary"
+                android:textColor="#00f7ff"
                 android:paddingBottom="16dp" />
 
             <!-- Structure Firestore -->
@@ -161,7 +161,7 @@
     android:typeface="monospace"
     android:textSize="14sp"
     android:fontFamily="@font/playfair_display"
-    android:textColor="#3E2723"  
+    android:textColor="#FFD700"  
     android:textColorHint="#616161"
     android:padding="16dp"
     android:layout_marginBottom="24dp"
@@ -175,7 +175,7 @@
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textSize="15sp"
-                android:textColor="?android:textColorSecondary"
+                android:textColor="#00f7ff"
                 android:lineSpacingExtra="6dp"
                 android:paddingBottom="16dp" />
             
