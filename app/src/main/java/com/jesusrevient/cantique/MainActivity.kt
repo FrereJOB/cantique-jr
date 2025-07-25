@@ -32,14 +32,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        FirebaseMessaging.getInstance().subscribeToTopic("all")
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Log.d("FCM", "Abonné au topic 'all'")
-                } else {
-                    Log.e("FCM", "Erreur d'abonnement au topic 'all'", task.exception)
-                }
+        val prefs = getSharedPreferences("firebase_prefs", MODE_PRIVATE)
+if (!prefs.getBoolean("is_subscribed_to_all", false)) {
+    FirebaseMessaging.getInstance().subscribeToTopic("all")
+        .addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                prefs.edit().putBoolean("is_subscribed_to_all", true).apply()
+                Log.d("FCM", "Abonné au topic 'all'")
+            } else {
+                Log.e("FCM", "Erreur d'abonnement", task.exception)
             }
+        }
+}
 
         collectionName = intent.getStringExtra("collection") ?: "cantiques"
         Log.d("MainActivity", "Collection reçue : $collectionName")
