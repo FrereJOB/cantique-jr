@@ -53,11 +53,11 @@
     <!-- Titre - Version corrigée -->
     <TextView
         android:id="@+id/recueilTextView"
-        android:layout_width="match_parent"  <!-- Prend toute la largeur disponible -->
+        android:layout_width="match_parent"  
         android:layout_height="wrap_content"
-        android:layout_toStartOf="@id/open_drawer"  <!-- S'étend jusqu'au bouton -->
+        android:layout_toStartOf="@id/open_drawer"  
         android:layout_centerVertical="true"
-        android:gravity="center"  <!-- Centre le texte dans l'espace disponible -->
+        android:gravity="center"  
         android:text="Cantiques Jésus-Revient"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
