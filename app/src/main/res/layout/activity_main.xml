@@ -60,7 +60,7 @@
                     android:layout_toStartOf="@id/open_drawer"
                     android:layout_centerInParent="true"
                     android:text="Cantiques Jésus-Revient"
-                    android:textColor="#3E2723"
+                    android:textColor="#000000"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:fontFamily="@font/cinzel" />
