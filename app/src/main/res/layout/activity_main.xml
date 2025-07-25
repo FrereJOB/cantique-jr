@@ -67,37 +67,42 @@
         android:ellipsize="end"/>
 </RelativeLayout>
             <!-- Barre de recherche -->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp">
+      <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp">
 
-                <AutoCompleteTextView
-                    android:id="@+id/searchEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:hint="Recherche par titre ou paroles…"
-                    android:inputType="text"
-                    android:padding="12dp"
-                    android:background="@drawable/search_edittext_bg"
-                    android:layout_marginEnd="48dp"
-                    android:fontFamily="@font/playfair_display"
-                    android:completionThreshold="1"  />
+    <!-- Champ de recherche -->
+    <AutoCompleteTextView
+        android:id="@+id/searchEditText"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Recherche par titre ou paroles…"
+        android:inputType="text"
+        android:padding="12dp"
+        android:background="@drawable/search_edittext_bg" 
+        android:layout_marginEnd="48dp"
+        android:fontFamily="@font/playfair_display"
+        android:textColor="#ab640e"
+        android:hintTextColor="#ab640e"
+        android:completionThreshold="1"/>
 
-                <ImageButton
-                    android:id="@+id/searchButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="4dp"
-                    android:background="@android:color/transparent"
-                    android:src="@android:drawable/ic_menu_search"
-                    android:contentDescription="Rechercher" />
-            </RelativeLayout>
+    <!-- Bouton de recherche -->
+    <ImageButton
+        android:id="@+id/searchButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="4dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_search_gold"
+        android:contentDescription="Rechercher"
+        android:tint="#ab640e"/>
+</RelativeLayout>   
 
             <!-- Liste des chants -->
             <androidx.recyclerview.widget.RecyclerView
