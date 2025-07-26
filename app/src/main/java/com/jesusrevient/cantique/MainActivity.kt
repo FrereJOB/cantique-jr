@@ -52,7 +52,7 @@ if (!prefs.getBoolean("is_subscribed_to_all", false)) {
         recueilTextView.text = when (collectionName) {
             "voies_eternel" -> "Les Voies de l'Eternel"
             "chants_victoire" -> "Les Chants de Victoire"
-            else -> "Cantiques JR"
+            else -> "Cantiques Spirituel"
         }
 
         drawerLayout = findViewById(R.id.drawer_layout)
