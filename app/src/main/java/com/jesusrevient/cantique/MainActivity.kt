@@ -50,9 +50,9 @@ if (!prefs.getBoolean("is_subscribed_to_all", false)) {
 
         val recueilTextView = findViewById<TextView>(R.id.recueilTextView)
         recueilTextView.text = when (collectionName) {
-            "voies_eternel" -> "Les Voies de l'Éternel"
+            "voies_eternel" -> "Les Voies de l'Eternel"
             "chants_victoire" -> "Les Chants de Victoire"
-            else -> "Cantiques Jésus-Revient"
+            else -> "Cantiques JR"
         }
 
         drawerLayout = findViewById(R.id.drawer_layout)
