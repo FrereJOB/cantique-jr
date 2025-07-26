@@ -52,19 +52,20 @@
 
     <!-- Titre - Version corrigée -->
     <TextView
-        android:id="@+id/recueilTextView"
-        android:layout_width="match_parent"  
-        android:layout_height="wrap_content"
-        android:layout_toStartOf="@id/open_drawer"  
-        android:layout_centerVertical="true"
-        android:gravity="center"  
-        android:text="Cantiques Jésus-Revient"
-        android:textColor="#D32F2F"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/cinzel"
-        android:maxLines="1"
-        android:ellipsize="end"/>
+    android:id="@+id/recueilTextView"
+    android:layout_width="match_parent" 
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:text="Cantiques Jésus-Revient"
+    android:textColor="#D32F2F"
+    android:textSize="18sp"
+    android:textStyle="bold"
+    android:fontFamily="@font/cinzel"
+    android:maxLines="1"
+    android:ellipsize="end"
+    android:gravity="center"
+    android:paddingEnd="52dp"/>
+    
 </RelativeLayout>
             <!-- Barre de recherche -->
       <RelativeLayout
